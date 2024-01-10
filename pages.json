@@ -1,0 +1,597 @@
+{
+  "easycom": {
+    "^u-(.*)": "@/uni_modules/uview-ui/components/u-$1/u-$1.vue"
+  },
+  "pages": [{
+      "path": "pages/index",
+      "style": {
+        "navigationBarTitleText": "首页",
+        "navigationBarBackgroundColor": "#DAE7FF"
+      }
+    },
+    {
+      "path": "pages/mine/index",
+      "style": {
+        "navigationBarTitleText": "我的"
+      }
+    },
+	{
+	    "path": "pages/mine/avatar/index",
+	    "style": {
+	      "navigationBarTitleText": "修改头像"
+	    }
+	  },
+    {
+      "path": "pages/hub/hub",
+      "style": {
+        "navigationBarTitleText": "轮胎管理",
+        "navigationBarBackgroundColor": "#DAE7FF"
+      }
+
+    },
+    {
+      "path": "pages/car/car",
+      "style": {
+        "navigationBarTitleText": "车辆管理",
+        "navigationBarBackgroundColor": "#fff"
+      }
+    },
+    {
+      "path": "pages/login",
+      "style": {
+        "navigationBarTitleText": "登录"
+      }
+    }, {
+      "path": "pages/register",
+      "style": {
+        "navigationBarTitleText": "注册"
+      }
+    }
+
+    // Add configurations for other top-level pages
+    , {
+      "path": "pages/warehouse/warehouse",
+      "style": {
+        "navigationBarTitleText": "仓库设置"
+      }
+    },
+    {
+      "path": "pages/warehouse/Allocate",
+      "style": {
+        "navigationBarTitleText": "轮胎调拨"
+      }
+    },
+    {
+      "path": "pages/mine/setting/index",
+      "style": {
+        "navigationBarTitleText": "我的"
+      }
+    },
+    {
+      "path": "pages/mine/alarm",
+      "style": {
+        "navigationBarTitleText": "胎压报警信息"
+      }
+    },
+    {
+      "path": "pages/mine/inventory",
+      "style": {
+        "navigationBarTitleText": "库存查询",
+        "onReachBottomDistance": 20
+      }
+    },
+    {
+      "path": "pages/warehouse/Pending",
+      "style": {
+        "navigationBarTitleText": "轮胎待处理",
+        "onReachBottomDistance": 20
+      }
+    },
+    {
+      "path": "pages/warehouse/dispose",
+      "style": {
+        "navigationBarTitleText": "轮胎处理"
+      }
+    },
+    {
+      "path": "pages/mine/change",
+      "style": {
+        "navigationBarTitleText": "修改密码"
+      }
+    },
+    {
+      "path": "pages/warehouse/storage",
+      "style": {
+        "navigationBarTitleText": "轮毂入库"
+      }
+    },
+	{
+	  "path": "pages/warehouse/hub",
+	  "style": {
+	    "navigationBarTitleText": "轮毂列表"
+	  }
+	},
+	{
+	  "path": "pages/warehouse/hubinfo",
+	  "style": {
+	    "navigationBarTitleText": "轮毂详情"
+	  }
+	},
+	{
+	  "path": "pages/warehouse/hublive",
+	  "style": {
+	    "navigationBarTitleText": "轮毂生命周期"
+	  }
+	},
+	{
+	  "path": "pages/warehouse/hubpicture",
+	  "style": {
+	    "navigationBarTitleText": "轮毂拆装"
+	  }
+	},
+	{
+	  "path": "pages/warehouse/hubinstall",
+	  "style": {
+	    "navigationBarTitleText": "轮毂安装"
+	  }
+	},
+	{
+	  "path": "pages/warehouse/hubunistall",
+	  "style": {
+	    "navigationBarTitleText": "轮毂拆卸"
+	  }
+	},
+    {
+      "path": "pages/mine/about",
+      "style": {
+        "navigationBarTitleText": "关于我们"
+      }
+    },
+    {
+      "path": "pages/mine/addDriver",
+      "style": {
+        "navigationBarTitleText": "新增司机"
+      }
+    },
+    {
+      "path": "pages/mine/Driver",
+      "style": {
+        "navigationBarTitleText": "司机管理"
+      }
+    },
+    {
+      "path": "pages/mine/remind",
+      "style": {
+        "navigationBarTitleText": "提醒设置"
+      }
+    },
+    {
+      "path": "pages/mine/settings",
+      "style": {
+        "navigationBarTitleText": "参数设置"
+      }
+    },
+    {
+    	"path" : "pages/mine/mine/mine",
+    	"style" : 
+    	{
+    		"navigationBarTitleText" : "我的信息",
+    		"enablePullDownRefresh" : false
+    	}
+    },
+      {
+      "path": "pages/common/webview/index",
+      "style": {
+        "navigationBarTitleText": "浏览网页"
+      }
+    }
+  ],
+  "subpackages": [{
+      "root": "pageA/carlive/",
+      "pages": [{
+          "path": "tiretable/tiretable",
+          "style": {
+            "navigationBarTitleText": "轮胎列表",
+            "navigationBarBackgroundColor": "#fff"
+          }
+        }, {
+          "path": "tirelistinfo/tirelistinfo",
+          "style": {
+            "navigationBarTitleText": "轮胎详情",
+            "enablePullDownRefresh": false
+          }
+
+        },
+        {
+          "path": "tirelist/tirelist",
+          "style": {
+            "navigationBarTitleText": "轮胎入库",
+            "enablePullDownRefresh": false
+          }
+        }, {
+          "path": "tirelive/tirelive",
+          "style": {
+            "navigationBarTitleText": "轮胎生命周期",
+            "enablePullDownRefresh": false
+          }
+
+        }, {
+          "path": "bindsendid/bindsendid",
+          "style": {
+            "navigationBarTitleText": "绑定传感器",
+            "enablePullDownRefresh": false
+          }
+        }, {
+          "path": "tireinstall/tireinstall",
+          "style": {
+            "navigationBarTitleText": "轮胎装卸",
+            "enablePullDownRefresh": false
+          }
+        },{
+    	"path" : "installtire/installtire",
+    	"style" : 
+    	{
+    		"navigationBarTitleText" : "轮胎安装",
+    		"enablePullDownRefresh" : false
+    	}
+		},
+		{
+			"path" : "disassemble/disassemble",
+			"style" : 
+			{
+				"navigationBarTitleText" : "轮胎拆卸",
+				"enablePullDownRefresh" : false
+			}
+		},{
+			"path" : "tirechange/tirechange",
+			"style" : 
+			{
+				"navigationBarTitleText" : "轮胎换位",
+				"enablePullDownRefresh" : false
+			}
+		}
+      ]
+    },
+    {
+      "root": "pageA/tirePressure/",
+      "pages": [{
+        "path": "index",
+        "style": {
+          "navigationBarTitleText": "胎压监控",
+          "navigationBarBackgroundColor": "#fff"
+        }
+
+      }, {
+        "path": "detail",
+        "style": {
+          "navigationBarTitleText": "胎压监控详情",
+          "navigationBarBackgroundColor": "#fff"
+        }
+
+      }, {
+        "path": "allTire",
+        "style": {
+          "navigationBarTitleText": "整车轮胎信息",
+          "navigationBarBackgroundColor": "#fff"
+        }
+
+      }, {
+        "path": "record",
+        "style": {
+          "navigationBarTitleText": "报警记录",
+          "navigationBarBackgroundColor": "#fff"
+        }
+
+      }, {
+        "path": "charts",
+        "style": {
+          "navigationBarTitleText": "轮胎监控曲线",
+          "navigationBarBackgroundColor": "#fff"
+        }
+      }, {
+        "path": "gps",
+        "style": {
+          "navigationBarTitleText": "GPS定位",
+          "navigationBarBackgroundColor": "#fff"
+        }
+      },{
+        "path": "lowPressure",
+        "style": {
+          "navigationBarTitleText": "低压报警车辆",
+          "navigationBarBackgroundColor": "#fff"
+        }
+      },{
+        "path": "highPressure",
+        "style": {
+          "navigationBarTitleText": "高压报警车辆",
+          "navigationBarBackgroundColor": "#fff"
+        }
+      },{
+        "path": "highTemperature",
+        "style": {
+          "navigationBarTitleText": "高温报警车辆",
+          "navigationBarBackgroundColor": "#fff"
+        }
+      },{
+        "path": "noSignal",
+        "style": {
+          "navigationBarTitleText": "无信号报警车辆",
+          "navigationBarBackgroundColor": "#fff"
+        }
+      }
+    ]
+    },
+    {
+      "root": "pageA/vehicle/",
+      "pages": [{
+          "path": "detail",
+          "style": {
+            "navigationBarTitleText": "车辆详情",
+            "navigationBarBackgroundColor": "#fff"
+          }
+        },
+        {
+          "path": "edit",
+          "style": {
+            "navigationBarTitleText": "",
+            "navigationBarBackgroundColor": "#fff"
+          }
+        }
+      ]
+		},
+		{
+			"root": "pageA/daily/",
+			"pages": [{
+					"path": "inspect",
+					"style": {
+						"navigationBarTitleText": "轮胎检查",
+						"navigationBarBackgroundColor": "#fff"
+					}
+				},
+        {
+					"path": "maintenance",
+					"style": {
+						"navigationBarTitleText": "轮胎维修",
+						"navigationBarBackgroundColor": "#fff"
+					}
+				},
+        {
+					"path": "repairRegistration",
+					"style": {
+						"navigationBarTitleText": "维修登记",
+						"navigationBarBackgroundColor": "#fff"
+					}
+				},
+        {
+					"path": "maintenanceDetail",
+					"style": {
+						"navigationBarTitleText": "维修详情",
+						"navigationBarBackgroundColor": "#fff"
+					}
+				},
+        {
+					"path": "renovate",
+					"style": {
+						"navigationBarTitleText": "轮胎翻新",
+						"navigationBarBackgroundColor": "#fff"
+					}
+				},
+        {
+					"path": "refurbishmentRegistration",
+					"style": {
+						"navigationBarTitleText": "翻新登记",
+						"navigationBarBackgroundColor": "#fff"
+					}
+				},
+        {
+					"path": "renovateDetail",
+					"style": {
+						"navigationBarTitleText": "翻新详情",
+						"navigationBarBackgroundColor": "#fff"
+					}
+				},
+        {
+					"path": "mileageRegistration",
+					"style": {
+						"navigationBarTitleText": "里程管理",
+						"navigationBarBackgroundColor": "#fff"
+					}
+				},
+        {
+					"path": "installationInspection",
+					"style": {
+						"navigationBarTitleText": "安装录入及检查",
+						"navigationBarBackgroundColor": "#fff"
+					}
+				},{
+					"path": "tireInspection",
+					"style": {
+						"navigationBarTitleText": "轮胎检查",
+						"navigationBarBackgroundColor": "#fff"
+					}
+				},
+        {
+					"path": "inspectionList",
+					"style": {
+						"navigationBarTitleText": "轮胎检查记录",
+						"navigationBarBackgroundColor": "#fff"
+					}
+				},
+        {
+					"path": "inspectionDetail",
+					"style": {
+						"navigationBarTitleText": "轮胎检查详情",
+						"navigationBarBackgroundColor": "#fff"
+					}
+				}
+			]
+    }
+  ],
+  "tabBar": {
+    "color": "#B4B5BF",
+    "selectedColor": "#3974F6",
+    "backgroundColor": "#ffffff",
+    "list": [{
+        "pagePath": "pages/index",
+        "iconPath": "static/index/home.png",
+        "selectedIconPath": "static/index/home-select.png",
+        "text": "首页"
+      },
+      // {
+      //      "pagePath": "pages/work/index",
+      //      "iconPath": "static/index/hub.png",
+      //      "selectedIconPath": "static/index/hub-select.png",
+      //      "text": "666"
+      //    }, 
+      {
+        "pagePath": "pages/hub/hub",
+        "iconPath": "static/index/hub.png",
+        "selectedIconPath": "static/index/hub-select.png",
+        "text": "一毂管理"
+      },
+      {
+        "pagePath": "pages/car/car",
+        "iconPath": "static/index/car.png",
+        "selectedIconPath": "static/index/car-select.png",
+        "text": "车辆管理"
+      },
+      {
+        "pagePath": "pages/mine/index",
+        "iconPath": "static/index/my.png",
+        "selectedIconPath": "static/index/my-select.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "globalStyle": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "RuoYi",
+    "navigationBarBackgroundColor": "#FFFFFF"
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// {
+//   "pages": [{
+// 			"path": "pages/index",
+// 			"style": {
+// 				"navigationBarTitleText": "首页",
+// 				"navigationBarBackgroundColor": "#DAE7FF"
+// 			}
+// 		},
+// 		, {
+//     "path": "pages/work/index",
+//     "style": {
+//       "navigationBarTitleText": "工作台"
+//     }
+//   }, {
+//     "path": "pages/mine/index",
+//     "style": {
+//       "navigationBarTitleText": "我的"
+//     }
+//   }, {
+//     "path": "pages/mine/avatar/index",
+//     "style": {
+//       "navigationBarTitleText": "修改头像"
+//     }
+//   }, {
+//     "path": "pages/mine/info/index",
+//     "style": {
+//       "navigationBarTitleText": "个人信息"
+//     }
+//   }, {
+//     "path": "pages/mine/info/edit",
+//     "style": {
+//       "navigationBarTitleText": "编辑资料"
+//     }
+//   }, {
+//     "path": "pages/mine/pwd/index",
+//     "style": {
+//       "navigationBarTitleText": "修改密码"
+//     }
+//   }, {
+//     "path": "pages/mine/setting/index",
+//     "style": {
+//       "navigationBarTitleText": "应用设置"
+//     }
+//   }, {
+//     "path": "pages/mine/help/index",
+//     "style": {
+//       "navigationBarTitleText": "常见问题"
+//     }
+//   }, {
+//     "path": "pages/mine/about/index",
+//     "style": {
+//       "navigationBarTitleText": "关于我们"
+//     }
+//   }, {
+//     "path": "pages/common/webview/index",
+//     "style": {
+//       "navigationBarTitleText": "浏览网页"
+//     }
+//   }, {
+//     "path": "pages/common/textview/index",
+//     "style": {
+//       "navigationBarTitleText": "浏览文本"
+//     }
+//   }    ,{
+//             "path" : "pages/hub/hub",
+//             "style" :                                                                                    
+//             {
+//                "navigationBarTitleText": "轮胎管理",
+//                "navigationBarBackgroundColor": "#DAE7FF"
+//             }
+
+//         }
+//         ,{
+//             "path" : "pages/car/car",
+//             "style" :                                                                                    
+//             {
+//                 "navigationBarTitleText": "车辆管理",
+//                "navigationBarBackgroundColor": "#fff"
+//             }
+//         },
+
+// 	}
+//     ],
+//   "tabBar": {
+
+//   },
+//   "globalStyle": {
+
+//   }
+// }

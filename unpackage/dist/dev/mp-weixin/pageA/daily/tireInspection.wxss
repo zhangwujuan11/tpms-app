@@ -1,0 +1,223 @@
+.searbox.data-v-163b689d {
+  width: 100%;
+  height: 106rpx;
+  margin-top: 20rpx;
+}
+.searbox.data-v-163b689d  .u-input {
+  width: 670rpx !important;
+  margin: 0 auto;
+  border: none;
+}
+.carbox .car-box.data-v-163b689d {
+  width: 710rpx;
+  height: 140rpx;
+  background: #ffffff;
+  border-radius: 20rpx;
+  margin: 0 auto;
+  padding: 20rpx;
+  box-sizing: border-box;
+  margin-top: 20rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.carbox .right-box.data-v-163b689d {
+  width: 540rpx;
+  height: 100rpx;
+  line-height: 50rpx;
+}
+.carbox .car-no.data-v-163b689d {
+  font-size: 32rpx;
+  font-family: AppleSystemUIFont;
+  color: #010914;
+}
+.carbox .car-info.data-v-163b689d {
+  font-size: 24rpx;
+  font-family: AppleSystemUIFont;
+  color: #5c5f66;
+}
+.carbox .bus-icon.data-v-163b689d {
+  width: 100rpx;
+  height: 100rpx;
+}
+.carbox .tire-icon.data-v-163b689d {
+  width: 108rpx;
+  height: 172rpx;
+}
+.carbox .tire-gang.data-v-163b689d {
+  width: 173rpx;
+  height: 49rpx;
+}
+.carbox .search.data-v-163b689d  .uni-input-input {
+  text-align: left;
+}
+.carbox .search.data-v-163b689d  .uni-input-placeholder {
+  text-align: left;
+}
+.top-box.data-v-163b689d {
+  display: flex;
+  padding: 28rpx 28rpx 30rpx 28rpx;
+  box-sizing: border-box;
+  justify-content: space-between;
+}
+.top-box .icon.data-v-163b689d {
+  width: 218rpx;
+  height: 192rpx;
+}
+.content.data-v-163b689d {
+  background: #ffffff;
+  padding: 0rpx 30rpx;
+  margin-top: 20rpx;
+}
+.content .item.data-v-163b689d {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 120rpx;
+  line-height: 120rpx;
+  border-bottom: 1px solid #f3f4f6;
+}
+.content.data-v-163b689d  .u-form-item__body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 120rpx;
+  line-height: 120rpx;
+  padding: 0rpx;
+}
+.content .item1.data-v-163b689d  .u-form-item__body__left__content__required {
+  top: 46rpx !important;
+}
+.content .item1.data-v-163b689d  .u-form-item__body__right__content__slot {
+  flex-direction: row-reverse;
+}
+.content .item1.data-v-163b689d  .uni-input-input {
+  text-align: right;
+}
+.content .item1.data-v-163b689d  .u-form-item__body {
+  padding: 0rpx;
+}
+.content .item1.data-v-163b689d  .uni-input-placeholder {
+  text-align: right;
+}
+.content .item1.data-v-163b689d  input {
+  text-align: right !important;
+}
+.content.data-v-163b689d .u-form-item__body__right__message {
+  text-align: right;
+}
+.content .search-icon.data-v-163b689d {
+  width: 48rpx;
+  height: 48rpx;
+}
+.content .label.data-v-163b689d {
+  font-size: 32rpx;
+  font-family: AppleSystemUIFont;
+  color: #010914;
+}
+.content .text.data-v-163b689d {
+  font-size: 32rpx;
+  font-family: AppleSystemUIFont;
+  color: #010914;
+}
+.content .placeholder.data-v-163b689d {
+  font-size: 30rpx;
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 400;
+  color: #c4c5cd;
+}
+.content .date-box.data-v-163b689d  .uni-icons {
+  display: none;
+}
+.content .date-box.data-v-163b689d  .uni-date-x {
+  text-align: right;
+  font-size: 30rpx;
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 400;
+}
+.content .item2.data-v-163b689d {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 120rpx;
+  line-height: 120rpx;
+  border-bottom: #eaebec 1px solid;
+}
+.content.data-v-163b689d  .u-form-item__body__right {
+  line-height: 58rpx;
+}
+.content.data-v-163b689d  .uni-input-placeholder {
+  font-size: 30rpx;
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 400;
+  color: #b4b5bf;
+}
+.title.data-v-163b689d {
+  margin-top: 10rpx;
+  font-size: 28rpx;
+  font-family: AppleSystemUIFont;
+  color: #8a8ea6;
+  line-height: 40rpx;
+  margin-left: 30rpx;
+}
+.data-v-163b689d .u-textarea {
+  padding: 0rpx;
+}
+.bottom.data-v-163b689d {
+  width: 750rpx;
+  height: 148rpx;
+  background: #ffffff;
+  box-shadow: 0rpx -4rpx 8rpx 0rpx rgba(0, 0, 0, 0.05), 0rpx -4rpx 8rpx 0rpx rgba(0, 0, 0, 0.05);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.bottom .btn1.data-v-163b689d {
+  width: 334rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
+  background: #f5f7fb;
+  box-shadow: 0rpx -4rpx 8rpx 0rpx rgba(0, 0, 0, 0.05);
+  border-radius: 12rpx;
+  font-size: 30rpx;
+  font-family: AppleSystemUIFont;
+  color: #010914;
+}
+.bottom .btn2.data-v-163b689d {
+  width: 332rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
+  background: #1862f5;
+  box-shadow: 0rpx -4rpx 8rpx 0rpx rgba(0, 0, 0, 0.05);
+  border-radius: 12rpx;
+  font-size: 30rpx;
+  font-family: AppleSystemUIFont;
+  color: #f5f7fb;
+}
+.record-icon.data-v-163b689d {
+  width: 144rpx;
+  height: 144rpx;
+  position: fixed;
+  right: 0rpx;
+  top: 800rpx;
+  z-index: 99;
+}
+.search.data-v-163b689d {
+  width: 550rpx;
+  margin: 0 auto;
+}
+.search-box.data-v-163b689d {
+  width: 710rpx;
+  height: 76rpx;
+  background: #ffffff;
+  border-radius: 180rpx;
+  display: flex;
+  margin: 0 auto;
+}
+.data-v-163b689d .superwei-combox__input {
+  text-align: right !important;
+}
+

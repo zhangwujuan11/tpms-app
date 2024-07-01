@@ -1,0 +1,53 @@
+.content.data-v-7fd086f4 {
+  background: #F5F7FB;
+  height: 100%;
+  width: 100%;
+}
+.formbox.data-v-7fd086f4 {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 20rpx 0;
+  background-color: white;
+}
+.widbox.data-v-7fd086f4 {
+  width: 690rpx;
+}
+.data-v-7fd086f4 .uni-select {
+  border: none !important;
+}
+.needinline.data-v-7fd086f4 {
+  display: flex;
+  align-items: center;
+}
+.data-v-7fd086f4 .u-sticky__content {
+  width: 100%;
+}
+.subbtnbox.data-v-7fd086f4 {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.data-v-7fd086f4 .uni-select__input-placeholder {
+  color: #c0c4cc !important;
+  font-size: 32rpx  !important;
+}
+.data-v-7fd086f4 .subbtnbox .u-button {
+  width: 25% !important;
+}
+.data-v-7fd086f4 .subbtnbox .u-button:nth-child(3) {
+  width: auto !important;
+}
+.data-v-7fd086f4 .u-radio-group--column {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.data-v-7fd086f4 .uni-select__input-text {
+  text-align: right !important;
+}
+.data-v-7fd086f4 .u-form-item__body__right__message {
+  text-align: right;
+}
+

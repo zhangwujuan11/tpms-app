@@ -7,7 +7,7 @@
 			</view>
 			<view class="li">
 				<text>轮位</text>
-				<text class="licon">{{form.installPosition | installPosition}}</text>
+				<text class="licon">{{form.installPositionDesc}}</text>
 			</view>
 		</view>
 		<text class="ultitle">基本信息</text>
@@ -29,11 +29,11 @@
 						<u-form-item label="报废类型" prop="scrappingType" borderBottom>
 							<radio-group @change="radioChange">
 								<label class="uni-list-cell uni-list-cell-pd">
-									<radio value="0" />
+									<radio value="0" color="#3c9cff"/>
 									<view>正常报废</view>
 								</label>
 								<label class="uni-list-cell uni-list-cell-pd">
-									<radio value="1" />
+									<radio value="1" color="#3c9cff"/>
 									<view>提前报废</view>
 								</label>
 							</radio-group>
@@ -41,27 +41,27 @@
 						<u-form-item label="是否翻新" prop="scrappingType" borderBottom>
 							<radio-group @change="radioChangefx">
 								<label class="uni-list-cell uni-list-cell-pd">
-									<radio value="0" />
+									<radio value="0" color="#3c9cff"/>
 									<view>可翻新</view>
 								</label>
 								<label class="uni-list-cell uni-list-cell-pd">
-									<radio value="1" />
+									<radio value="1" color="#3c9cff"/>
 									<view>不可翻新</view>
 								</label>
 							</radio-group>
 						</u-form-item>
 					</view>
 					<u-form-item label="问题类型" v-if="form.tireMaintenanceBo.tireMaintenanceDetailBos[0].scrappingType == '1'" prop="questionType" borderBottom>
-						<uni-data-select slot="right" placeholder="请选择"   style="width: 400rpx;text-align: right;"
+						<uni-data-select slot="right" placeholder="请选择"   style="width: 400rpx;text-align: right;" @change="proplemchange($event)"
 							v-model="form.tireMaintenanceBo.tireMaintenanceDetailBos[0].questionType"
 							:localdata="questionTypeclass"></uni-data-select>
 					</u-form-item>
 					
-					<u-form-item label="质量问题" v-if="form.tireMaintenanceBo.tireMaintenanceDetailBos[0].questionType == 'lifecycle_tire_quality_problem'" prop="questionType" borderBottom>
-						<checkbox-group class="uni-list" @change="questionContentone">
+					<u-form-item label="质量问题" v-if="form.tireMaintenanceBo.tireMaintenanceDetailBos[0].questionType == 'lifecycle_tire_quality_problem' && form.tireMaintenanceBo.tireMaintenanceDetailBos[0].scrappingType == '1'" prop="questionType" borderBottom>
+						<checkbox-group class="uni-list" @change="questionContentone" >
 							<label class="uni-list-cell uni-list-cell-pd" v-for="(item,index) in radioItems" :key="index">
 								<view>
-									<checkbox :value="`${item.value},${item.name}`" ></checkbox>
+									<checkbox :value="`${item.value},${item.name}`" color="#3c9cff" :checked="one"></checkbox>
 								</view>
 								<view>
 									<label class="label-2-text" :for="item.name">
@@ -71,11 +71,11 @@
 							</label>
 						</checkbox-group>
 					</u-form-item>
-					<u-form-item label="使用问题" v-if="form.tireMaintenanceBo.tireMaintenanceDetailBos[0].questionType == 'lifecycle_tire_use_problem'" prop="questionType" borderBottom>
+					<u-form-item label="使用问题" v-if="form.tireMaintenanceBo.tireMaintenanceDetailBos[0].questionType == 'lifecycle_tire_use_problem' && form.tireMaintenanceBo.tireMaintenanceDetailBos[0].scrappingType == '1'" prop="questionType" borderBottom>
 						<checkbox-group class="uni-list" @change="questionContentwo">
 							<label class="uni-list-cell uni-list-cell-pd" v-for="(item,index) in radioItemtwo" :key="index">
 								<view>
-									<checkbox :value="`${item.value},${item.name}`" ></checkbox>
+									<checkbox :value="`${item.value},${item.name}`" color="#3c9cff" :checked="one"></checkbox>
 								</view>
 								<view>
 									<label class="label-2-text" :for="item.name">
@@ -103,6 +103,9 @@
 					<u-form-item label="花纹型号" prop="pattern" borderBottom>
 						<text slot="right">{{form.tireMaintenanceBo.tireMaintenanceDetailBos[0].pattern}}</text>
 					</u-form-item>
+					<u-form-item label="新胎花纹深度" prop="depth" borderBottom>
+						<text slot="right">{{form.depth|| '0'}}mm</text>
+					</u-form-item>
 					<u-form-item label="拆卸费用" prop="cost" borderBottom>
 						<view style="display: flex;justify-content: flex-end;align-items: center;">
 							<u--input placeholder="请输入拆卸费用" inputAlign="right" border="false" v-model="form.tireMaintenanceBo.tireMaintenanceDetailBos[0].cost"></u--input>
@@ -111,28 +114,45 @@
 						
 					</u-form-item>
 					<u-form-item label="安装时间" prop="createTime" borderBottom>
-						<text slot="right">{{form.createTime}}</text>
+						<text slot="right">{{form.installTime}}</text>
 					</u-form-item>
-					<u-form-item label="规格" prop="createTime" borderBottom>
+					<u-form-item label="规格" prop="specificationsName" borderBottom>
 						<text slot="right">{{form.tireMaintenanceBo.tireMaintenanceDetailBos[0].specificationsName}}</text>
 					</u-form-item>
-					<!-- <u-form-item label="轮胎分类" prop="createTime" borderBottom>
-						<text slot="right">{{form.category}}</text>
-					</u-form-item> -->
-					<u-form-item label="上次实测花纹深度" prop="createTime" borderBottom>
-						<text slot="right">{{form.firstDepth || '--'}}mm</text>
+					<u-form-item label="轮胎分类" prop="category" borderBottom>
+						<view class="noicon">
+							<uni-data-select style="width: 400rpx;text-align: right;" disabled
+								v-model="form.category" emptyTips="0"
+								:localdata="categorylist">
+							</uni-data-select>
+						</view>
 					</u-form-item>
-					<!-- <u-form-item label="本次实测花纹深度" prop="depth" borderBottom>
-						<u--input placeholder="请输入" inputAlign="right" border="false" v-model="form.depth">mm</u--input>
-					</u-form-item> -->
+					<u-form-item label="上次实测花纹深度" prop="measuredDepth" borderBottom>
+						<text slot="right">{{form.measuredDepth || '0'}}mm</text>
+					</u-form-item>
+					<u-form-item label="本次实测花纹深度" prop="indexDepth" borderBottom>
+						<view style="display: flex;justify-content: flex-end;align-items: center;">
+							<u--input placeholder="请输入" inputAlign="right" border="false" v-model="form.indexDepth"></u--input>
+							mm
+						</view>
+					</u-form-item>
 					<u-form-item label="本次拆卸时里程表读数" prop="readMileage" borderBottom>
 						<view style="display: flex;justify-content: flex-end;align-items: center;">
 							<u--input placeholder="请输入"  inputAlign="right" border="false" v-model="form.readMileage"></u--input>
 							km
 						</view>
 					</u-form-item>
+					<u-form-item label="初测花纹深度" prop="firstDepth" borderBottom>
+						<text slot="right">{{form.firstDepth || '0'}}mm</text>
+					</u-form-item>
+					<u-form-item label="当前里程表读数" prop="lastInstallMileage" borderBottom>
+						<text slot="right">{{form.lastInstallMileage || '0'}}km</text>
+					</u-form-item>
+					<u-form-item label="累计里程" prop="totalMileage" borderBottom>
+						<text slot="right">{{form.totalMileage || '0'}}km</text>
+					</u-form-item>
 					<u-form-item label="操作单位" borderBottom>
-						<text slot="right">{{userdata.nickName}}</text>
+						<text slot="right">{{depinfo.deptName}}</text>
 					</u-form-item>
 					<u-form-item label="操作人" borderBottom>
 						<text slot="right">{{userdata.userName}}</text>
@@ -172,7 +192,7 @@
 		</view>
 		<view class="bte">
 			<button style="margin-top: 32upx;width: 48%;" @click="quxiao">取消</button>
-			<button @click="gotirelive" type="primary" style="margin-top: 32upx;width: 48%;">确定拆卸</button>
+			<button @click="gotirelive" type="primary" style="margin-top: 32upx;width: 48%;background: #3c9cff;">确定拆卸</button>
 		</view>
 
 		<!-- 传感器 -->
@@ -189,7 +209,7 @@
 					<view style="background-color: white;">
 						<u--input border="none" placeholder="请输入传感器ID" v-model="sendform.senderId"></u--input>
 						<image @click="gocamner" src="https://tpms.5i84.cn/img/camreserch.png"
-							style="width: 42upx;height: 40upx;position: absolute;right: 40upx;top:51%;"></image>
+							style="width: 42upx;height: 40upx;position: absolute;right: 40upx;top:54%;"></image>
 					</view>
 					
 				</view>
@@ -222,21 +242,22 @@
 				<u-button @click="checkjie" style="margin-top: 20upx;" type="primary" text="解绑"></u-button>
 			</view>
 		</u-popup>
+		<u-toast ref="uToast" />
 	</view>
 </template>
 
 <script>
 	import {  bangding, jiebang,  sendidType, tireinstall, stockStatus_tire, getKeyFX, getKeyWX, tiredetail, zhili, shiyong } from '@/api/carlive'
-	import { cardetail } from '@/api/tirePressure'
+	import { cardetail, tireinfo } from '@/api/tirePressure'
 	import { getDicts } from "@/api/system/dict/data";
 	import config from '@/config'
 	import superweiCombox from '@/components/superwei-combox'
 	import { user } from "@/api/tirePressure.js"
-	import {
-	  toast,
-	  showConfirm,
-	  tansParams
-	} from '@/utils/common'
+	// import {
+	//   toast,
+	//   showConfirm,
+	//   tansParams
+	// } from '@/utils/common'
 	export default {
 		filters:{
 			installPosition(e){
@@ -252,6 +273,8 @@
 		},
 		data() {
 			return {
+				mess:'',
+				one:false,
 				vehicleId: '',
 				show: false, //传感器绑定
 				showjieabgn: false,
@@ -300,10 +323,20 @@
 				paths: [], //存储所有绘制路径,
 				screenWidth: '', //屏幕宽度
 				screenHeight: '', //屏幕高度
-				returnid:''
+				returnid:'',
+				categorylist:[],
+				depinfo:{}
 			}
 		},
 		onLoad(option) {
+			getDicts('lifecycle_tire_category').then(res=>{
+				res.data.map(item=>{
+					this.categorylist.push({
+						text: item.dictLabel,
+						value:  item.dictValue
+					})
+				})
+			})
 			this.returnid=option.returnid
 			var date = new Date();
 			date.getFullYear();
@@ -319,24 +352,32 @@
 			} else {
 				day = date.getDate();
 			}
-			let obj = JSON.parse(uni.getStorageSync('tireinfo'))
-			this.form.installPosition= obj.installPosition
-			this.form.vehicleNo = obj.vehicleNo
-			this.form.installPositionDesc = obj.installPositionDesc
-			this.form.createTime = obj.createTime
-			this.form.depth = obj.depth
-			this.form.tireId = obj.tireId
-			this.form.tireNo = obj.tireNo
-			this.form.insideTireNo = obj.insideTireNo
-			this.form.senderId = obj.senderId
-			this.form.senderType = obj.senderType
-			this.form.vehicleId = obj.vehicleId
-			this.form.tireMaintenanceBo.tireMaintenanceDetailBos[0].pattern = obj.pattern
-			this.form.tireMaintenanceBo.tireMaintenanceDetailBos[0].specificationsName = obj.specificationsName
-			this.form.tireMaintenanceBo.tireMaintenanceDetailBos[0].tireBrandName = obj.tireBrandName
-			this.form.tireMaintenanceBo.tireMaintenanceDetailBos[0].tireId = obj.tireId
-			this.form.tireMaintenanceBo.maintainer = uni.getStorageSync('storage_data').vuex_name
-			this.form.tireMaintenanceBo.maintenanceDate = date.getFullYear() + '-' + mothod + '-' + day
+			tireinfo(option.tireid).then(res=>{
+				this.form.installPosition= res.data.installPosition
+				this.form.vehicleNo = res.data.vehicleNo
+				this.form.installPositionDesc = res.data.installPositionDesc
+				this.form.createTime = res.data.createTime
+				this.form.depth = res.data.depth
+				this.form.tireId = res.data.tireId
+				this.form.tireNo = res.data.tireNo
+				this.form.insideTireNo = res.data.insideTireNo
+				this.form.senderId = res.data.senderId
+				this.form.senderType = res.data.senderType
+				this.form.vehicleId = res.data.vehicleId
+				this.form.category = res.data.category
+				this.form.firstDepth=res.data.firstDepth
+				this.form.lastInstallMileage=res.data.lastInstallMileage
+				this.form.measuredDepth=res.data.measuredDepth
+				this.form.totalMileage=res.data.totalMileage
+				this.form.installTime=res.data.installTime
+				this.form.tireMaintenanceBo.tireMaintenanceDetailBos[0].pattern = res.data.pattern
+				this.form.tireMaintenanceBo.tireMaintenanceDetailBos[0].specificationsName = res.data.specificationsName
+				this.form.tireMaintenanceBo.tireMaintenanceDetailBos[0].tireBrandName = res.data.tireBrandName
+				this.form.tireMaintenanceBo.tireMaintenanceDetailBos[0].tireId = res.data.tireId
+				this.form.tireMaintenanceBo.maintainer = uni.getStorageSync('storage_data').vuex_name
+				this.form.tireMaintenanceBo.maintenanceDate = date.getFullYear() + '-' + mothod + '-' + day
+			})
+			
 				stockStatus_tire().then(res => {
 					if (res.code == 200) {
 						res.data.map(item => {
@@ -378,9 +419,14 @@
 			
 			user().then(res=>{
 				this.userdata = res.data
+				this.depinfo=res.data.dept
 			})
 		},
 		methods: {
+			// 问题类型改变
+			proplemchange(e){
+				this.one=false
+			},
 			questionContentwo(val){
 				let arr=[]
 				let arrt=[]
@@ -700,7 +746,6 @@
 							this.show = false
 							this.sendform.senderId = ''
 							this.sendform.senderType = ''
-
 						}
 					})
 				}
@@ -723,18 +768,22 @@
 						this.sendform.senderType = ''
 						this.form.senderId = null
 					} else {
-						uni.$u.toast(res.message)
+						this.$refs.uToast.show({
+							type: 'default',
+							title: '默认主题',
+							message: res.message
+						})
 					}
 				})
 			},
 			// 确定拆卸
 			gotirelive() {
-				let meeslins = JSON.parse(uni.getStorageSync('tireinfo')).depth
+				let meeslins = this.form.measuredDepth
 				if (!this.form.tireMaintenanceBo.tireMaintenanceDetailBos[0].stockStatus) {
 					uni.$u.toast('请选择拆去方向')
 					return false
-				} else if (this.form.tireMaintenanceBo.tireMaintenanceDetailBos[0].stockStatus == 50 && this.form
-					.tireMaintenanceBo.tireMaintenanceDetailBos[0].scrappingType == undefined) {
+				} else if (this.form.tireMaintenanceBo.tireMaintenanceDetailBos[0].stockStatus == 50 && !this.form
+					.tireMaintenanceBo.tireMaintenanceDetailBos[0].scrappingType) {
 					uni.$u.toast('请选择报废类型')
 					return false
 				} else if (this.form.tireMaintenanceBo.tireMaintenanceDetailBos[0].stockStatus == 50 && this.form
@@ -745,17 +794,22 @@
 					.tireMaintenanceBo.tireMaintenanceDetailBos[0].questionType) {
 					uni.$u.toast('请选择问题类型')
 					return false
-				} else if (this.form.tireMaintenanceBo.tireMaintenanceDetailBos[0].questionType  &&
+				} else if (this.form.tireMaintenanceBo.tireMaintenanceDetailBos[0].scrappingType == "1"  &&
 					!this.form.tireMaintenanceBo.tireMaintenanceDetailBos[0].questionContent) {
 					uni.$u.toast('请选择问题')
 					return false
 				} else if (this.form.tireMaintenanceBo.tireMaintenanceDetailBos[0].cost < 0) {
 					uni.$u.toast('拆卸费用不能为负数')
 					return false
-				} else if (this.form.depth > meeslins) {
-					uni.$u.toast('对不起，上次实测花纹深度是【' + meeslins + 'mm】您本次输入的实测花纹深度不能大于上次的实测花纹深度')
+				} else if (this.form.indexDepth > meeslins) {
+					this.$refs.uToast.show({
+						type: 'default',
+						title: '默认主题',
+						message: '对不起，上次实测花纹深度是【' + meeslins + 'mm】您本次输入的实测花纹深度不能大于上次的实测花纹深度',
+					})
 					return false
 				} else {
+					this.form.depth=this.form.indexDepth
 					this.form.tireMaintenanceBo.totalCost = this.form.tireMaintenanceBo.tireMaintenanceDetailBos[0].cost
 					this.form.tireMaintenanceBo.tireMaintenanceDetailBos[0].tireId = this.form.tireId
 					tiredetail(this.form).then(res => {
@@ -764,12 +818,15 @@
 							uni.redirectTo({
 								url: '/pageA/carlive/tireinstall/tireinstall?id=' + this.returnid
 							})
-						} else {
-							toast(res.message)
-						}
+						} 
+					}).catch(error=>{
+						this.$refs.uToast.show({
+							type: 'default',
+							title: '默认主题',
+							message: error,
+						})
 					})
 				}
-
 			},
 			quxiao() {
 				uni.redirectTo({
@@ -956,5 +1013,14 @@
 	}
 	.uni-list:after{
 		background-color: transparent;
+	}
+	/deep/.bindbox .u-input__content__field-wrapper__field{
+		padding:8rpx
+	}
+	radio-group, checkbox-group{
+		display: flex;
+	}
+	/deep/.noicon .uni-icons{
+		display: none;
 	}
 </style>

@@ -70,7 +70,7 @@
     {
       "path": "pages/mine/alarm",
       "style": {
-        "navigationBarTitleText": "胎压报警信息"
+        "navigationBarTitleText": "胎压报警消息"
       }
     },
     {
@@ -351,21 +351,21 @@
         {
 					"path": "maintenance",
 					"style": {
-						"navigationBarTitleText": "轮胎维修",
+						"navigationBarTitleText": "轮胎修补",
 						"navigationBarBackgroundColor": "#fff"
 					}
 				},
         {
 					"path": "repairRegistration",
 					"style": {
-						"navigationBarTitleText": "维修登记",
+						"navigationBarTitleText": "修补登记",
 						"navigationBarBackgroundColor": "#fff"
 					}
 				},
         {
 					"path": "maintenanceDetail",
 					"style": {
-						"navigationBarTitleText": "维修详情",
+						"navigationBarTitleText": "修补详情",
 						"navigationBarBackgroundColor": "#fff"
 					}
 				},
@@ -447,7 +447,7 @@
         "pagePath": "pages/hub/hub",
         "iconPath": "static/index/hub.png",
         "selectedIconPath": "static/index/hub-select.png",
-        "text": "一毂管理"
+        "text": "易毂管理"
       },
       {
         "pagePath": "pages/car/car",

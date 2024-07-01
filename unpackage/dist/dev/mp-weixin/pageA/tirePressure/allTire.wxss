@@ -1,0 +1,82 @@
+
+.content {
+		height: 100%;
+		padding: 0 20rpx;
+}
+.all-tire-tit{
+	padding-top: 16rpx;
+	font-size: 24rpx;
+	font-family: AppleSystemUIFont;
+	color: #8A8EA6;
+	line-height: 34rpx;
+}
+.tp-car-list{
+	margin-top: 18rpx;
+}
+.tp-car{
+	background: #FFFFFF;
+	border-radius: 20rpx;
+	padding: 20rpx;
+	margin-bottom: 20rpx;
+}
+.tp-car .title{
+	position: relative;
+	padding-left: 124rpx;
+}
+.tp-car .title .img{
+	position: absolute;
+	left: 0rpx;
+	top: 0px;
+	width: 100rpx;
+	height: 100rpx;
+	background: url("https://tpms.5i84.cn/img/tirePressure/tire.png");
+	background-size: 100% 100%;
+}
+.tp-car .title .img ._img{
+	height: 100%;
+	width: 100%;
+}
+.tp-car .title .l1{
+	height: 48rpx;
+	font-size: 32rpx;
+	color: #010914;
+	line-height: 46rpx;
+}
+.tp-car .title .l2{
+	height: 36rpx;
+	font-size: 24rpx;
+	font-family: AppleSystemUIFont;
+	color: #5C5F66;
+	line-height: 34rpx;
+	margin-top: 8rpx;
+}
+.tp-car .title .text{
+	margin-left: 30rpx;
+}
+.tp-car .data{
+	padding: 20rpx;
+	background: #F5F7FB;
+	border-radius: 20rpx;
+	margin-top: 24rpx;
+}
+.tp-car .data .item{
+	
+	display: flex;
+}
+.tp-car .data .item .t1{
+	text-align: left;
+	flex: 1;
+	font-size: 24rpx;
+	font-family: AppleSystemUIFont;
+	color: #5C5F66;
+	line-height: 34rpx;
+}
+.tp-car .data .item .t2{
+	text-align: right;
+	flex: 1;
+	font-size: 24rpx;
+	font-family: AppleSystemUIFont;
+	color: #010914;
+	line-height: 34rpx;
+}
+

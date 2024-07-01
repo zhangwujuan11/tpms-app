@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "轮胎详情",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "u-popup": "/uni_modules/uview-ui/components/u-popup/u-popup",
+    "u--input": "/uni_modules/uview-ui/components/u--input/u--input",
+    "uni-data-select": "/uni_modules/uni-data-select/components/uni-data-select/uni-data-select",
+    "u-button": "/uni_modules/uview-ui/components/u-button/u-button"
+  }
+}

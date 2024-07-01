@@ -1,0 +1,31 @@
+.top.data-v-c16028ca .u-input {
+  border: 0;
+}
+.text.data-v-c16028ca {
+  width: 100vw;
+  height: 141.15rpx;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  border-bottom: 2rpx solid #f5f7fb;
+}
+.text1.data-v-c16028ca {
+  font-size: 32rpx;
+  color: #010914;
+}
+.Unbinding.data-v-c16028ca {
+  width: 100rpx;
+  height: 50rpx;
+  border-radius: 180rpx;
+  background-color: rgba(24, 98, 245, 0.1);
+  color: #1862f5;
+  text-align: center;
+  line-height: 50rpx;
+  margin-left: 16rpx;
+}
+.one.data-v-c16028ca .u-icon {
+  position: fixed;
+  right: 38rpx;
+  bottom: 400rpx;
+}
+

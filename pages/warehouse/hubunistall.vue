@@ -7,7 +7,7 @@
 			</view>
 			<view class="li">
 				<text>轮位</text>
-				<text class="licon">{{form.installPosition | installPosition}}</text>
+				<text class="licon">{{form.installPositionDesc}}</text>
 			</view>
 		</view>
 		<text class="ultitle">基本信息</text>
@@ -84,7 +84,7 @@
 		</view>
 		<view class="bte">
 			<button style="margin-top: 32upx;width: 48%;" @click="quxiao">取消</button>
-			<button @click="gotirelive" type="primary" style="margin-top: 32upx;width: 48%;">确定拆卸</button>
+			<button @click="gotirelive" type="primary" style="margin-top: 32upx;width: 48%;background: #3c9cff;">确定拆卸</button>
 		</view>
 
 		<!-- 传感器 -->
@@ -558,6 +558,8 @@
 							this.sendform.senderId=null
 							
 						}
+					}).catch(error => {
+						uni.$u.toast(error)
 					})
 				}
 			},
@@ -581,7 +583,9 @@
 					}else{
 						uni.$u.toast(res.message)
 					}
-				})
+				}).catch(error => {
+						uni.$u.toast(error)
+					})
 			},
 			// 确定拆卸
 			gotirelive() {
@@ -595,6 +599,8 @@
 						} else {
 							uni.$u.toast(res.message)
 						}
+					}).catch(error => {
+						uni.$u.toast(error)
 					})
 
 			},

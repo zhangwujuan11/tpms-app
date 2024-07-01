@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "提醒设置",
+  "usingComponents": {
+    "u-switch": "/uni_modules/uview-ui/components/u-switch/u-switch",
+    "u-picker": "/uni_modules/uview-ui/components/u-picker/u-picker"
+  }
+}

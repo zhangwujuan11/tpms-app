@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "轮胎装卸",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "superwei-combox": "/components/superwei-combox"
+  }
+}

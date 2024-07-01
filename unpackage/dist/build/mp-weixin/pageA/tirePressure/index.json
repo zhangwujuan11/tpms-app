@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "胎压监控",
+  "navigationBarBackgroundColor": "#fff",
+  "usingComponents": {
+    "u-search": "/uni_modules/uview-ui/components/u-search/u-search",
+    "u-picker": "/uni_modules/uview-ui/components/u-picker/u-picker"
+  }
+}

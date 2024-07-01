@@ -1,17 +1,15 @@
 // 应用全局配置
 module.exports = {
-   // baseUrl: 'http://27.155.120.108/tireapi',
-  baseUrl: 'https://tpms.5i84.cn/tireapi',
-  // baseUrl: 'http://27.155.120.108/tireapi',
+   baseUrl: 'http://27.155.120.108/tireapi',
+  // baseUrl: 'https://tpms.5i84.cn/tireapi',
   // baseUrl: 'http://192.168.110.77:38087',
-  // baseUrl: 'http://27.155.120.108/tireapi',
   // baseUrl: 'https://tpms.5i84.cn/tireapi',
   
   
   
   // gps嵌入域名
-  // gpsDomain: 'http://27.155.120.108/tire/',
-  gpsDomain: 'https://tpms.5i84.cn/tire/',
+  gpsDomain: 'http://27.155.120.108/tire/',
+  // gpsDomain: 'https://tpms.5i84.cn/tire/',
   // gpsDomain: 'http://192.168.110.39:80/tire/',
   
   

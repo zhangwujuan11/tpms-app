@@ -24,12 +24,15 @@
 							<text class="text" style="margin-right: 20upx;">ID：{{carinfoshow.deviceId || ''}}</text>
 							<text class="text">里程：{{carinfoshow.distance || 0}} km</text>
 						</view>
-						<view style="display: flex;justify-content: space-around;margin-top: 10rpx;">
-							<view class="imagebox" style="color: #1862F5;">
-								<image src="@/static/tirePressure/smallbule.png" mode=""></image> <text>未绑定传感器轮胎</text>
+						<view style="display: flex;justify-content: flex-start;margin-top: 10rpx;flex-wrap: wrap;">
+							<view class="imagebox" style="color: #AEB3D1;margin-right: 10rpx;">
+								<image src="@/static/tireplus/baiban-s.png" mode=""></image> <text>未安装轮胎/轮毂</text>
 							</view>
-							<view class="imagebox" style="color: #00C779;">
-								<image src="@/static/tirePressure/smallgree.png" mode=""></image> <text>已绑定传感器轮胎</text>
+							<view class="imagebox" style="color: #1862F5;margin-right: 10rpx;">
+								<image src="@/static/tireplus/tire-s.png" mode=""></image> <text>已安装轮胎/轮毂</text>
+							</view>
+							<view class="imagebox" style="color: #1862F5;margin-top: 10rpx;;margin-right: 10rpx;">
+								<image src="@/static/tireplus/tireid-s.png" mode=""></image> <text>已绑定传感器</text>
 							</view>
 						</view>
 						
@@ -41,42 +44,127 @@
 			<view class="tire" v-for="(tire,index) in maincardata" :key="index">
 				<view class="left">
 					<view class="tire-item"  v-for="(tireleft) in tire.leftTireCode">
-						<view class="img" v-if="tireleft.infodata == null" @click="notire(tireleft.positionCode,tireleft.positionDesc)"></view>
-						<view class="lunbox" v-else-if="tireleft.infodata.senderId" @click="havetire(tireleft.infodata,0)"></view>
-						<view class="lunbox2" v-else @click="havetire(tireleft.infodata,0)"></view>
+						<!-- 没轮胎 -->
+						<view class="img" 
+						style="position: relative;"
+						v-if="tireleft.infodata == null" 
+						:class="[(tireleft.infohub && tireleft.infohub.senderId)? 'baibanhubstyle':'' ,(tireleft.infohub && !tireleft.infohub.senderId)?'baibanhubred':'' ]" 
+						@click="notire(tireleft.positionCode,tireleft.positionDesc)">
+						<view  v-if="!tireleft.infohub" class="nohub" ></view>
+							<img src="@/static/tireplus/tireid.png"  
+							v-if="tireleft.infohub && tireleft.infohub.senderId" 
+							style="position: absolute;right: -20rpx;width: 26rpx;height: 26rpx;top: 19rpx;"/>
+						</view>
+						<!-- 有轮胎 -->
+						<view class="lunbox2" v-else @click="havetire(tireleft.infodata,0)">
+							<img src="@/static/tireplus/tire.png" alt="" class="hastire"/>
+							<!--有轮毂-->
+							<view  v-if="tireleft.infohub" class="hashub" ></view>
+							<!--没有轮毂  -->
+							<view  v-if="!tireleft.infohub" class="nohub" ></view>
+							<!-- 轮毂上有传感器 -->
+							<img src="@/static/tireplus/tireid.png"
+							v-if="tireleft.infohub && tireleft.infohub.senderId" 
+							style="position: absolute;right: -25rpx;width: 26rpx;height: 26rpx;top: 19rpx;"/>
+							<!-- 轮胎上有传感器 -->
+							<img src="@/static/tireplus/hubid.png"
+							v-if="tireleft.infodata.senderId" 
+							style="position: absolute;left: -24rpx;top: -40rpx;width: 46rpx;height: 46rpx;"/>
+						</view>
 					</view>
 					<view v-for="(item,index) in tire.leftTireCode" :key="index">
-						<view class="decs" v-if="item.infodata">
-							<view  v-if="item.infodata">{{item.positionDesc}}</view>
-							<view  v-if="item.infodata">{{item.infodata.tireNo}}</view>
+						<view class="decs" v-if="item.infodata || item.infohub">
+							<view>{{item.positionDesc}}</view>
+							<view v-if="item.infodata">{{item.infodata.tireNo}}</view>
+							<view v-if="!item.infodata"></view>
+							<view v-if="item.infohub">{{item.infohub.hubNo}}</view>
+							<view v-if="!item.infohub"></view>
 						</view>
 					</view>
 				</view>
 				<view class="middle"></view>
 				<view class="right">
 					<view class="tire-item" v-for="(tireright) in tire.rightTireCode" :key="tireright.deviceNumber" >
-						<view class="img" v-if="tireright.infodata == null " @click="notire(tireright.positionCode,tireright.positionDesc)"></view>
-						<view class="lunbox" v-else-if="tireright.infodata.senderId" @click="havetire(tireright.infodata,0)"></view>
-						<view class="lunbox2"  v-else @click="havetire(tireright.infodata,0)"></view>
+						<!-- 没轮胎 -->
+						<view class="img" 
+						style="position: relative;"
+						v-if="tireright.infodata == null" 
+						:class="[(tireright.infohub && tireright.infohub.senderId)? 'baibanhubstyle':'' ,(tireright.infohub && !tireright.infohub.senderId)?'baibanhubred':'' ]" 
+						@click="notire(tireright.positionCode,tireright.positionDesc)">
+						<view  v-if="!tireright.infohub" class="nohub" ></view>
+							<img src="@/static/tireplus/tireid.png"  
+							v-if="tireright.infohub && tireright.infohub.senderId" 
+							style="position: absolute;right: -20rpx;width: 26rpx;height: 26rpx;top: 19rpx;"/>
+						</view>
+						<!-- 有轮胎 -->
+						<view class="lunbox2" v-else @click="havetire(tireright.infodata,0)">
+							<img src="@/static/tireplus/tire.png" alt="" class="hastire"/>
+							<!--有轮毂  -->
+							<view  v-if="tireright.infohub" class="hashub" ></view>
+							<!--没有轮毂  -->
+							<view  v-if="!tireright.infohub" class="nohub" ></view>
+							<!-- 轮毂上有传感器 -->
+							<img src="@/static/tireplus/tireid.png"
+							v-if="tireright.infohub && tireright.infohub.senderId" 
+							style="position: absolute;right: -20rpx;width: 26rpx;height: 26rpx;top: 19rpx;"/>
+							<!-- 轮胎上有传感器 -->
+							<img src="@/static/tireplus/hubid.png"
+							v-if="tireright.infodata.senderId" 
+							style="position: absolute;left: -24rpx;top: -40rpx;width: 46rpx;height: 46rpx;"/>
+						</view>
 					</view>
 					<view >
 						<view  v-for="(item,index) in tire.rightTireCode" :key="index" >
-							<view class="decs" v-if="item.infodata">
-								<view  v-if="item.infodata">{{item.positionDesc}}</view>
-								<view  v-if="item.infodata">{{item.infodata.tireNo}}</view>
+							<view class="decs" v-if="item.infodata || item.infohub">
+								<view>{{item.positionDesc}}</view>
+								<view v-if="item.infodata">{{item.infodata.tireNo}}</view>
+								<view v-if="!item.infodata"></view>
+								<view v-if="item.infohub">{{item.infohub.hubNo}}</view>
+								<view v-if="!item.infohub"></view>
 							</view>
 						</view>
 					</view>
 				</view>	
 				<view v-if="tire.axisNumber == 0 " style="width: 100%;">
-					<view style="display: flex;justify-content: space-around;">
+					<view style="display: flex;justify-content: space-around;flex-wrap: wrap;">
 						<view v-for="(its) in tire.spareTireCode" :key="its.deviceNumber"  class="beitaibox">
-							<view class="img down" v-if="its.infodata == null" @click="notire(its.positionCode,its.positionDesc)"></view>
-							<view class="lunbox down"  v-else-if="its.infodata.senderId" @click="havetire(its.infodata,0)"></view>
-							<view class="lunbox2 down"  v-else @click="havetire(its.infodata,0)"></view>
-							<view class="decs beitaitip" v-if="its.infodata">
-								<view >{{its.positionDesc}}</view>
-								<view>{{its.infodata.tireNo}}</view>
+							<!-- 没轮胎 -->
+							<view class="img down" 
+							style="position: relative;"
+							v-if="its.infodata == null" 
+							:class="[(its.infohub && its.infohub.senderId)? 'baibanhubstyle':'' ,(its.infohub && !its.infohub.senderId)?'baibanhubred':'' ]" 
+							@click="notire(its.positionCode,its.positionDesc)">
+							<view  v-if="!its.infohub" class="nohub" ></view>
+								<img src="@/static/tireplus/tireid.png"  
+								v-if="its.infohub && its.infohub.senderId" 
+								style="position: absolute;right: -20rpx;width: 26rpx;height: 26rpx;top: 19rpx;"/>
+							</view>
+							<!-- 有轮胎 -->
+							<view class="lunbox2 down" v-else @click="havetire(its.infodata,0)">
+								<img src="@/static/tireplus/tire.png" alt="" class="hastire"/>
+								<!--有轮毂  -->
+								<view  v-if="its.infohub" class="hashub" ></view>
+								<!--没有轮毂  -->
+								<view  v-if="!its.infohub" class="nohub" ></view>
+								<!-- 轮毂上有传感器 -->
+								<img src="@/static/tireplus/tireid.png"
+								v-if="its.infohub && its.infohub.senderId" 
+								style="position: absolute;right: -20rpx;width: 26rpx;height: 26rpx;top: 19rpx;"/>
+								<!-- 轮胎上有传感器 -->
+								<img src="@/static/tireplus/hubid.png"
+								v-if="its.infodata.senderId" 
+								style="position: absolute;left: -24rpx;top: -40rpx;width: 46rpx;height: 46rpx;"/>
+							</view>
+						</view>
+						<view style="width: 100%;display: flex;justify-content: space-around;">
+							<view v-for="(item,index) in tire.spareTireCode" :key="index" style="text-align: center;">
+								<view class="decs" v-if="item.infodata || item.infohub" style="padding: 0 20rpx;">
+									<view>{{item.positionDesc}}</view>
+									<view v-if="item.infodata">{{item.infodata.tireNo}}</view>
+									<view v-if="!item.infodata"></view>
+									<view v-if="item.infohub">{{item.infohub.hubNo}}</view>
+									<view v-if="!item.infohub"></view>
+								</view>
 							</view>
 						</view>
 					</view>
@@ -94,12 +182,15 @@
 							<text class="text" style="margin-right: 20upx;">ID：{{carinfoshowtwo.deviceId || ''}}</text>
 							<text class="text">里程：{{carinfoshowtwo.distance ||0}} km</text>
 						</view>
-						<view style="display: flex;justify-content: space-around;margin-top: 10rpx;">
-							<view class="imagebox" style="color: #1862F5;">
-								<image src="@/static/tirePressure/smallbule.png" mode=""></image> <text>未绑定传感器轮胎</text>
+						<view style="display: flex;justify-content: flex-start;margin-top: 10rpx;flex-wrap: wrap;">
+							<view class="imagebox" style="color: #AEB3D1;margin-right: 10rpx;">
+								<image src="@/static/tireplus/baiban-s.png" mode=""></image> <text>未安装轮胎/轮毂</text>
 							</view>
-							<view class="imagebox" style="color: #00C779;">
-								<image src="@/static/tirePressure/smallgree.png" mode=""></image> <text>已绑定传感器轮胎</text>
+							<view class="imagebox" style="color: #1862F5;margin-right: 10rpx;">
+								<image src="@/static/tireplus/tire-s.png" mode=""></image> <text>已绑定传感器</text>
+							</view>
+							<view class="imagebox" style="color: #1862F5;margin-top: 10rpx;;margin-right: 10rpx;">
+								<image src="@/static/tireplus/tireid-s.png" mode=""></image> <text>已安装轮胎/轮毂</text>
 							</view>
 						</view>
 					</view>
@@ -110,15 +201,42 @@
 			<view class="tire" v-for="(items,index) in trailcardata"  :key="index">
 				<view class="left">
 					<view class="tire-item" v-for="(tiresleft) in items.leftTireCode" :key="tiresleft.deviceNumber" >
-						<view class="img"  v-if="tiresleft.infodata == null" @click="notire(tiresleft.positionCode,tiresleft.positionDesc)"></view>
-						<view class="lunbox"  v-else-if="tiresleft.infodata.senderId" @click="havetire(tiresleft.infodata,1)"></view>
-						<view class="lunbox2"  v-else @click="havetire(tiresleft.infodata,1)"></view>
+						<!-- 没轮胎 -->
+						<view class="img" 
+						style="position: relative;"
+						v-if="tiresleft.infodata == null" 
+						:class="[(tiresleft.infohub && tiresleft.infohub.senderId)? 'baibanhubstyle':'' ,(tiresleft.infohub && !tiresleft.infohub.senderId)?'baibanhubred':'' ]" 
+						@click="notire(tiresleft.positionCode,tiresleft.positionDesc)">
+						<view  v-if="!tiresleft.infohub" class="nohub" ></view>
+							<img src="@/static/tireplus/tireid.png"  
+							v-if="tiresleft.infohub && tiresleft.infohub.senderId" 
+							style="position: absolute;right: -20rpx;width: 26rpx;height: 26rpx;top: 19rpx;"/>
+						</view>
+						<!-- 有轮胎 -->
+						<view class="lunbox2" v-else @click="havetire(tiresleft.infodata,0)">
+							<img src="@/static/tireplus/tire.png" alt="" class="hastire"/>
+							<!--有轮毂-->
+							<view  v-if="tiresleft.infohub" class="hashub" ></view>
+							<!--没有轮毂  -->
+							<view  v-if="!tiresleft.infohub" class="nohub" ></view>
+							<!-- 轮毂上有传感器 -->
+							<img src="@/static/tireplus/tireid.png"
+							v-if="tiresleft.infohub && tiresleft.infohub.senderId" 
+							style="position: absolute;right: -25rpx;width: 26rpx;height: 26rpx;top: 19rpx;"/>
+							<!-- 轮胎上有传感器 -->
+							<img src="@/static/tireplus/hubid.png"
+							v-if="tiresleft.infodata.senderId" 
+							style="position: absolute;left: -24rpx;top: -40rpx;width: 46rpx;height: 46rpx;"/>
+						</view>
 					</view>
 					<view >
 						<view  v-for="(item,index) in items.leftTireCode" :key="index" >
-							<view class="decs" v-if="item.infodata">
-								<view  v-if="item.infodata">{{item.positionDesc}}</view>
-								<view  v-if="item.infodata">{{item.infodata.tireNo}}</view>
+							<view class="decs" v-if="item.infodata || item.infohub">
+								<view>{{item.positionDesc}}</view>
+								<view v-if="item.infodata">{{item.infodata.tireNo}}</view>
+								<view v-if="!item.infodata"></view>
+								<view v-if="item.infohub">{{item.infohub.hubNo}}</view>
+								<view v-if="!item.infohub"></view>
 							</view>
 						</view>
 					</view>
@@ -126,28 +244,86 @@
 				<view class="middle"></view>
 				<view class="right">
 					<view class="tire-item" v-for="(tirersight) in items.rightTireCode" :key="tirersight.deviceNumber" >
-						<view class="img"  v-if="tirersight.infodata == null" @click="notire(tirersight.positionCode,tirersight.positionDesc)"></view>
-						<view class="lunbox"  v-else-if="tirersight.infodata.senderId" @click="havetire(tirersight.infodata,1)"></view>
-						<view class="lunbox2" v-else @click="havetire(tirersight.infodata,1)"></view>
+						<!-- 没轮胎 -->
+						<view class="img" 
+						style="position: relative;"
+						v-if="tirersight.infodata == null" 
+						:class="[(tirersight.infohub && tirersight.infohub.senderId)? 'baibanhubstyle':'' ,(tirersight.infohub && !tirersight.infohub.senderId)?'baibanhubred':'' ]" 
+						@click="notire(tirersight.positionCode,tirersight.positionDesc)">
+						<view  v-if="!tirersight.infohub" class="nohub" ></view>
+							<img src="@/static/tireplus/tireid.png"  
+							v-if="tirersight.infohub && tirersight.infohub.senderId" 
+							style="position: absolute;right: -20rpx;width: 26rpx;height: 26rpx;top: 19rpx;"/>
+						</view>
+						<!-- 有轮胎 -->
+						<view class="lunbox2" v-else @click="havetire(tirersight.infodata,0)">
+							<img src="@/static/tireplus/tire.png" alt="" class="hastire"/>
+							<!--有轮毂-->
+							<view  v-if="tirersight.infohub" class="hashub" ></view>
+							<!--没有轮毂  -->
+							<view  v-if="!tirersight.infohub" class="nohub" ></view>
+							<!-- 轮毂上有传感器 -->
+							<img src="@/static/tireplus/tireid.png"
+							v-if="tirersight.infohub && tirersight.infohub.senderId" 
+							style="position: absolute;right: -25rpx;width: 26rpx;height: 26rpx;top: 19rpx;"/>
+							<!-- 轮胎上有传感器 -->
+							<img src="@/static/tireplus/hubid.png"
+							v-if="tirersight.infodata.senderId" 
+							style="position: absolute;left: -24rpx;top: -40rpx;width: 46rpx;height: 46rpx;"/>
+						</view>
 					</view>
 					<view >
 						<view  v-for="(item,index) in items.rightTireCode" :key="index" >
-							<view class="decs" v-if="item.infodata">
-								<view  v-if="item.infodata">{{item.positionDesc}}</view>
-								<view  v-if="item.infodata">{{item.infodata.tireNo}}</view>
+							<view class="decs" v-if="item.infodata || item.infohub">
+								<view>{{item.positionDesc}}</view>
+								<view v-if="item.infodata">{{item.infodata.tireNo}}</view>
+								<view v-if="!item.infodata"></view>
+								<view v-if="item.infohub">{{item.infohub.hubNo}}</view>
+								<view v-if="!item.infohub"></view>
 							</view>
 						</view>
 					</view>
 				</view>		
 				<view v-if="items.axisNumber == 0 " style="width: 100%;">
-					<view style="display: flex;justify-content: space-around;">
+					<view style="display: flex;justify-content: space-around;flex-wrap: wrap;">
 						<view v-for="(its) in items.spareTireCode" :key="its.deviceNumber"  class="beitaibox">
-							<view class="img down" v-if="its.infodata == null" @click="notire(its.positionCode,its.positionDesc)"></view>
-							<view class="lunbox down"  v-else-if="its.infodata.senderId" @click="havetire(its.infodata,1)"></view>
-							<view class="lunbox2 down"  v-else @click="havetire(its.infodata,1)"></view>
-							<view class="decs beitaitip" v-if="its.infodata">
-								<view >{{its.positionDesc}}</view>
-								<view>{{its.infodata.tireNo}}</view>
+							<!-- 没轮胎 -->
+							<view class="img down" 
+							style="position: relative;"
+							v-if="its.infodata == null" 
+							:class="[(its.infohub && its.infohub.senderId)? 'baibanhubstyle':'' ,(its.infohub && !its.infohub.senderId)?'baibanhubred':'' ]" 
+							@click="notire(its.positionCode,its.positionDesc)">
+							<view  v-if="!its.infohub" class="nohub" ></view>
+								<img src="@/static/tireplus/tireid.png"  
+								v-if="its.infohub && its.infohub.senderId" 
+								style="position: absolute;right: -20rpx;width: 26rpx;height: 26rpx;top: 19rpx;"/>
+							</view>
+							<!-- 有轮胎 -->
+							<view class="lunbox2 down" v-else @click="havetire(its.infodata,0)">
+								<img src="@/static/tireplus/tire.png" alt="" class="hastire"/>
+								<!--有轮毂  -->
+								<view  v-if="its.infohub" class="hashub" ></view>
+								<!--没有轮毂  -->
+								<view  v-if="!its.infohub" class="nohub" ></view>
+								<!-- 轮毂上有传感器 -->
+								<img src="@/static/tireplus/tireid.png"
+								v-if="its.infohub && its.infohub.senderId" 
+								style="position: absolute;right: -20rpx;width: 26rpx;height: 26rpx;top: 19rpx;"/>
+								<!-- 轮胎上有传感器 -->
+								<img src="@/static/tireplus/hubid.png"
+								v-if="its.infodata.senderId" 
+								style="position: absolute;left: -24rpx;top: -40rpx;width: 46rpx;height: 46rpx;"/>
+							</view>
+						</view>
+						<view style="width: 100%;display: flex;justify-content: space-around;">
+							<view v-for="(item,index) in items.spareTireCode" :key="index" style="text-align: center;">
+								<view class="decs" v-if="item.infodata || item.infohub" style="padding: 0 20rpx;">
+									<view>{{item.positionDesc}}</view>
+									<view v-if="item.infodata">{{item.infodata.tireNo}}</view>
+									<view v-if="!item.infodata"></view>
+									<view v-if="item.infohub">{{item.infohub.hubNo}}</view>
+									<view v-if="!item.infohub"></view>
+								</view>
 							</view>
 						</view>
 					</view>
@@ -158,7 +334,7 @@
 </template>
 
 <script>
-	import { getVehiclesTires,getTireDetail,getVehiclesList, vehicleNo, cardetail,gettirepicture,caralltire } from '@/api/tirePressure'
+	import { getVehiclesTires,getTireDetail,getVehiclesList, vehicleNo, cardetail,gettirepicture,caralltire ,getallhub} from '@/api/tirePressure'
 	import superweiCombox from '@/components/superwei-combox'
 	export default {
 		components: {
@@ -190,6 +366,19 @@
 				carinfoshowtwo:{}
 			}
 		},
+		onBackPress(e) {
+				uni.switchTab({
+					url: '/pages/hub/hub'
+				});
+				return true;
+			},
+		onUnload() {
+			//#ifdef MP-WEIXIN
+			wx.reLaunch({
+			  url: '/pages/hub/hub'
+			})
+			//#endif
+		  },
 		onLoad(option){
 			if(option.id){
 				this.queryform.vehicleId = option.id
@@ -259,46 +448,87 @@
 					this.carallinfo=res.data
 						// 判断主挂车盒子
 						if(res.data.mainList != null){
-							caralltire(res.data.vehicleId).then(response=>{
-								let tirePositionlist=[]
-								if(response.data != null){
-									tirePositionlist=response.data.items || []
+							// 轮毂加载
+							getallhub(res.data.vehicleId).then(info => {
+								let tirePositionlist = []
+								if (info.data != null) {
+									tirePositionlist = info.data.items || []
 								}
-								this.maincarbox=true
-								let nwarr=res.data.mainList
-								nwarr.map(item=>{
-									if(item.axisNumber != 0){
+								this.maincarbox = true
+								let nwarr = res.data.mainList
+								nwarr.map(item => {
+									if (item.axisNumber !=0  ) {
 										// item.leftTireCode.reverse()
 										for (let i = 0; i < item.leftTireCode.length; i++) {
-											item.leftTireCode[i].infodata=null
-											for (let j = 0; j <  tirePositionlist.length; j++) {
-												if(tirePositionlist[j].installPosition== item.leftTireCode[i].positionCode){
-													item.leftTireCode[i].infodata=tirePositionlist[j]
+											item.leftTireCode[i].infohub = null
+											for (let j = 0; j < tirePositionlist.length; j++) {
+												if (tirePositionlist[j].installPosition == item.leftTireCode[i]
+													.positionCode) {
+													item.leftTireCode[i].infohub = tirePositionlist[j]
 												}
+											}
 										}
-									 }
 										// item.rightTireCode.reverse()
 										for (let i = 0; i < item.rightTireCode.length; i++) {
-												item.rightTireCode[i].infodata=null
-												for (let j = 0; j <  tirePositionlist.length; j++) {
-													if(tirePositionlist[j].installPosition== item.rightTireCode[i].positionCode){
-														item.rightTireCode[i].infodata=tirePositionlist[j]
-													}
+											item.rightTireCode[i].infohub = null
+											for (let j = 0; j < tirePositionlist.length; j++) {
+												if (tirePositionlist[j].installPosition == item.rightTireCode[i].positionCode) {
+													item.rightTireCode[i].infohub = tirePositionlist[j]
+												}
 											}
 										}
 									}else{
 										for (let i = 0; i < item.spareTireCode.length; i++) {
-											item.spareTireCode[i].infodata = null
+											item.spareTireCode[i].infohub = null
 											for (let j = 0; j < tirePositionlist.length; j++) {
 												if (tirePositionlist[j].installPosition == item.spareTireCode[i].positionCode) {
-													item.spareTireCode[i].infodata = tirePositionlist[j]
+													item.spareTireCode[i].infohub = tirePositionlist[j]
 												}
 											}
 										}
 									}
 								})
-								this.maincardata=nwarr
-								})
+								caralltire(res.data.vehicleId).then(response=>{
+									let tirePositionlist=[]
+									if(response.data != null){
+										tirePositionlist=response.data.items || []
+									}
+									this.maincarbox=true
+									let nwarr=res.data.mainList
+									nwarr.map(item=>{
+										if(item.axisNumber != 0){
+											// item.leftTireCode.reverse()
+											for (let i = 0; i < item.leftTireCode.length; i++) {
+												item.leftTireCode[i].infodata=null
+												for (let j = 0; j <  tirePositionlist.length; j++) {
+													if(tirePositionlist[j].installPosition== item.leftTireCode[i].positionCode){
+														item.leftTireCode[i].infodata=tirePositionlist[j]
+													}
+											}
+										 }
+											// item.rightTireCode.reverse()
+											for (let i = 0; i < item.rightTireCode.length; i++) {
+													item.rightTireCode[i].infodata=null
+													for (let j = 0; j <  tirePositionlist.length; j++) {
+														if(tirePositionlist[j].installPosition== item.rightTireCode[i].positionCode){
+															item.rightTireCode[i].infodata=tirePositionlist[j]
+														}
+												}
+											}
+										}else{
+											for (let i = 0; i < item.spareTireCode.length; i++) {
+												item.spareTireCode[i].infodata = null
+												for (let j = 0; j < tirePositionlist.length; j++) {
+													if (tirePositionlist[j].installPosition == item.spareTireCode[i].positionCode) {
+														item.spareTireCode[i].infodata = tirePositionlist[j]
+													}
+												}
+											}
+										}
+										this.maincardata=nwarr
+									})
+									})
+							})
 						}else{
 							this.maincarbox=false
 						}
@@ -308,45 +538,86 @@
 						cardetail(res.data.trailVehicleId).then(info=>{
 							this.carinfoshowtwo=info.data
 						})
-						caralltire(res.data.trailVehicleId).then(rest=>{
-							let tirePosition =[]
-							if(rest.data != null){
+						getallhub(res.data.trailVehicleId).then(rest => {
+							let tirePosition = []
+							if (rest.data != null) {
 								tirePosition = rest.data.items || []
 							}
-							this.trailcarbox=true
-							let olarr=res.data.trailList
-							olarr.map(item=>{
-								if(item.axisNumber != 0){
-										for (let i = 0; i < item.leftTireCode.length; i++) {
-											item.leftTireCode[i].infodata=null
-											for (let j = 0; j < tirePosition.length; j++) {
-												if(tirePosition[j].installPosition== item.leftTireCode[i].positionCode){
-													item.leftTireCode[i].infodata=tirePosition[j]
+							this.trailcarbox = true
+							let olarr = res.data.trailList
+							olarr.map(item => {
+								if (item.axisNumber != 0) {
+									// item.leftTireCode.reverse()
+									for (let i = 0; i < item.leftTireCode.length; i++) {
+										item.leftTireCode[i].infohub = null
+										for (let j = 0; j < tirePosition.length; j++) {
+											if (tirePosition[j].installPosition == item.leftTireCode[i]
+												.positionCode) {
+												item.leftTireCode[i].infohub = tirePosition[j]
 											}
 										}
 									}
 									// item.rightTireCode.reverse()
 									for (let i = 0; i < item.rightTireCode.length; i++) {
-											item.rightTireCode[i].infodata=null
-											for (let j = 0; j <  tirePosition.length; j++) {
-												if(tirePosition[j].installPosition== item.rightTireCode[i].positionCode){
-													item.rightTireCode[i].infodata=tirePosition[j]
-												}
+										item.rightTireCode[i].infohub = null
+										for (let j = 0; j < tirePosition.length; j++) {
+											if (tirePosition[j].installPosition == item.rightTireCode[i]
+												.positionCode) {
+												item.rightTireCode[i].infohub = tirePosition[j]
+											}
 										}
 									}
 								}else{
 									for (let i = 0; i < item.spareTireCode.length; i++) {
-										item.spareTireCode[i].infodata = null
+										item.spareTireCode[i].infohub = null
 										for (let j = 0; j < tirePosition.length; j++) {
 											if (tirePosition[j].installPosition == item.spareTireCode[i].positionCode) {
-												item.spareTireCode[i].infodata = tirePosition[j]
+												item.spareTireCode[i].infohub = tirePosition[j]
 											}
 										}
 									}
 								}
 							})
-							this.trailcardata=olarr
-							})
+							caralltire(res.data.trailVehicleId).then(resps=>{
+								let tirePosition =[]
+								if(resps.data != null){
+									tirePosition = resps.data.items || []
+								}
+								this.trailcarbox=true
+								let olarr=res.data.trailList
+								olarr.map(item=>{
+									if(item.axisNumber != 0){
+											for (let i = 0; i < item.leftTireCode.length; i++) {
+												item.leftTireCode[i].infodata=null
+												for (let j = 0; j < tirePosition.length; j++) {
+													if(tirePosition[j].installPosition== item.leftTireCode[i].positionCode){
+														item.leftTireCode[i].infodata=tirePosition[j]
+												}
+											}
+										}
+										// item.rightTireCode.reverse()
+										for (let i = 0; i < item.rightTireCode.length; i++) {
+												item.rightTireCode[i].infodata=null
+												for (let j = 0; j <  tirePosition.length; j++) {
+													if(tirePosition[j].installPosition== item.rightTireCode[i].positionCode){
+														item.rightTireCode[i].infodata=tirePosition[j]
+													}
+											}
+										}
+									}else{
+										for (let i = 0; i < item.spareTireCode.length; i++) {
+											item.spareTireCode[i].infodata = null
+											for (let j = 0; j < tirePosition.length; j++) {
+												if (tirePosition[j].installPosition == item.spareTireCode[i].positionCode) {
+													item.spareTireCode[i].infodata = tirePosition[j]
+												}
+											}
+										}
+									}
+								})
+								this.trailcardata=olarr
+								})
+						})
 					}else{
 						this.trailcarbox=false
 					}
@@ -361,7 +632,7 @@
 				}
 				uni.setStorageSync('tireinfo',JSON.stringify(e))
 				uni.navigateTo({
-					url: '/pageA/carlive/disassemble/disassemble?returnid='+ returnid
+					url: '/pageA/carlive/disassemble/disassemble?returnid='+ returnid + '&tireid=' + e.tireId
 				})
 			},
 			detail(e){
@@ -390,7 +661,7 @@
 	}
 </script>
 
-<style>
+<style scoped>
 	
 .tp-deail{
 		height: calc(100vh - 80rpx);
@@ -431,41 +702,28 @@
 	margin-bottom: 40rpx;
 }
 .total-car .tire .left{
-	flex: 4;
+	flex: 5;
 	text-align: center;
 }
 .total-car .tire .middle{
-	flex: 3;
+	flex: 2;
 }
 .total-car .tire .right{
-	flex: 4;
+	flex: 5;
 	text-align: center;
 }
 .tire-item {
 	width: 108rpx;
 	display: inline-block;
-	margin: 0 10rpx;
+	margin: 0 15rpx;
 }
-.img{
-	width: 108rpx;
-	height: 172rpx;
-	background: url('@/static/tirePressure/baiban.png') no-repeat;
-	background-size: cover;
-	border-radius: 20rpx;
-}
+
 .tire-item .info{
 	font-size: 24rpx;
 	font-family: AppleSystemUIFont;
 	color: #010914;
 	line-height: 50rpx;
 	height: 75px;
-}
-.right  .img{
-	width: 108rpx;
-	height: 172rpx;
-	background: url('@/static/tirePressure/baiban.png') no-repeat;
-	background-size: cover;
-	border-radius: 20rpx;
 }
 
 .left  .lunbox{
@@ -479,27 +737,6 @@
 	width: 108rpx;
 	height: 172rpx;
 	background: url('@/static/tirePressure/biggreen.png') no-repeat;
-	background-size: 100%;
-	border-radius: 20rpx;
-}
-.left  .lunbox2{
-	width: 108rpx;
-	height: 172rpx;
-	background: url('@/static/tirePressure/bigbule.png') no-repeat;
-	background-size: 100%;
-	border-radius: 20rpx;
-}
-.right  .lunbox2{
-	width: 108rpx;
-	height: 172rpx;
-	background: url('@/static/tirePressure/bigbule.png') no-repeat;
-	background-size: 100%;
-	border-radius: 20rpx;
-}
-.lunbox2{
-	width: 108rpx;
-	height: 172rpx;
-	background: url('@/static/tirePressure/bigbule.png') no-repeat;
 	background-size: 100%;
 	border-radius: 20rpx;
 }
@@ -751,7 +988,7 @@
   }
   .tip image{
 	  width: 20rpx;
-	  height: 32rpx;
+	  height:20rpx;
 	  margin-right: 8rpx;
   }
   .imagebox{
@@ -762,7 +999,7 @@
   .down {
   	transform: rotate(90deg);
   }
-  .decs{
+ .decs{
 	  width: 100%;
 	  min-height: 105rpx;
 	  background: rgba(255,255,255,0.5);
@@ -785,5 +1022,63 @@
   }
   /deep/.superwei-combox__input{
 	  text-align: center !important; 
+  }
+  
+  /* 1.11轮胎轮毂集中展示 */
+  .img{
+  	width: 108rpx;
+  	height: 172rpx;
+  	background: url('@/static/tireplus/baiban.png') no-repeat;
+  	background-size:  100% 100%;
+  	border-radius: 20rpx;
+  }
+  .baibanhubstyle{
+	  width: 120rpx;
+	  height: 172rpx;
+	  background: url('@/static/tireplus/hub.png')  no-repeat;
+	  background-size: 100% 100%;
+  }
+  .baibanhubred{
+	 width: 120rpx;
+	 height: 172rpx;
+	 background: url('@/static/tireplus/hub.png')  no-repeat;
+	 background-size: 100% 100%;
+  }
+  
+  .lunbox2{
+  	width: 108rpx;
+  	height: 172rpx;
+	position: relative;
+	z-index: 9;
+  }
+  .hastire{
+	width: 106rpx;
+	height: 172rpx;
+	position: absolute;
+	z-index: 9;
+	left: 0;
+	top: 0;
+  }
+  .hashub{
+	  width: 122rpx;
+	  height: 172rpx;
+	  position: absolute;
+	  z-index: 1;
+	  width: 122rpx;
+	  height: 172rpx;
+	  left: -8rpx;
+	  top: 0;
+	  background: url('@/static/tireplus/hub.png') no-repeat;
+	  background-size: 100% 100%;
+  }
+  .nohub{
+	  position: absolute;
+	  z-index: 1;
+	   width: 122rpx;
+	  height: 104rpx;
+	  background: url('@/static/tireplus/doneknow.png') no-repeat;
+	  background-size: 100% 100%;
+	  top:34rpx;
+	   left: -8rpx;
   }
 </style>

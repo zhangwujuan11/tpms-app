@@ -18,6 +18,10 @@
             <view class="item1">胎号</view>
             <view class="text">{{ form.tireNo }}</view>
           </view>
+          <view class="item2">
+            <view class="item1">轮位</view>
+            <view class="text">{{ form.installPositionDesc }}</view>
+          </view>
           <!-- <u-form-item label="轮位" borderBottom ref="item1" class="item1">
             <view class="text"></view>
           </u-form-item> -->
@@ -35,6 +39,7 @@
               placeholder="请选择品牌"
               v-model="form.tireBrandName"
               @select="selectBrand"
+              :onlySelect="true"
             ></superwei-combox>
           </u-form-item>
           <u-form-item
@@ -51,6 +56,7 @@
               placeholder="请选择规格"
               v-model="form.specificationsName"
               @select="selectSpecification"
+              :onlySelect="true"
             ></superwei-combox>
           </u-form-item>
           <!-- <u-form-item
@@ -96,20 +102,20 @@
           </u-form-item>
           <view class="item2">
             <view class="item1">传感器ID</view>
-            <view class="text">{{ form.senderId }}</view>
+            <view class="text">{{ form.senderId || '--'}}</view>
           </view>
           <view class="item2">
             <view class="item1">累计里程</view>
-            <view class="text">{{ form.totalMileage }}</view>
+            <view class="text">{{ form.totalMileage || '0'}}</view>
           </view>
           <view class="item2">
             <view class="item1">轮胎状态</view>
             <view class="text">{{ form.statusName }}</view>
           </view>
-          <!-- <view class="item2">
+          <view class="item2">
             <view class="item1">安装时间</view>
             <view class="text">{{ form.installTime }}</view>
-          </view> -->
+          </view>
           <!-- <view class="item2">
             <view class="item1">读取的编号</view>
             <view class="text">{{ form.serialNumber }}</view>
@@ -138,32 +144,17 @@
           </u-form-item>
           <view class="item2">
             <view class="item1">安装时里程表读数</view>
-            <view class="text">{{ form.lastInstallMileage }}Km</view>
+            <view class="text">{{ form.lastInstallMileage  || '0'}}Km</view>
           </view>
           <u-form-item
             label="当前里程表读数"
             borderBottom
             ref="item1"
-            class="item1"
-          >
+            class="item1">
             <u--input
-              v-model="form.totalMileage"
+              v-model="form.latestInstallationMileage"
               border="none"
               placeholder="请输入当前里程表读数"
-              inputAlign="right"
-            ></u--input>
-            <view style="margin-left: 8rpx" slot="right" class="text">Km</view>
-          </u-form-item>
-          <u-form-item
-            label="最新里程表数"
-            borderBottom
-            ref="item1"
-            class="item1"
-          >
-            <u--input
-              v-model="form.latestVehicleMileage"
-              border="none"
-              placeholder="请输入最新里程表数"
               inputAlign="right"
             ></u--input>
             <view style="margin-left: 8rpx" slot="right" class="text">Km</view>
@@ -188,8 +179,7 @@
             borderBottom
             ref="item1"
             class="item1"
-            prop="middleTreadDepth"
-          >
+            prop="middleTreadDepth">
             <u--input
               v-model="form.middleTreadDepth"
               border="none"
@@ -213,21 +203,6 @@
             ></u--input>
             <view style="margin-left: 8rpx" slot="right" class="text">mm</view>
           </u-form-item>
-          <u-form-item
-            label="新胎花纹深度"
-            borderBottom
-            ref="item1"
-            class="item1"
-            prop="newTreadDepth"
-          >
-            <u--input
-              v-model="form.newTreadDepth"
-              border="none"
-              placeholder="请输入新胎花纹深度"
-              inputAlign="right"
-            ></u--input>
-            <view style="margin-left: 8rpx" slot="right" class="text">mm</view>
-          </u-form-item>
         </view>
         <view class="title">请上传图片(最多不超过三张)</view>
         <view class="content" style="padding: 28rpx">
@@ -240,8 +215,8 @@
             :maxCount="3"
             :width="106"
             :height="106"
-          ></u-upload
-        ></view>
+          ></u-upload>
+		</view>
         <view class="title">问题说明</view>
         <view class="content">
           <u--textarea
@@ -275,7 +250,6 @@
     ></u-picker>
   </view>
 </template>
-
 <script>
 import superweiCombox from "@/components/superwei-combox";
 import config from "@/config";
@@ -333,13 +307,6 @@ export default {
         ],
         rightTreadDepth: [
           { required: true, message: "右侧花纹不能为空", trigger: "change" },
-        ],
-        newTreadDepth: [
-          {
-            required: true,
-            message: "新胎花纹深度不能为空",
-            trigger: "change",
-          },
         ],
       },
       dot_show: false,
@@ -480,9 +447,7 @@ export default {
           });
           this.form.checkPhotos = this.form.checkPhotos.join(",");
         }
-
         this.form.inspectionTime = new Date().toISOString();
-
         let params = {
           inspectionTime: this.form.inspectionTime,
           tireNo: this.form.tireNo,
@@ -495,9 +460,7 @@ export default {
           status: this.form.stockStatus,
           pressure: this.form.pressure,
           temperature: this.form.temperature,
-          latestInstallationMileage: this.form.lastInstallMileage,
-          latestVehicleMileage: this.form.latestVehicleMileage,
-          mileageReading: this.form.totalMileage,
+          latestInstallationMileage: this.form.latestInstallationMileage,
           leftTreadDepth: this.form.leftTreadDepth,
           middleTreadDepth: this.form.middleTreadDepth,
           rightTreadDepth: this.form.rightTreadDepth,
@@ -507,8 +470,9 @@ export default {
           tenantId: this.form.tenantId,
           tireId: this.form.tireId,
           processingStatus: "0",
-          newTreadDepth: this.form.newTreadDepth,
           vehicleNo: this.form.vehicleNo,
+          mileageReading: "0",
+          newTreadDepth: this.form.depth
         };
         inspectionAdd(params)
           .then((res) => {
@@ -547,13 +511,13 @@ export default {
     getInspectionList() {
       for (let i = 0; i < this.tireNoData.length; i++) {
         if (this.tireNoData[i].tireNo == this.form.tireNo) {
-          this.form = this.tireNoData[i];
+          this.form = JSON.parse(JSON.stringify(this.tireNoData[i]));
           this.getTireStatus();
           break;
         }
       }
-    },
-  },
+    }
+  }
 };
 </script>
 
@@ -767,6 +731,7 @@ export default {
   position: fixed;
   right: 0rpx;
   top: 800rpx;
+  z-index:99;
 }
 .search {
   width: 550rpx;

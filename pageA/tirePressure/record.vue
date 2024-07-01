@@ -76,6 +76,10 @@
 				beginTime: "",
 				endTime: "",
 				action: "begin",
+				pageSize:10,
+				pageNum:1,
+				total:0,
+				is_show:false
 			}
 		},
 		onLoad(options){
@@ -84,7 +88,6 @@
 		},
 		methods: {
 			confirm(e) {
-				console.log('confirm', e)
 				this.show = false
 			},
 			close(){
@@ -94,8 +97,8 @@
 				let params = {
 					vehicleId: this.vehicleId,
 					install: 0,
-					pageNum: 1,
-					pageSize: 10,
+					pageNum: this.pageNum,
+					pageSize: this.pageSize,
 					startTime:this.beginTime,
 					endTime:this.endTime,
 				}
@@ -146,6 +149,40 @@
 				}
 				
 			},
+		},
+		onReachBottom() { //触底事件
+			if (this.pageNum * this.pageSize >= this.total) {
+				this.is_show = true;
+			} else {
+				this.is_show = false;
+				if (this.pageNum <= this.pageNum - 1) {
+					setTimeout(() => {
+						uni.hideLoading()
+					}, 500)
+				} else {
+					uni.showLoading({
+						title: '加载中'
+					});
+					this.pageNum++
+					getAlarmRecords({
+						vehicleId: this.vehicleId,
+						install: 0,
+						pageNum: this.pageNum,
+						pageSize: this.pageSize,
+						startTime:this.beginTime,
+						endTime:this.endTime,
+					}).then(res=>{
+						if(res.code == 200){
+							this.total=res.data.total
+							this.records=[...this.records,...res.data.items]
+							setTimeout(() => {
+								uni.hideLoading()
+							}, 500)
+						}
+					})
+				}
+				
+			}
 		}
 	}
 </script>

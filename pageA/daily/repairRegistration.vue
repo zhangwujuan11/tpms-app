@@ -72,7 +72,7 @@
         </u-form-item>
       </view>
       <view v-for="(item, index) of form.tireMaintenanceDetailBos" :key="index">
-        <view class="title">修补轮胎明细{{ index + 1 }}</view>
+        <view class="title">修补轮胎明细{{ form.tireMaintenanceDetailBos.length == 1 ? '': index + 1 }}</view>
         <view class="content">
           <view class="item2">
             <view class="item1">胎号</view>
@@ -315,8 +315,11 @@ export default {
             if (res.code == 200) {
               const pages = getCurrentPages();
               let prevPage = pages[pages.length - 2];
-              prevPage = prevPage;
+              // #ifdef MP-WEIXIN
+              prevPage = prevPage.$vm;
+              // #endif
               prevPage.getRepairableList(1, prevPage.list.length + 1);
+              prevPage.checkList = [];
               uni.navigateBack();
               setTimeout(() => {
                 uni.showToast({
@@ -346,6 +349,9 @@ export default {
     getRepairContent() {
       getTireRepair().then((res) => {
         if (res.code == 200) {
+        res.data =  res.data.filter((item)=>{
+            return item.cssClass!== 'null'
+          })
           this.contentData = [res.data];
         }
       });
@@ -353,6 +359,9 @@ export default {
     getStockDestination() {
       getStockStatus().then((res) => {
         if (res.code == 200) {
+            res.data =  res.data.filter(item=>{
+            return item.dictValue!=30
+          })
           this.stockStatusData = [res.data];
         }
       });

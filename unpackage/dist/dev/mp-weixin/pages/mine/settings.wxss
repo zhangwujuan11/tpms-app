@@ -1,0 +1,60 @@
+.text.data-v-68887b36 {
+  width: 100vw;
+  height: 80rpx;
+  color: #8a8ea6;
+  font-size: 24rpx;
+  line-height: 80rpx;
+  padding-left: 30rpx;
+}
+.test.data-v-68887b36 {
+  display: flex;
+  align-items: center;
+  width: 100vw;
+  height: 120rpx;
+  background-color: #fff;
+}
+.test1.data-v-68887b36 {
+  width: 100vw;
+  height: 120rpx;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+input.data-v-68887b36 {
+  width: 200rpx;
+  height: 88rpx;
+  text-align: right;
+  padding-right: 30rpx;
+}
+.text2.data-v-68887b36 {
+  margin-left: 30rpx;
+  font-size: 32rpx;
+}
+.text1.data-v-68887b36 {
+  margin-left: 30rpx;
+  color: #010914;
+  font-size: 32rpx;
+}
+.botton.data-v-68887b36 {
+  width: 690rpx;
+  height: 88rpx;
+  margin-top: 32rpx;
+  margin-left: 30rpx;
+  background-color: #1862f5;
+  text-align: center;
+  line-height: 88rpx;
+  color: white;
+  font-size: 30rpx;
+  border-radius: 12rpx;
+}
+.data-v-68887b36 .u-input {
+  border: 0;
+}
+.data-v-68887b36 .u-text__value {
+  color: #010914;
+}
+.data-v-68887b36 .input-placeholder {
+  text-align: right;
+}
+

@@ -83,6 +83,13 @@
 				});
 				return true;
 			},
+		onUnload() {
+		    //#ifdef MP-WEIXIN
+		    wx.reLaunch({
+		      url: '/pages/mine/index'
+		    })
+		    //#endif
+		  },
 		methods: {
 			close() {
 			  this.show = false

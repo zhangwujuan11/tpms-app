@@ -56,7 +56,7 @@
 		</view>
 		<view class="bte">
 			<button style="margin-top: 32upx;width: 48%;" @click="quxiao">取消</button>
-			<button @click="gotirelive" type="primary" style="margin-top: 32upx;width: 48%;">确定安装</button>
+			<button @click="gotirelive" type="primary" style="margin-top: 32upx;width: 48%;background: #3c9cff;">确定安装</button>
 		</view>
 
 		<!-- 传感器 -->
@@ -265,11 +265,7 @@
 						 this.$forceUpdate()
 					},
 					fail: (err) => {
-						this.$refs.uToast.show({
-							type: 'error',
-							message: err,
-							iconUrl: 'https://cdn.uviewui.com/uview/demo/toast/error.png'
-						})
+						console.log(err)
 					},
 					complete: () => {
 						console.log('扫码结束')
@@ -480,11 +476,7 @@
 						this.$forceUpdate()
 					},
 					fail: (err) => {
-						this.$refs.uToast.show({
-							type: 'error',
-							message: err,
-							iconUrl: 'https://cdn.uviewui.com/uview/demo/toast/error.png'
-						})
+						console.log(err)
 					},
 					complete: () => {
 						console.log('扫码结束')
@@ -511,6 +503,8 @@
 							this.sendform.senderId=null
 							
 						}
+					}).catch(error => {
+						uni.$u.toast(error)
 					})
 				}
 			},
@@ -534,7 +528,9 @@
 					}else{
 						uni.$u.toast(res.message)
 					}
-				})
+				}).catch(error => {
+						uni.$u.toast(error)
+					})
 			},
 			// 确定安装
 			gotirelive() {
@@ -556,6 +552,8 @@
 								url: '/pages/warehouse/hubpicture?id=' + this.returnid
 							})
 						}
+					}).catch(error => {
+						uni.$u.toast(error)
 					})
 				}
 				

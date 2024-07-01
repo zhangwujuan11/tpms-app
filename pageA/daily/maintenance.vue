@@ -23,7 +23,7 @@
               v-model="mid"
             ></u--input>
           </view>
-          <view>
+          <!-- <view>
             <u--input
               inputAlign="center"
               shape="circle"
@@ -31,10 +31,10 @@
               prefixIconStyle="font-size: 22px;color: #909399"
               v-model="maintainer"
             ></u--input>
-          </view>
-        </view>
-        <view class="searboxtwo">
-          <view>
+          </view> -->
+        <!-- </view> -->
+        <!-- <view class="searboxtwo"> -->
+          <!-- <view>
             <u--input
               inputAlign="center"
               shape="circle"
@@ -42,7 +42,7 @@
               prefixIconStyle="font-size: 22px;color: #909399"
               v-model="manufacturer"
             ></u--input>
-          </view>
+          </view> -->
           <view class="searchbtn" @click="searchRecords">搜索</view>
         </view>
       </view>
@@ -110,8 +110,8 @@
             <view class="bottom-value">{{ item.pattern }}</view>
           </view>
           <view class="bottom-item">
-            <view class="bottom-label">入库时间</view>
-            <view class="bottom-value">{{ item.createTime }}</view>
+            <view class="bottom-label">规格</view>
+            <view class="bottom-value">{{ item.specificationsName }}</view>
           </view>
         </view>
       </view>
@@ -126,19 +126,19 @@
         <view class="top">
           <image :src="$util.ossImg('img/grouping.png')" class="icon" />
           <view class="top-right">
-            <view class="top-right-no">维修单号：{{ item.mid }}</view>
+            <view class="top-right-no">修补单号：{{ item.mid }}</view>
             <view class="top-right-date"
-              >维修日期{{ item.maintenanceDate }}</view
+              >修补日期{{ item.maintenanceDate }}</view
             >
           </view>
         </view>
         <view class="bottom">
           <view class="bottom-item">
-            <view class="bottom-label">维修人</view>
+            <view class="bottom-label">修补人</view>
             <view class="bottom-value">{{ item.maintainer }}</view>
           </view>
           <view class="bottom-item">
-            <view class="bottom-label">维修厂家</view>
+            <view class="bottom-label">修补厂家</view>
             <view class="bottom-value">{{ item.manufacturer }}</view></view
           >
         </view>
@@ -162,7 +162,7 @@
         <view class="checktotal">已选{{ checkList.length }}个</view>
       </view>
       <view v-if="checkList.length > 0" @click="goAdd" class="btn"
-        >维修登记</view
+        >修补登记</view
       >
     </view>
     <view
@@ -171,17 +171,8 @@
       >没有更多数据了</view
     >
     <view
-      v-if="!list || list.length == 0"
-      style="
-        width: 100%;
-        padding: 50rpx 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        color: #666666;
-      "
-    >
+    class="noimgbox"
+      v-if="!list || list.length == 0">
       <image src="@/static/images/nodata.png"></image>
       暂无数据
     </view>
@@ -199,10 +190,10 @@ export default {
     return {
       tabsList: [
         {
-          name: "待维修轮胎",
+          name: "待修补轮胎",
         },
         {
-          name: "维修记录",
+          name: "修补记录",
         },
       ],
       current: 0,
@@ -216,8 +207,8 @@ export default {
       searchTireNo: "",
       tireNoData: [],
       mid: "",
-      maintainer: "",
-      manufacturer: "",
+      // maintainer: "",
+      // manufacturer: "",
       is_show: false,
       tireNo: "",
     };
@@ -383,8 +374,8 @@ export default {
         specificationsId: null,
         type: 4,
         mid: this.mid,
-        maintainer: this.maintainer,
-        manufacturer: this.manufacturer,
+        // maintainer: this.maintainer,
+        // manufacturer: this.manufacturer,
       };
 
       uni.showLoading({
@@ -442,22 +433,7 @@ export default {
   padding: 0rpx 20rpx;
   box-sizing: border-box;
   ::v-deep .u-input {
-    height: 76rpx !important;
-    margin: 0 auto;
-    border: none;
-    padding: 0rpx !important;
-    background: white;
-    text-align: center;
-  }
-}
-.searboxtwo {
-  width: 100%;
-  height: 76rpx;
-  display: flex;
-  justify-content: space-between;
-  padding: 0rpx 20rpx;
-  box-sizing: border-box;
-  ::v-deep .u-input {
+    width: 490rpx;
     height: 76rpx !important;
     margin: 0 auto;
     border: none;
@@ -465,7 +441,7 @@ export default {
     background: white;
   }
   .searchbtn {
-    width: 346rpx;
+    width: 200rpx;
     background: white;
     height: 76rpx;
     border-radius: 100rpx;
@@ -480,6 +456,21 @@ export default {
     font-size: 28rpx;
   }
 }
+// .searboxtwo {
+//   width: 100%;
+//   height: 76rpx;
+//   display: flex;
+//   justify-content: space-between;
+//   padding: 0rpx 20rpx;
+//   box-sizing: border-box;
+//   ::v-deep .u-input {
+//     height: 76rpx !important;
+//     margin: 0 auto;
+//     border: none;
+//     padding: 0rpx !important;
+//     background: white;
+//   }
+// }
 .searchtire-box {
   background-color: #f4f7fd;
   height: 100rpx;
@@ -550,7 +541,7 @@ export default {
     color: #5c5f66;
   }
   .item-right-text-status {
-    width: 88rpx;
+    min-width: 78rpx;
     height: 52rpx;
     background: rgba(24, 98, 245, 0.1);
     border-radius: 8rpx;
@@ -559,6 +550,8 @@ export default {
     font-weight: 400;
     color: #1862f5;
     text-align: center;
+    padding: 0rpx 10rpx;
+    white-space: nowrap;
   }
   .bottom {
     width: 670rpx;
@@ -678,5 +671,14 @@ export default {
     font-weight: 400;
     color: #010914;
   }
+}
+.noimgbox{
+    width: 100%;
+    padding: 50rpx 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #666666;
 }
 </style>

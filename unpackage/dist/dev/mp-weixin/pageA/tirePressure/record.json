@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "报警记录",
+  "navigationBarBackgroundColor": "#fff",
+  "usingComponents": {
+    "u-datetime-picker": "/uni_modules/uview-ui/components/u-datetime-picker/u-datetime-picker"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "无信号报警车辆",
+  "navigationBarBackgroundColor": "#fff",
+  "usingComponents": {
+    "u-icon": "/uni_modules/uview-ui/components/u-icon/u-icon",
+    "superwei-combox": "/components/superwei-combox"
+  }
+}

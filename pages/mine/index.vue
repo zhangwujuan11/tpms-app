@@ -5,7 +5,7 @@
       <image v-if="form.avatar && basurl" :src="basurl+form.avatar" style="width: 140rpx;height: 140rpx;margin-left:20rpx;color: #CCCCCC;"></image>
 	  <image v-else src="@/static/user.png" style="width: 140rpx;height: 140rpx;margin-left:20rpx;color: #CCCCCC;"></image>
       <view style="margin-left:30rpx; ">
-        <view class="txt">{{ form.nickName }}</view>
+        <view class="txt">{{ deptinfo.deptName }}</view>
         <view class="txt1">{{ form.userName }}</view>
       </view>
     </view>
@@ -96,7 +96,8 @@ export default {
       name: this.$store.state.user.name,
       version: getApp().globalData.config.appInfo.version,
       form: {},
-	  basurl:''
+	  basurl:'',
+	  deptinfo:{}
     }
   },
   computed: {
@@ -110,6 +111,7 @@ export default {
   async onLoad () {
     const data = await user()
     this.form = data.data
+	this.deptinfo=data.data.dept
 	this.basurl=config.baseUrl
   },
   methods: {
@@ -166,7 +168,7 @@ export default {
     handleLogout () {
 		uni.showModal({
 			title: "注意",
-			content: "确定注销并退出系统吗？",
+			content: "确定退出系统吗？",
 			success: function (res) {
 				if (res.confirm) {
 					store.dispatch('LogOut').then(res => {

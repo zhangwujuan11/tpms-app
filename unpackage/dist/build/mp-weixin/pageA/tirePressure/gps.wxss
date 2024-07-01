@@ -1,0 +1,1 @@
+.content{height:100%;position:relative}.time{position:absolute;top:10rpx;left:120px;z-index:999;right:20rpx}.callout{color:red}

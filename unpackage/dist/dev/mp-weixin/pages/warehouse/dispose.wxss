@@ -1,0 +1,30 @@
+.content.data-v-01ea2e2a {
+  padding-top: 20rpx;
+}
+.test1.data-v-01ea2e2a {
+  width: 100vw;
+  height: 120rpx;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+input.data-v-01ea2e2a {
+  width: 200rpx;
+  height: 88rpx;
+  text-align: right;
+  padding-right: 30rpx;
+}
+.text2.data-v-01ea2e2a {
+  margin-left: 30rpx;
+  font-size: 32rpx;
+}
+.btn.data-v-01ea2e2a {
+  width: 332rpx;
+  height: 88rpx;
+  text-align: center;
+  line-height: 88rpx;
+  margin-left: 30rpx;
+  border-radius: 12rpx;
+}
+

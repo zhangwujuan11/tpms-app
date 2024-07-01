@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "轮毂拆装",
+  "usingComponents": {
+    "superwei-combox": "/components/superwei-combox"
+  }
+}

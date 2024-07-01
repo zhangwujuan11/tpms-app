@@ -1,7 +1,7 @@
 <template>
   <view class="content">
     <view class="test">
-      <view class="text">所属车队</view>
+      <view class="text">所属组织</view>
       <input placeholder="必填" border="none" v-model="value" type="text"></input>
     </view>
     <view class="test">

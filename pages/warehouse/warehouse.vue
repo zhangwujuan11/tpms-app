@@ -13,11 +13,8 @@
           style="width: 140upx;height: 140upx;margin-left:20upx;" @click="detail(item.id)"></image>
         <view style="margin-left:24upx;width: 440rpx;" @click="detail(item.id)">
           <view class="bigtxt">{{item.warehouseName}}</view>
-          <span class="txt">上限数量：{{item.maxCount}}</span>
-          <span class="txt" style="margin-left:40upx;">下限数量：{{item.minCount}}</span>
-          <view class="txt">{{item.createBy}}</view>
         </view>
-        <u-icon name="trash" color="#FF623A" size="28" @click="del(item.id)"></u-icon>
+        <u-icon name="trash" color="#FF623A" size="28" @click="del(item)"></u-icon>
       </view>
         <view v-show="is_show" style="text-align: center; width: 100%;margin:50rpx 0;">没有更多数据了</view>
     </view>
@@ -42,8 +39,7 @@
     </view>
 
     <u-popup :show="show" background-color="#fff" mode="center" round="10">
-     
-      <view class="add" style="width: 640rpx;height: 813.28rpx;padding-left: 40rpx;position: relative;">
+      <view class="add" style="width: 640rpx;height: 460rpx;padding-left: 40rpx;position: relative;">
 		  <image src="https://tpms.5i84.cn/img/images/warehouse/close.png" @click="close"
 		    style="position: absolute;right: 0upx;top:-65rpx;width: 60upx;height: 62upx;"></image>
         <view style="text-align: center;font-size: 36upx; height: 134rpx;width: 640rpx;line-height: 134rpx;">
@@ -52,14 +48,6 @@
         <view>
           <text style="color:red">*</text>仓库名称
           <u--input placeholder="请输入仓库名称" v-model="form.warehouseName"></u--input>
-        </view>
-        <view>
-          上限库存数量
-          <u--input placeholder="请输入数量" v-model="form.maxCount"></u--input>
-        </view>
-        <view>
-          下限库存数量
-          <u--input placeholder="请输入数量" v-model="form.minCount"></u--input>
         </view>
         <view class="button" @click="submit">确定</view>
       </view>
@@ -92,8 +80,6 @@
         searchtext: '',
         form: {
           warehouseName: '',
-          maxCount: '',
-          minCount: '',
           warehouseType: '1',
           sysUserid: "1"
         },
@@ -157,8 +143,6 @@
       open() {
         this.form = {
           warehouseName: '',
-          maxCount: '',
-          minCount: '',
           warehouseType: '1',
           sysUserid: "1"
         }
@@ -175,16 +159,7 @@
             duration: 2000,
           });
           return;
-        }else if(Number(this.form.maxCount) < Number(this.form.minCount)) {
-          uni.showToast({
-            title: '上限库存数量不能小于下限库存数量',
-            icon: "none",
-            duration: 2000,
-          });
-          return;
         }
-        
-
         if (this.form.id) {
           update(this.form).then(res => {
             uni.showToast({
@@ -210,18 +185,29 @@
         }
       },
       async del(e) {
-        delwarehouse(e).then(res => {
-          if (res.code == 200) {
-            uni.showToast({
-              title: '删除成功'
-            })
-          }
-          this.getWarehouse()
-        }).catch(err => {
-          if (err == 400) {
-            toast('仓库有商品,不能删除')
-          }
-        })
+		  uni.showModal({
+		    title: '提示',
+		    content: '是否确认删除"' + e.warehouseName + '"仓库？',
+		    cancelText: '取消',
+		    confirmText: '确定',
+			success: (res) => {
+				if(res.confirm) {  
+					delwarehouse(e.id).then(ress => {
+					  if (ress.code == 200) {
+						uni.showToast({
+						  title: '删除成功'
+						})
+					  }
+					  this.getWarehouse()
+					}).catch(err => {
+					   toast('仓库有商品,不能删除')
+					})
+				} else {  
+					console.log('cancel') //点击取消之后执行的代码
+					}  
+				} 
+		  })
+       
       }
     }
   }

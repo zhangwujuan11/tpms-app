@@ -1,186 +1,224 @@
 <template>
 	<view class="tp-deail">
-		<view class="total-car" v-if="maincarbox">
-			<view class="tire" v-for="(tire,index) in maincardata">
-				<view class="left">
-					<view class="tire-item"  v-for="(tireleft) in tire.leftTireCode">
-						<view class="img" v-if="tireleft.infodata == null" ></view>
-						<view class="zhegnchang"  v-else-if="tireleft.infodata.alarmLevel==10000"  @click="detail(tireleft.infodata)"></view>
-						<view class="wuxinhao"  v-else-if="tireleft.infodata.alarmLevel==10501"  @click="detail(tireleft.infodata)"></view>
-						<view class="jinvbao"  v-else  @click="detail(tireleft.infodata)"></view>
-						<view class="info" v-if="tireleft.infodata != null">
-							<!-- {{tireleft.infodata}} -->
-							<view v-if="tireleft.infodata">{{tireleft.infodata.pressure}}bar</view>
-							<view v-if="!tireleft.infodata">--</view>
-							<view v-if="tireleft.infodata">{{tireleft.infodata.temperature}}℃</view>
-							<view v-if="!tireleft.infodata">--</view>
-							<view class="greefont" v-if="tireleft.infodata">冷{{tireleft.infodata.coldPressure || "0.0"}}bar</view>
-							<view class="greefont" v-if="!tireleft.infodata">冷0.0bar</view>
+			<view class="total-car" v-if="maincarbox">
+				<view class="tire" v-for="(tire,index) in maincardata">
+					<view class="left">
+						<view class="tire-item"  v-for="(tireleft) in tire.leftTireCode">
+							<view class="img" v-if="tireleft.infodata == null" ></view>
+							<view class="zhegnchang"  v-else-if="tireleft.infodata.alarmLevel==10000"  @click="detail(tireleft.infodata)"></view>
+							<view class="wuxinhao"  v-else-if="tireleft.infodata.alarmLevel==10501"  @click="detail(tireleft.infodata)"></view>
+							<view class="jinvbao"  v-else  @click="detail(tireleft.infodata)"></view>
+							<view class="info" v-if="tireleft.infodata != null">
+								<!-- {{tireleft.infodata}} -->
+								<view v-if="tireleft.infodata">{{tireleft.infodata.pressure}}bar</view>
+								<view v-if="!tireleft.infodata">--</view>
+								<view v-if="tireleft.infodata">{{tireleft.infodata.temperature}}℃</view>
+								<view v-if="!tireleft.infodata">--</view>
+								<view class="greefont" v-if="tireleft.infodata">冷{{tireleft.infodata.coldPressure || "0.0"}}bar</view>
+								<view class="greefont" v-if="!tireleft.infodata">冷0.0bar</view>
+							</view>
+							<view class="info" v-if="tireleft.infodata == null"></view>
 						</view>
-						<view class="info" v-if="tireleft.infodata == null"></view>
 					</view>
+					<view class="middle"></view>
+					<view class="right">
+						<view class="tire-item"  v-for="(tireright) in tire.rightTireCode">
+							<view class="img" v-if="tireright.infodata == null" ></view>
+							<view class="zhegnchang"  v-else-if="tireright.infodata.alarmLevel==10000" @click="detail(tireright.infodata)"></view>
+							<view class="wuxinhao"  v-else-if="tireright.infodata.alarmLevel==10501" @click="detail(tireright.infodata)"></view>
+							<view class="jinvbao"  v-else @click="detail(tireright.infodata)"></view>
+							<view class="info" v-if="tireright.infodata != null">
+								<view v-if="tireright.infodata">{{tireright.infodata.pressure}}bar</view>
+								<view v-if="!tireright.infodata">--</view>
+								<view v-if="tireright.infodata">{{tireright.infodata.temperature}}℃</view>
+								<view v-if="!tireright.infodata">--</view>
+								<view class="greefont" v-if="tireright.infodata">冷{{tireright.infodata.coldPressure || "0.0"}}bar</view>
+								<view class="greefont" v-if="!tireright.infodata">冷0.0bar</view>
+							</view>
+							<view class="info" v-if="tireright.infodata == null"></view>
+						</view>
+					</view>	
+						
+						<!-- 备胎 -->
+						<view v-if="tire.axisNumber == 0 " style="width: 100%;margin-bottom: 100px;width: 100%;display: flex;justify-content: space-around;">
+							<view v-for="(its) in tire.spareTireCode" :key="its.deviceNumber"   class="tire-item bei">
+								<view class="img dowm " v-if="its.infodata == null" ></view>
+								<view class="zhegnchang dowm"  v-else-if="its.infodata.alarmLevel==10000"  @click="detail(its.infodata)"></view>
+								<view class="wuxinhao dowm"  v-else-if="its.infodata.alarmLevel==10501"  @click="detail(its.infodata)"></view>
+								<view class="jinvbao dowm"  v-else  @click="detail(its.infodata)"></view>
+								<view class="info" v-if="its.infodata != null">
+									<view v-if="its.infodata">{{its.infodata.pressure}}bar</view>
+									<view v-if="!its.infodata">--</view>
+									<view v-if="its.infodata">{{its.infodata.temperature}}℃</view>
+									<view v-if="!its.infodata">--</view>
+									<view class="greefont" v-if="its.infodata">冷{{its.infodata.coldPressure || "0.0"}}bar</view>
+									<view class="greefont" v-if="!its.infodata">冷0.0bar</view>
+								</view>
+								<view class="info" v-if="its.infodata == null"></view>
+							</view>
+						</view>
 				</view>
-				<view class="middle"></view>
-				<view class="right">
-					<view class="tire-item"  v-for="(tireright) in tire.rightTireCode">
-						<view class="img" v-if="tireright.infodata == null" ></view>
-						<view class="zhegnchang"  v-else-if="tireright.infodata.alarmLevel==10000" @click="detail(tireright.infodata)"></view>
-						<view class="wuxinhao"  v-else-if="tireright.infodata.alarmLevel==10501" @click="detail(tireright.infodata)"></view>
-						<view class="jinvbao"  v-else @click="detail(tireright.infodata)"></view>
-						<view class="info" v-if="tireright.infodata != null">
-							<view v-if="tireright.infodata">{{tireright.infodata.pressure}}bar</view>
-							<view v-if="!tireright.infodata">--</view>
-							<view v-if="tireright.infodata">{{tireright.infodata.temperature}}℃</view>
-							<view v-if="!tireright.infodata">--</view>
-							<view class="greefont" v-if="tireright.infodata">冷{{tireright.infodata.coldPressure || "0.0"}}bar</view>
-							<view class="greefont" v-if="!tireright.infodata">冷0.0bar</view>
-						</view>
-						<view class="info" v-if="tireright.infodata == null"></view>
-					</view>
-				</view>		
 			</view>
-		</view>
-		<!-- 挂车 -->
-		<view class="total-car" v-if="trailcarbox">
-			<view class="tire" v-for="(items,index) in trailcardata"  :key="index">
-				<view class="left">
-					<view class="tire-item" v-for="(tiresleft) in items.leftTireCode" :key="tiresleft.deviceNumber" @click="detail(item)">
-						<view class="img" v-if="tiresleft.infodata == null" ></view>
-						<view class="zhegnchang"  v-else-if="tiresleft.infodata.alarmLevel==10000"  @click="detail(tiresleft.infodata)"></view>
-						<view class="wuxinhao"  v-else-if="tiresleft.infodata.alarmLevel==10501" @click="detail(tiresleft.infodata)"></view>
-						<view class="jinvbao"  v-else @click="detail(tiresleft.infodata)"></view>
-						<view class="info" v-if="tiresleft.infodata != null">
-							<view  v-if="tiresleft.infodata">{{tiresleft.infodata.pressure}}bar</view>
-							<view v-if="!tiresleft.infodata">--</view>
-							<view v-if="tiresleft.infodata">{{tiresleft.infodata.temperature}}℃</view>
-							<view v-if="!tiresleft.infodata">--</view>
-							<view class="greefont" v-if="tiresleft.infodata">冷{{tiresleft.infodata.coldPressure || "0.0"}}bar</view>
-							<view class="greefont" v-if="!tiresleft.infodata">冷0.0bar</view>
+			<!-- 挂车 -->
+			<view class="total-car" v-if="trailcarbox">
+				<view class="tire" v-for="(items,index) in trailcardata"  :key="index">
+					<view class="left">
+						<view class="tire-item" v-for="(tiresleft) in items.leftTireCode" :key="tiresleft.deviceNumber" @click="detail(item)">
+							<view class="img" v-if="tiresleft.infodata == null" ></view>
+							<view class="zhegnchang"  v-else-if="tiresleft.infodata.alarmLevel==10000"  @click="detail(tiresleft.infodata)"></view>
+							<view class="wuxinhao"  v-else-if="tiresleft.infodata.alarmLevel==10501" @click="detail(tiresleft.infodata)"></view>
+							<view class="jinvbao"  v-else @click="detail(tiresleft.infodata)"></view>
+							<view class="info" v-if="tiresleft.infodata != null">
+								<view  v-if="tiresleft.infodata">{{tiresleft.infodata.pressure}}bar</view>
+								<view v-if="!tiresleft.infodata">--</view>
+								<view v-if="tiresleft.infodata">{{tiresleft.infodata.temperature}}℃</view>
+								<view v-if="!tiresleft.infodata">--</view>
+								<view class="greefont" v-if="tiresleft.infodata">冷{{tiresleft.infodata.coldPressure || "0.0"}}bar</view>
+								<view class="greefont" v-if="!tiresleft.infodata">冷0.0bar</view>
+							</view>
+							<view class="info" v-if="tiresleft.infodata == null"></view>
 						</view>
-						<view class="info" v-if="tiresleft.infodata == null"></view>
 					</view>
+					<view class="middle"></view>
+					<view class="right">
+						<view class="tire-item" v-for="(tirersight) in items.rightTireCode" :key="tirersight.deviceNumber" @click="detail(item)">
+							<view class="img" v-if="tirersight.infodata == null" ></view>
+							<view class="zhegnchang"  v-else-if="tirersight.infodata.alarmLevel==10000" @click="detail(tirersight.infodata)"></view>
+							<view class="wuxinhao"  v-else-if="tirersight.infodata.alarmLevel==10501" @click="detail(tirersight.infodata)"></view>
+							<view class="jinvbao"  v-else @click="detail(tirersight.infodata)"></view>
+							<view class="info" v-if="tirersight.infodata != null">
+								<view v-if="tirersight.infodata">{{tirersight.infodata.pressure}} bar</view>
+								<view v-if="!tirersight.infodata">--</view>
+								<view v-if="tirersight.infodata">{{tirersight.infodata.temperature}} ℃</view>
+								<view v-if="!tirersight.infodata">--</view>
+								<view class="greefont" v-if="tirersight.infodata">冷{{tirersight.infodata.coldPressure || "0.0"}}bar</view>
+								<view class="greefont" v-if="!tirersight.infodata">冷0.0bar</view>
+							</view>
+							<view class="info" v-if="tirersight.infodata == null"></view>
+						</view>
+					</view>	
+						<!-- 备胎 -->
+						<view v-if="items.axisNumber == 0 " style="width: 100%;margin-bottom: 100px;width: 100%;display: flex;justify-content: space-around;">
+							<view v-for="(its) in items.spareTireCode" :key="its.deviceNumber"   class="tire-item bei">
+								<view class="img dowm " v-if="its.infodata == null" ></view>
+								<view class="zhegnchang dowm"  v-else-if="its.infodata.alarmLevel==10000"  @click="detail(its.infodata)"></view>
+								<view class="wuxinhao dowm"  v-else-if="its.infodata.alarmLevel==10501"  @click="detail(its.infodata)"></view>
+								<view class="jinvbao dowm"  v-else  @click="detail(its.infodata)"></view>
+								<view class="info" v-if="its.infodata != null">
+									<view v-if="its.infodata">{{its.infodata.pressure}}bar</view>
+									<view v-if="!its.infodata">--</view>
+									<view v-if="its.infodata">{{its.infodata.temperature}}℃</view>
+									<view v-if="!its.infodata">--</view>
+									<view class="greefont" v-if="its.infodata">冷{{its.infodata.coldPressure || "0.0"}}bar</view>
+									<view class="greefont" v-if="!its.infodata">冷0.0bar</view>
+								</view>
+								<view class="info" v-if="its.infodata == null"></view>
+							</view>
+						</view>
 				</view>
-				<view class="middle"></view>
-				<view class="right">
-					<view class="tire-item" v-for="(tirersight) in items.rightTireCode" :key="tirersight.deviceNumber" @click="detail(item)">
-						<view class="img" v-if="tirersight.infodata == null" ></view>
-						<view class="zhegnchang"  v-else-if="tirersight.infodata.alarmLevel==10000" @click="detail(tirersight.infodata)"></view>
-						<view class="wuxinhao"  v-else-if="tirersight.infodata.alarmLevel==10501" @click="detail(tirersight.infodata)"></view>
-						<view class="jinvbao"  v-else @click="detail(tirersight.infodata)"></view>
-						<view class="info" v-if="tirersight.infodata != null">
-							<view v-if="tirersight.infodata">{{tirersight.infodata.pressure}} bar</view>
-							<view v-if="!tirersight.infodata">--</view>
-							<view v-if="tirersight.infodata">{{tirersight.infodata.temperature}} ℃</view>
-							<view v-if="!tirersight.infodata">--</view>
-							<view class="greefont" v-if="tirersight.infodata">冷{{tirersight.infodata.coldPressure || "0.0"}}bar</view>
-							<view class="greefont" v-if="!tirersight.infodata">冷0.0bar</view>
-						</view>
-						<view class="info" v-if="tirersight.infodata == null"></view>
-					</view>
-				</view>		
 			</view>
+			<view class="footer">
+				<view class="item" @click="toGps">
+					<view class="l1"><image class="tp-imgstyle" src="https://tpms.5i84.cn/img/tirePressure/icon1.png"></image></view>
+					<view class="l2">GPS定位</view>
+				</view>
+				<view class="item" @click="toRecord">
+					<view class="l1"><image class="tp-imgstyle" src="https://tpms.5i84.cn/img/tirePressure/icon2.png"></image></view>
+					<view class="l2">报警记录</view>
+				</view>
+				<view class="item" @click="toAllTires">
+					<view class="l1"><image class="tp-imgstyle" src="https://tpms.5i84.cn/img/tirePressure/icon3.png"></image></view>
+					<view class="l2">整车轮胎信息</view>
+				</view>
+			</view>
+			<u-popup :show="show" mode="bottom" :round="10"  @close="close" @open="open" :closeable="true">
+				<view  class="tire-detial">
+					<view class="tit">单个轮胎监控信息</view>
+						<view class="main">
+							<view class="item item2">
+								<view class="l">胎号</view>
+								<view class="r">{{tireDetail.tireNo}}</view>
+							</view>
+							<view class="item item2 item3">
+								<view class="l">当前轮位</view>
+								<view class="r">{{tireDetail.installPositionDesc}}</view>
+							</view>
+							<view class="item" style="margin-top: 20rpx;">
+								<view class="l">传感器ID</view>
+								<view class="r">{{tireDetail.senderId || ''}} {{tireDetail.senderTypeDesc || ''}}</view>
+							</view>
+							<view class="item">
+								<view class="l">当前状态</view>
+								<view class="r">{{tireDetail.alarmLevelDesc.length?tireDetail.alarmLevelDesc[0]:''}}</view>
+							</view>
+							<!-- <view class="item">
+								<view class="l">最新监控时间</view>
+								<view class="r"></view>
+							</view> -->
+							<view class="item">
+								<view class="l">安装时间</view>
+								<view class="r">{{formateDate(tireDetail.installTime)}}</view>
+							</view>
+							<view class="item">
+								<view class="l">气压</view>
+								<view class="r">{{tireDetail.pressure || ''}}</view>
+							</view>
+							<view class="item">
+								<view class="l">温度</view>
+								<view class="r">{{tireDetail.temperature || ''}}</view>
+							</view>
+							<view class="item">
+								<view class="l">电池电压</view>
+								<view class="r" v-show="tireDetail.batteryVoltage">{{tireDetail.batteryVoltage}}V</view>
+							</view>									
+							<view class="item">
+								<view class="l">品牌</view>
+								<view class="r">{{tireDetail.tireBrandName || ''}}</view>
+							</view>
+							<view class="item">
+								<view class="l">规格</view>
+								<view class="r">{{tireDetail.specificationsName || ''}}</view>
+							</view>
+							<view class="item">
+								<view class="l">花纹型号</view>
+								<view class="r">{{tireDetail.pattern || ''}}</view>
+							</view>
+							<view class="item">
+								<view class="l">累计里程</view>
+								<view class="r">{{tireDetail.totalMileage || ''}}</view>
+							</view>
+							<view class="item">
+								<view class="l">累计时长</view>
+								<view class="r">{{tireDetail.totalDuration || ''}}</view>
+							</view>
+							<view class="item">
+								<view class="l">新胎花纹深度</view>
+								<view class="r">{{tireDetail.depth || ''}}</view>
+							</view>
+							<view class="item">
+								<view class="l">初测花纹深度</view>
+								<view class="r">{{tireDetail.firstDepth || ''}}</view>
+							</view>
+							<view class="item">
+								<view class="l">实测花纹深度</view>
+								<view class="r">{{tireDetail.measuredDepth || ''}}</view>
+							</view>
+							<view class="item">
+								<view class="l">气压阈值</view>
+								<view class="r">{{tireDetail.highPressureThreshold || ''}}</view>
+							</view>
+							<view class="item">
+								<view class="l">高温阈值</view>
+								<view class="r">{{tireDetail.highTemperatureThreshold || ''}}</view>
+							</view>
+						</view>
+						<view class="popup-bottom">
+							<view class="btn" @click="toCharts">查看曲线</view>
+						</view>
+				</view>
+				</u-popup>
 		</view>
-		<view class="footer">
-			<view class="item" @click="toGps">
-				<view class="l1"><image class="tp-imgstyle" src="https://tpms.5i84.cn/img/tirePressure/icon1.png"></image></view>
-				<view class="l2">GPS定位</view>
-			</view>
-			<view class="item" @click="toRecord">
-				<view class="l1"><image class="tp-imgstyle" src="https://tpms.5i84.cn/img/tirePressure/icon2.png"></image></view>
-				<view class="l2">报警记录</view>
-			</view>
-			<view class="item" @click="toAllTires">
-				<view class="l1"><image class="tp-imgstyle" src="https://tpms.5i84.cn/img/tirePressure/icon3.png"></image></view>
-				<view class="l2">整车轮胎信息</view>
-			</view>
-		</view>
-		<u-popup :show="show" mode="bottom" :round="10"  @close="close" @open="open" :closeable="true">
-			<view  class="tire-detial">
-				<view class="tit">单个轮胎监控信息</view>
-					<view class="main">
-						<view class="item item2">
-							<view class="l">胎号</view>
-							<view class="r">{{tireDetail.tireNo}}</view>
-						</view>
-						<view class="item item2 item3">
-							<view class="l">当前轮位</view>
-							<view class="r">{{tireDetail.installPositionDesc}}</view>
-						</view>
-						<view class="item" style="margin-top: 20rpx;">
-							<view class="l">传感器ID</view>
-							<view class="r">{{tireDetail.senderId}} {{tireDetail.senderTypeDesc}}</view>
-						</view>
-						<view class="item">
-							<view class="l">当前状态</view>
-							<view class="r">{{tireDetail.alarmLevelDesc.length?tireDetail.alarmLevelDesc[0]:''}}</view>
-						</view>
-						<!-- <view class="item">
-							<view class="l">最新监控时间</view>
-							<view class="r"></view>
-						</view> -->
-						<view class="item">
-							<view class="l">安装时间</view>
-							<view class="r">{{formateDate(tireDetail.installTime)}}</view>
-						</view>
-						<view class="item">
-							<view class="l">气压</view>
-							<view class="r">{{tireDetail.pressure || ''}}</view>
-						</view>
-						<view class="item">
-							<view class="l">温度</view>
-							<view class="r">{{tireDetail.temperature || ''}}</view>
-						</view>
-						<view class="item">
-							<view class="l">电池电压</view>
-							<view class="r" v-show="tireDetail.batteryVoltage">{{tireDetail.batteryVoltage}}V</view>
-						</view>									
-						<view class="item">
-							<view class="l">品牌</view>
-							<view class="r">{{tireDetail.tireBrandName || ''}}</view>
-						</view>
-						<view class="item">
-							<view class="l">规格</view>
-							<view class="r">{{tireDetail.specificationsName || ''}}</view>
-						</view>
-						<view class="item">
-							<view class="l">花纹型号</view>
-							<view class="r">{{tireDetail.pattern || ''}}</view>
-						</view>
-						<view class="item">
-							<view class="l">累计里程</view>
-							<view class="r">{{tireDetail.totalMileage || ''}}</view>
-						</view>
-						<view class="item">
-							<view class="l">累计时长</view>
-							<view class="r">{{tireDetail.totalDuration || ''}}</view>
-						</view>
-						<view class="item">
-							<view class="l">新胎花纹深度</view>
-							<view class="r">{{tireDetail.depth || ''}}</view>
-						</view>
-						<view class="item">
-							<view class="l">初测花纹深度</view>
-							<view class="r">{{tireDetail.firstDepth || ''}}</view>
-						</view>
-						<view class="item">
-							<view class="l">实测花纹深度</view>
-							<view class="r">{{tireDetail.measuredDepth || ''}}</view>
-						</view>
-						<view class="item">
-							<view class="l">气压阈值</view>
-							<view class="r">{{tireDetail.highPressureThreshold || ''}}</view>
-						</view>
-						<view class="item">
-							<view class="l">高温阈值</view>
-							<view class="r">{{tireDetail.highTemperatureThreshold || ''}}</view>
-						</view>
-					</view>
-					<view class="popup-bottom">
-						<view class="btn" @click="toCharts">查看曲线</view>
-					</view>
-			</view>
-			</u-popup>
-	</view>
+
 </template>
 
 <script>
@@ -189,9 +227,6 @@
 		data() {
 			return {
 				show: false,
-				columns: [
-						['中国', '美国', '日本']
-				],
 				tireList: [],
 				tireDetail: {
 					alarmLevelDesc:[]
@@ -227,7 +262,7 @@
 				// getcarinfo(data).then(yds=>{
 				// 	carclickinfo.value=yds.data
 				// })
-				gettirepicture({id:this.id,tireStatus:1}).then(res=>{
+				gettirepicture({id:this.id,tireStatus:0}).then(res=>{
 						// 判断主挂车盒子
 						if(res.data.mainList != null){
 							getalltire(res.data.vehicleId).then(response=>{
@@ -257,9 +292,19 @@
 													}
 											}
 										}
+									}else{
+										for (let i = 0; i < item.spareTireCode.length; i++) {
+											item.spareTireCode[i].infodata = null
+											for (let j = 0; j < tirePositionlist.length; j++) {
+												if (tirePositionlist[j].tirePosition == item.spareTireCode[i].positionCode) {
+													item.spareTireCode[i].infodata = tirePositionlist[j]
+												}
+											}
+										}
 									}
 								})
 								this.maincardata=nwarr
+								console.log(this.maincardata)
 								})
 						}else{
 							this.maincarbox=false
@@ -274,6 +319,7 @@
 							}
 							this.trailcarbox=true
 							let olarr=res.data.trailList
+							console.log(olarr)
 							olarr.map(item=>{
 								if(item.axisNumber != 0){
 									// item.leftTireCode.reverse()
@@ -294,7 +340,16 @@
 												}
 										}
 									}
-								}
+								}else{
+										for (let i = 0; i < item.spareTireCode.length; i++) {
+											item.spareTireCode[i].infodata = null
+											for (let j = 0; j < tirePosition.length; j++) {
+												if (tirePosition[j].tirePosition == item.spareTireCode[i].positionCode) {
+													item.spareTireCode[i].infodata = tirePosition[j]
+												}
+											}
+										}
+									}
 							})
 							this.trailcardata=olarr
 							})
@@ -414,7 +469,6 @@
 .footer .item{
 	padding-top: 30rpx;
 	flex: 1;
-	
 }
 .footer .item .tp-imgstyle{
 	line-height: 70rpx;
@@ -479,6 +533,7 @@
 	background: linear-gradient(270deg, #6672AA  0%, rgba(255,255,255,0) 100%);
 	border-radius: 20rpx;
 }
+
 .left .tire-item .zhegnchang{
 	width: 108rpx;
 	height: 172rpx;
@@ -491,12 +546,14 @@
 	background: linear-gradient(270deg, #2FCA99  0%, rgba(255,255,255,0) 100%);
 	border-radius: 20rpx;
 }
+
 .left .tire-item .jinvbao{
 	width: 108rpx;
 	height: 172rpx;
 	background: linear-gradient(90deg,#FE5734  0%, rgba(255,255,255,0) 100%);
 	border-radius: 20rpx;
 }
+
 .right .tire-item .jinvbao{
 	width: 108rpx;
 	height: 172rpx;
@@ -547,7 +604,6 @@
 	border-radius: 20rpx 20rpx 0rpx 0rpx;
 }
 .btn{
-
 	height: 88rpx;
 	background: #1862F5;
 	border-radius: 12rpx;
@@ -557,4 +613,26 @@
 	font-family: AppleSystemUIFont;
 	color: #FFFFFF;
 }
+.dowm{
+	 transform: rotate(90deg);
+}
+.bei .jinvbao{
+	width: 108rpx;
+	height: 172rpx;
+	background: linear-gradient(90deg,#FE5734  0%, rgba(255,255,255,0) 100%);
+	border-radius: 20rpx;
+}
+.bei .zhegnchang{
+	width: 108rpx;
+	height: 172rpx;
+	background: linear-gradient(90deg,#2FCA99  0%, rgba(255,255,255,0) 100%);
+	border-radius: 20rpx;
+}
+.bei .wuxinhao{
+	width: 108rpx;
+	height: 172rpx;
+	background: linear-gradient(90deg, #6672AA  0%, rgba(255,255,255,0) 100%);
+	border-radius: 20rpx;
+}
+
 </style>

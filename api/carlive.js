@@ -1,7 +1,7 @@
 import request from '@/utils/request'
 
 
-// 车队下拉列表
+// 组织下拉列表
 export function listDept(query) {
   return request({
     url: '/system/dept/treeList',
@@ -238,5 +238,18 @@ export function supperlist (data) {
 		url:'/v1/supplier/list',
 		method:'get',
 		params:data
+	})
+}
+// 解绑rfid
+export function jiebangrfid(data){
+	return request({
+		url:'/app/v1/tire/lifecycle/actions/ubbinding/rfid/' + data,
+		method:'post'
+	})
+}
+export function bangdingrfid(data){
+	return request({
+		url:'/app/v1/tire/lifecycle/actions/binding/rfid/' + data.tireid + '/' + data.code ,
+		method:'post'
 	})
 }

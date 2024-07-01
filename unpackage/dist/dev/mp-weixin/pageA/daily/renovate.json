@@ -1,0 +1,14 @@
+{
+  "navigationBarTitleText": "轮胎翻新",
+  "navigationBarBackgroundColor": "#fff",
+  "usingComponents": {
+    "u-sticky": "/uni_modules/uview-ui/components/u-sticky/u-sticky",
+    "u-tabs": "/uni_modules/uview-ui/components/u-tabs/u-tabs",
+    "u--input": "/uni_modules/uview-ui/components/u--input/u--input",
+    "u-icon": "/uni_modules/uview-ui/components/u-icon/u-icon",
+    "u-checkbox-group": "/uni_modules/uview-ui/components/u-checkbox-group/u-checkbox-group",
+    "u-checkbox": "/uni_modules/uview-ui/components/u-checkbox/u-checkbox",
+    "uni-datetime-picker": "/pageA/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker",
+    "superwei-combox": "/components/superwei-combox"
+  }
+}

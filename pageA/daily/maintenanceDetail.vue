@@ -23,7 +23,7 @@
         v-for="(item, index) of form.tireMaintenanceDetailArrayResponse.items"
         :key="index"
       >
-        <view class="title">修补轮胎明细{{ index + 1 }}</view>
+        <view class="title">修补轮胎明细{{ form.tireMaintenanceDetailArrayResponse.items.length == 1 ? '': index + 1 }}</view>
         <view style="margin-top: 0rpx" class="content">
           <view class="item2">
             <view class="item1">胎号</view>
@@ -40,6 +40,10 @@
           <view class="item2">
             <view class="item1">花纹</view>
             <view class="text">{{ item.pattern }}</view>
+          </view>
+          <view class="item2">
+            <view class="item1">修补费用</view>
+            <view class="text">{{ item.cost }}</view>
           </view>
           <view class="item2">
             <view class="item1">修补内容</view>

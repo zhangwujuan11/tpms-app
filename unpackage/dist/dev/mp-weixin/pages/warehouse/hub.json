@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "轮毂列表",
+  "usingComponents": {
+    "u-sticky": "/uni_modules/uview-ui/components/u-sticky/u-sticky",
+    "u--input": "/uni_modules/uview-ui/components/u--input/u--input",
+    "u-picker": "/uni_modules/uview-ui/components/u-picker/u-picker",
+    "u-button": "/uni_modules/uview-ui/components/u-button/u-button",
+    "u-icon": "/uni_modules/uview-ui/components/u-icon/u-icon"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "车辆管理",
+  "navigationBarBackgroundColor": "#fff",
+  "usingComponents": {
+    "u-sticky": "/uni_modules/uview-ui/components/u-sticky/u-sticky",
+    "u-tabs": "/uni_modules/uview-ui/components/u-tabs/u-tabs",
+    "u--input": "/uni_modules/uview-ui/components/u--input/u--input",
+    "u-picker": "/uni_modules/uview-ui/components/u-picker/u-picker",
+    "u-button": "/uni_modules/uview-ui/components/u-button/u-button"
+  }
+}

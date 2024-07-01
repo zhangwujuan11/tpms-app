@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "胎压监控详情",
+  "navigationBarBackgroundColor": "#fff",
+  "usingComponents": {
+    "u-popup": "/uni_modules/uview-ui/components/u-popup/u-popup"
+  }
+}

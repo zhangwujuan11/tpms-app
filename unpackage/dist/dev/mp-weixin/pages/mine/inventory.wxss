@@ -1,0 +1,40 @@
+.condition.data-v-743da759 {
+  background-color: #f4f7fd;
+  width: 100vw;
+  height: 68rpx;
+  position: fixed;
+  top: 120rpx;
+  display: flex;
+  align-items: center;
+  padding-left: 30rpx;
+}
+.text.data-v-743da759 {
+  width: 330rpx;
+  height: 68rpx;
+  background-color: #fff;
+  border-radius: 180rpx;
+}
+.test.data-v-743da759 {
+  width: 330rpx;
+  height: 68rpx;
+  text-align: center;
+  line-height: 68rpx;
+  font-size: 24rpx;
+  color: #010914;
+}
+.text .uni-input.data-v-743da759 {
+  width: 330rpx;
+  height: 68rpx;
+  text-align: center;
+  line-height: 68rpx;
+  padding: 0;
+  border-radius: 180rpx;
+}
+.body.data-v-743da759 {
+  width: 710rpx;
+  height: 600rpx;
+  background-color: #fff;
+  margin-left: 20rpx;
+  border-radius: 20rpx;
+}
+

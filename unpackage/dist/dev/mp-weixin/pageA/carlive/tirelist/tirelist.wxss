@@ -1,0 +1,59 @@
+
+.content {
+	background:#F5F7FB;
+	height: 100%;
+	width: 100%;
+}
+.formbox{
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	margin: 20rpx 0;
+	background-color: white;
+}
+.widbox{
+	width:690rpx;
+}
+ .uni-select{
+	border: none !important;
+}
+.needinline{
+	display: flex;
+	align-items: center;
+	text-align: right;
+}
+ .u-sticky__content{
+	width: 100%;
+}
+.subbtnbox{
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+ .uni-select__input-placeholder{
+	color: rgb(192, 196, 204) !important;
+	font-size: 32rpx  !important;
+}
+.subbtnbox .u-button{
+	width: 25% !important;
+}
+.subbtnbox .u-button:nth-child(3){
+	width: auto !important;
+}
+ .u-radio-group--column{
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
+}
+.uni-select__input-text{
+	text-align: right;
+}
+.cettyu{
+	display: flex;
+	align-items: center;
+}
+ .u-form-item__body__right__message{
+	text-align: right;
+}
+

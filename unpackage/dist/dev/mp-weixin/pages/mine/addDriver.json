@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "新增司机",
+  "usingComponents": {
+    "u-picker": "/uni_modules/uview-ui/components/u-picker/u-picker",
+    "u-switch": "/uni_modules/uview-ui/components/u-switch/u-switch"
+  }
+}

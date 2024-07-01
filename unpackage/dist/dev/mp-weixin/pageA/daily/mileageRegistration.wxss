@@ -1,0 +1,273 @@
+.searchbox.data-v-7be52c52 {
+  width: 710rpx;
+  height: 106rpx;
+  margin: 0 auto;
+  margin-top: 20rpx;
+}
+.searchbox.data-v-7be52c52  .u-input {
+  width: 670rpx !important;
+  margin: 0 auto;
+  border: none;
+}
+.searchbox .search-box.data-v-7be52c52 {
+  width: 710rpx;
+  height: 76rpx;
+  background: #ffffff;
+  border-radius: 180rpx;
+  display: flex;
+  margin: 0 auto;
+}
+.searchbox .search-box.data-v-7be52c52  .u-icon {
+  padding-left: 32rpx;
+}
+.searchbox .search-box .search.data-v-7be52c52 {
+  width: 550rpx;
+  margin: 0 auto;
+}
+.searchbox .search-box .search.data-v-7be52c52  .uni-input-input {
+  text-align: left;
+}
+.searchbox .search-box .search.data-v-7be52c52  .uni-input-placeholder {
+  text-align: left;
+}
+.searchbox .search-box .search.data-v-7be52c52  input {
+  text-align: left !important;
+}
+.contain-item.data-v-7be52c52 {
+  width: 710rpx;
+  min-height: 391rpx;
+  background: #ffffff;
+  border-radius: 20rpx;
+  margin: 0rpx auto;
+  margin-bottom: 20rpx;
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+.contain-item .bus-icon.data-v-7be52c52 {
+  width: 100rpx;
+  height: 100rpx;
+}
+.contain-item .top.data-v-7be52c52 {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+.contain-item .repair.data-v-7be52c52 {
+  position: absolute;
+  right: 0rpx;
+  width: 100rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  background: #1862f5;
+  box-shadow: 0rpx -4rpx 8rpx 0rpx rgba(0, 0, 0, 0.1);
+  border-radius: 16rpx;
+  font-size: 24rpx;
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 400;
+  color: #ffffff;
+  text-align: center;
+}
+.contain-item .repaired.data-v-7be52c52 {
+  position: absolute;
+  right: 0rpx;
+  width: 100rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  background: #ffffff;
+  border: #f1f1f1 solid 2rpx;
+  border-radius: 16rpx;
+  font-size: 24rpx;
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 400;
+  color: #1862f5;
+  text-align: center;
+}
+.contain-item .title.data-v-7be52c52 {
+  width: 546rpx;
+  line-height: 50rpx;
+}
+.contain-item .title-text.data-v-7be52c52 {
+  display: flex;
+  align-items: center;
+}
+.contain-item .car-num.data-v-7be52c52 {
+  font-size: 32rpx;
+  font-family: AppleSystemUIFont;
+  color: #010914;
+}
+.contain-item .title-info.data-v-7be52c52 {
+  font-size: 24rpx;
+  font-family: AppleSystemUIFont;
+  color: #5c5f66;
+  display: flex;
+}
+.contain-item .date.data-v-7be52c52 {
+  font-size: 24rpx;
+  font-family: AppleSystemUIFont;
+  color: #5c5f66;
+}
+.contain-item .bottom.data-v-7be52c52 {
+  width: 670rpx;
+  min-height: 231rpx;
+  background: #f5f7fb;
+  border-radius: 20rpx;
+  padding: 4rpx 18rpx 4rpx 20rpx;
+  box-sizing: border-box;
+  margin-top: 36rpx;
+}
+.contain-item .bottom-item.data-v-7be52c52 {
+  display: flex;
+  justify-content: space-between;
+  line-height: 54rpx;
+}
+.contain-item .bottom-label.data-v-7be52c52 {
+  font-size: 24rpx;
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 400;
+  color: #5c5f66;
+}
+.contain-item .bottom-value.data-v-7be52c52 {
+  font-size: 24rpx;
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 400;
+  color: #010914;
+}
+.bottom-btn.data-v-7be52c52 {
+  width: 750rpx;
+  height: 148rpx;
+  background: #ffffff;
+  box-shadow: 0rpx -4rpx 8rpx 0rpx rgba(0, 0, 0, 0.1), 0rpx -4rpx 8rpx 0rpx rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  position: fixed;
+  bottom: 0rpx;
+}
+.bottom-btn .btn.data-v-7be52c52 {
+  width: 690rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
+  margin: 0 auto;
+  background: #1862f5;
+  box-shadow: 0rpx -4rpx 8rpx 0rpx rgba(0, 0, 0, 0.1);
+  border-radius: 12rpx;
+  font-size: 30rpx;
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 400;
+  color: #ffffff;
+}
+.popup-box.data-v-7be52c52 {
+  width: 640rpx;
+  height: 680rpx;
+  background: #f5f7fb;
+  border-radius: 20rpx;
+}
+.popup-box .title.data-v-7be52c52 {
+  width: 216rpx;
+  height: 54rpx;
+  font-size: 36rpx;
+  font-family: AppleSystemUIFont;
+  color: #000000;
+  margin: 36rpx auto;
+}
+.popup-box .item.data-v-7be52c52 {
+  display: flex;
+  justify-content: space-between;
+  padding: 0rpx 46rpx;
+  margin: 40rpx 0rpx;
+  box-sizing: border-box;
+}
+.popup-box .label.data-v-7be52c52 {
+  width: 170rpx;
+}
+.popup-box .value.data-v-7be52c52 {
+  text-align: right;
+  width: 400rpx;
+}
+.popup-box .item.data-v-7be52c52  .uni-input-placeholder {
+  text-align: right;
+}
+.popup-box .item.data-v-7be52c52  .uni-input-input {
+  text-align: right;
+}
+.popup-box .btn.data-v-7be52c52 {
+  width: 562rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  background: #1862f5;
+  border-radius: 12rpx;
+  font-size: 30rpx;
+  font-family: AppleSystemUIFont;
+  color: #ffffff;
+  text-align: center;
+  margin: 80rpx auto;
+}
+.record-box.data-v-7be52c52 {
+  width: 640rpx;
+  height: 908rpx;
+  background: #f5f7fb;
+  border-radius: 20rpx;
+  padding: 36rpx;
+  box-sizing: border-box;
+}
+.record-box .title.data-v-7be52c52 {
+  width: 216rpx;
+  height: 54rpx;
+  font-size: 36rpx;
+  font-family: AppleSystemUIFont;
+  color: #000000;
+  margin: 12rpx auto;
+}
+.record-box .btn.data-v-7be52c52 {
+  width: 562rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  background: #1862f5;
+  border-radius: 12rpx;
+  font-size: 30rpx;
+  font-family: AppleSystemUIFont;
+  color: #ffffff;
+  text-align: center;
+  margin: 40rpx auto;
+}
+.record-box .tip.data-v-7be52c52 {
+  font-size: 28rpx;
+  font-family: AppleSystemUIFont;
+  color: #1862f5;
+  line-height: 40rpx;
+  margin-top: 40rpx;
+  margin-bottom: 20rpx;
+}
+.record-box .label.data-v-7be52c52 {
+  font-size: 28rpx;
+  font-family: AppleSystemUIFont;
+  color: #5c5f66;
+  margin-bottom: 12rpx;
+}
+.record-box .item.data-v-7be52c52 {
+  margin-top: 28rpx;
+  margin-bottom: 12rpx;
+}
+.record-box .status-box.data-v-7be52c52 {
+  width: 562rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  background: #ffffff;
+  border-radius: 20rpx;
+  font-size: 30rpx;
+  padding-left: 20rpx;
+  box-sizing: border-box;
+}
+.record-box.data-v-7be52c52  .superwei-combox__input {
+  height: 76rpx;
+}
+.record-box.data-v-7be52c52  input {
+  text-align: left !important;
+}
+.record-box.data-v-7be52c52  .uni-input-wrapper {
+  text-align: left;
+}
+.symbol.data-v-7be52c52 {
+  color: red;
+}
+

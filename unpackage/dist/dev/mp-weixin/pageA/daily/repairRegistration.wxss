@@ -1,0 +1,149 @@
+.content.data-v-c277e5f2 {
+  background: #ffffff;
+  padding: 0rpx 30rpx;
+}
+.content .item.data-v-c277e5f2 {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 120rpx;
+  line-height: 120rpx;
+  border-bottom: 1px solid #f3f4f6;
+}
+.content.data-v-c277e5f2  .u-form-item__body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 120rpx;
+  line-height: 120rpx;
+  padding: 0rpx;
+}
+.content.data-v-c277e5f2  .u-form-item__body__left__content__required {
+  top: 46rpx !important;
+}
+.content.data-v-c277e5f2  .u-form-item__body__right__content__slot {
+  flex-direction: row-reverse;
+  align-items: flex-end;
+}
+.content.data-v-c277e5f2  .uni-date__x-input {
+  text-align: right;
+}
+.content .item1.data-v-c277e5f2  .uni-input-input {
+  text-align: right;
+}
+.content .item1.data-v-c277e5f2  .u-form-item__body {
+  padding: 0rpx;
+}
+.content .item1.data-v-c277e5f2  .uni-input-placeholder {
+  text-align: right;
+}
+.content.data-v-c277e5f2 .u-form-item__body__right__message {
+  text-align: right;
+}
+.content .label.data-v-c277e5f2 {
+  font-size: 32rpx;
+  font-family: AppleSystemUIFont;
+  color: #010914;
+}
+.content .text.data-v-c277e5f2 {
+  font-size: 32rpx;
+  font-family: AppleSystemUIFont;
+  color: #010914;
+}
+.content .placeholder.data-v-c277e5f2 {
+  font-size: 30rpx;
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 400;
+  color: #c4c5cd;
+}
+.content.data-v-c277e5f2  .uni-icons {
+  display: none;
+}
+.content .date-box.data-v-c277e5f2  .uni-date-x {
+  text-align: right;
+  font-size: 32rpx;
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 400;
+}
+.content .item2.data-v-c277e5f2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 120rpx;
+  line-height: 120rpx;
+  border-bottom: #eaebec 1px solid;
+}
+.title.data-v-c277e5f2 {
+  font-size: 28rpx;
+  font-family: AppleSystemUIFont;
+  color: #8a8ea6;
+  line-height: 68rpx;
+  margin-left: 30rpx;
+}
+.buttonbox.data-v-c277e5f2 {
+  width: 750rpx;
+  height: 148rpx;
+  background: #ffffff;
+  padding: 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  bottom: 0rpx;
+  box-sizing: border-box;
+  box-shadow: 0rpx -4rpx 8rpx 0rpx rgba(0, 0, 0, 0.05), 0rpx -4rpx 8rpx 0rpx rgba(0, 0, 0, 0.05);
+  z-index: 19;
+}
+.buttonbox .u-button.data-v-c277e5f2 {
+  width: 420rpx;
+  height: 88rpx;
+  box-shadow: 0rpx -4rpx 8rpx 0rpx rgba(0, 0, 0, 0.05);
+  border-radius: 12rpx;
+}
+.buttonbox .sum.data-v-c277e5f2 {
+  font-size: 28rpx;
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 400;
+  color: #5c5f66;
+}
+.buttonbox .btn.data-v-c277e5f2 {
+  background: #1862f5;
+  box-shadow: 0rpx -4rpx 8rpx 0rpx rgba(0, 0, 0, 0.05);
+  border-radius: 12rpx;
+  border: none;
+  font-size: 30rpx;
+  color: #ffffff;
+  width: 420rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
+}
+.editbtnbox.data-v-c277e5f2 {
+  width: 750rpx;
+  height: 148rpx;
+  padding: 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+.editbtnbox .btnone.data-v-c277e5f2 {
+  width: 334rpx;
+  height: 88rpx;
+  background: #ffffff;
+  border-radius: 12rpx;
+  font-size: 30rpx;
+  font-family: AppleSystemUIFont;
+  color: #010914;
+  border: none;
+}
+.editbtnbox .btntwo.data-v-c277e5f2 {
+  width: 332rpx;
+  height: 88rpx;
+  background: #1862f5;
+  border-radius: 12rpx;
+  border: none;
+}
+

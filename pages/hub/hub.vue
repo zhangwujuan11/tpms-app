@@ -19,7 +19,7 @@
     </view>
 
     <view class="box">
-      <view class="title">安装卸载</view>
+      <view class="title">安装拆卸</view>
       <view class="ul">
         <view class="li" @click="Jump('/pageA/carlive/tireinstall/tireinstall')">
           <image src="https://tpms.5i84.cn/img/index/anzhuang.png"></image>
@@ -45,7 +45,7 @@
         </view>
         <view class="li" @click="Jump('/pageA/daily/maintenance')">
           <image src="https://tpms.5i84.cn/img/hub/xiubu.png"></image>
-          <text>轮胎维修</text>
+          <text>轮胎修补</text>
         </view>
         <view class="li" @click="Jump('/pageA/daily/renovate')">
           <image src="https://tpms.5i84.cn/img/hub/fanxin.png"></image>

@@ -73,17 +73,17 @@
         </u-form-item>
       </view>
       <view v-for="(item, index) of form.tireMaintenanceDetailBos" :key="index">
-        <view class="title">翻新轮胎明细{{ index + 1 }}</view>
+        <view class="title">翻新轮胎明细{{ form.tireMaintenanceDetailBos.length == 1 ? '': index + 1 }}</view>
         <view style="margin-top: 0rpx" class="content">
           <view class="item2">
-            <view class="item1">胎号</view>
+            <view class="item1">原胎号</view>
             <view class="text">{{ item.tireNo }}</view>
           </view>
-          <view class="item2">
+          <!-- <view class="item2">
             <view class="item1">品牌</view>
             <view class="text">{{ item.tireBrandName }}</view>
-          </view>
-          <u-form-item label="翻新胎号" borderBottom class="item1">
+          </view> -->
+          <u-form-item label="新胎号" borderBottom class="item1">
             <u--input
               v-model="item.newTireNo"
               border="none"
@@ -92,7 +92,7 @@
             ></u--input>
             <view style="margin-left: 8rpx" slot="right" class="text"></view>
           </u-form-item>
-          <u-form-item label="花纹深度" borderBottom class="item1">
+          <u-form-item label="花纹深度" borderBottom class="item1" required>
             <u--input
               v-model="item.newDepth"
               border="none"
@@ -173,7 +173,7 @@
       ref="uPicker"
       :columns="stockStatusData"
       @confirm="confirm($event, 1)"
-      title="请选择修补去向"
+      title="请选择翻新去向"
       :immediateChange="true"
     ></u-picker>
   </view>
@@ -210,6 +210,9 @@ export default {
         ],
         maintenanceDate: [
           { required: true, message: "翻新日期不能为空", trigger: "change" },
+        ],
+		newDepth:[
+          { required: true, message: "花纹深度不能为空", trigger: "change" },
         ],
         // cost: [
         //   { required: true, message: "翻新金额不能为空", trigger: "change" },
@@ -275,6 +278,8 @@ export default {
           ].newBrandId = `${e.value[0].value}`;
           this.form.tireMaintenanceDetailBos[this.currentIndex].brandLabel =
             e.value[0].label;
+          this.form.tireMaintenanceDetailBos[this.currentIndex].newBrandName =
+            e.value[0].label;
           this.is_brand = false;
           break;
         case 1:
@@ -292,13 +297,20 @@ export default {
         .validate()
         .then((res) => {
           for (var i = 0; i < this.form.tireMaintenanceDetailBos.length; i++) {
-            if (!this.form.tireMaintenanceDetailBos[i].newBrandId) {
+            if(!this.form.tireMaintenanceDetailBos[i].newDepth){
+              return uni.showToast({
+                title: `请输入轮胎明细${i + 1}的花纹深度`,
+                icon: "none",
+                duration: 2000,
+              });
+            }
+           else if (!this.form.tireMaintenanceDetailBos[i].newBrandId) {
               return uni.showToast({
                 title: `请输入轮胎明细${i + 1}的胎体品牌`,
                 icon: "none",
                 duration: 2000,
               });
-            } else if (!this.form.tireMaintenanceDetailBos[i].stockStatus) {
+            } else if (!this.form.tireMaintenanceDetailBos[i].stockStatusCn) {
               return uni.showToast({
                 title: `请输入轮胎明细${i + 1}的翻新去向`,
                 icon: "none",
@@ -320,12 +332,22 @@ export default {
             this.form.maintenanceDate
           ).toISOString();
 
-          maintenanceAdd(this.form).then((res) => {
+          let params = this.deepClone(this.form)
+         params.tireMaintenanceDetailBos.map(item=>{
+          if(item.stockStatus == 50){
+              item.newTireNo = null
+              return item
+          }
+        })
+          maintenanceAdd(params).then((res) => {
             if (res.code == 200) {
               const pages = getCurrentPages();
               let prevPage = pages[pages.length - 2];
-              prevPage = prevPage;
+              // #ifdef MP-WEIXIN
+              prevPage = prevPage.$vm;
+              // #endif
               prevPage.getRenovateList(1, prevPage.list.length + 1);
+              prevPage.checkList = [];
               uni.navigateBack();
               setTimeout(() => {
                 uni.showToast({
@@ -333,7 +355,7 @@ export default {
                   icon: "success",
                   duration: 2000,
                 });
-              }, 500);
+              }, 300);
             }
           });
         })
@@ -344,10 +366,6 @@ export default {
             duration: 2000,
           });
         });
-
-      this.form.maintenanceDate = new Date(
-        this.form.maintenanceDate
-      ).toISOString();
     },
     getNum() {
       getKeyNumber().then((res) => {
@@ -371,6 +389,21 @@ export default {
           break;
       }
     },
+    //深度拷贝
+    deepClone(obj) {
+      if (obj === null) return null;
+      let clone = Array.isArray(obj) ? [] : {};
+      for (let key in obj) {
+        if (obj.hasOwnProperty(key)) {
+          if (typeof obj[key] === 'object' && obj[key] !== null) {
+            clone[key] = this.deepClone(obj[key]);
+          } else {
+            clone[key] = obj[key];
+          }
+        }
+      }
+      return clone;
+    }
   },
 };
 </script>

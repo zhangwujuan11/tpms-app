@@ -42,7 +42,7 @@
                 </view>
               </view>
             </view>
-            <view style="display: flex; flex-wrap: wrap; padding-right: 18rpx">
+            <view style="display: flex; flex-wrap: wrap; padding-right: 18rpx;justify-content: flex-end;width:180rpx">
               <view
                 v-for="(i, ind) in item.alarmLevelDesc"
                 :key="ind"
@@ -50,11 +50,8 @@
               >
                 <view
                   class="alarm"
-                  style="
-                    background-color: rgba(43, 201, 152, 0.1);
-                    color: rgba(43, 201, 152, 1);
-                  "
-                  v-if="i == '高压报警'"
+                  v-if="i == '无信号报警'"
+                  style="color: #808080; background-color: #f0f0f0"
                   >{{ i }}</view
                 >
                 <view
@@ -63,13 +60,7 @@
                     background-color: rgba(255, 141, 26, 0.1);
                     color: rgba(255, 141, 26, 1);
                   "
-                  v-else-if="i == '低压报警'"
-                  >{{ i }}</view
-                >
-                <view
-                  class="alarm"
                   v-else
-                  style="color: #808080; background-color: beige"
                   >{{ i }}</view
                 >
               </view>
@@ -85,9 +76,9 @@
           </view>
           <view class="test2">
             <view class="sensor" style="color: rgba(138, 142, 166, 1)"
-              >车队</view
+              >传感器ID</view
             >
-            <view class="Number">{{ item.fleetName }}</view>
+            <view class="Number">{{ item.sensorId || '' }}</view>
           </view>
         </view>
       </view>
@@ -184,6 +175,11 @@ export default {
       this.form = size
         ? data1.data.items
         : [...this.form, ...(data1.data.items || [])];
+        this.form.forEach((item,index)=>{
+          item.alarmLevelDesc.forEach((ptem,pndex)=>{
+            this.form[index].alarmLevelDesc[pndex] = ptem.replace("一级","")
+          })
+        })
       this.total = data1.data.total;
     },
     search() {

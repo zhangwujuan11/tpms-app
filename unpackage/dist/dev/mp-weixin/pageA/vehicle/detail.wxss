@@ -1,0 +1,39 @@
+.content.data-v-10a80e82 {
+  background: #ffffff;
+  padding: 0rpx 30rpx;
+  margin-top: 20rpx;
+}
+.content .item.data-v-10a80e82 {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 120rpx;
+  line-height: 120rpx;
+  border-bottom: 1px solid #f3f4f6;
+}
+.content .label.data-v-10a80e82 {
+  font-size: 32rpx;
+  font-family: AppleSystemUIFont;
+  color: #010914;
+}
+.content .text.data-v-10a80e82 {
+  font-size: 32rpx;
+  font-family: AppleSystemUIFont;
+  color: #5c5f66;
+}
+.title.data-v-10a80e82 {
+  font-size: 28rpx;
+  font-family: AppleSystemUIFont;
+  color: #8a8ea6;
+  line-height: 68rpx;
+  margin-left: 30rpx;
+}
+.edit-icon.data-v-10a80e82 {
+  width: 112rpx;
+  height: 112rpx;
+  position: fixed;
+  right: 38rpx;
+  top: 980rpx;
+  z-index: 999;
+}
+

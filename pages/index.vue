@@ -57,7 +57,7 @@
 						{{lefttwo.lowPressureCount}}
 						<text>低压报警车辆</text>
 					</view>
-					<image src="https://tpms.5i84.cn/img/index/diya.png" mode=""></image>
+					<image src="https://tpms.5i84.cn/img/index/diya.png"></image>
 				</view>
 				<view class="alarmconbox"  @click="Jump('/pageA/tirePressure/highPressure')">
 					<view class="alarmconboxleft">
@@ -82,21 +82,17 @@
 				</view>
 			</view>
 		</view>
-
 		<view class="alarm">
 			<view class="alarmbox">
 				<image src="https://tpms.5i84.cn/img/index/span.png"></image>
 				<text>车辆情况</text>
 			</view>
 			<view class="alarmcon">
-				<view class="penfive"
-					style="background:url(https://tpms.5i84.cn/img/index/qingkuanone.png) no-repeat;background-size: 100% 100%;"
-					>
+				<view class="penfive" style="background:url(https://tpms.5i84.cn/img/index/qingkuanone.png) no-repeat;background-size: 100% 100%;">
 					<text>在线车辆</text>
 					<text>{{onlineCount.onlineCount}}辆</text>
 				</view>
-				<view class="penfive"
-					style="background:url(https://tpms.5i84.cn/img/index/buzaixian.png) no-repeat;background-size: 100% 100%;">
+				<view class="penfive" style="background:url(https://tpms.5i84.cn/img/index/buzaixian.png) no-repeat;background-size: 100% 100%;">
 					<text>不在线车辆</text>
 					<text>{{onlineCount.offLineCount}}辆</text>
 				</view>
@@ -109,13 +105,11 @@
 				<text>轮胎情况</text>
 			</view>
 			<view class="alarmcon">
-				<view class="penfive"
-					style="background:url(https://tpms.5i84.cn/img/index/yizhuang.png) no-repeat;background-size: 100% 100%;">
+				<view class="penfive" style="background:url(https://tpms.5i84.cn/img/index/yizhuang.png) no-repeat;background-size: 100% 100%;">
 					<text>已装车轮胎</text>
 					<text>{{rightone.installCount}}条</text>
 				</view>
-				<view class="penfive"
-					style="background:url(https://tpms.5i84.cn/img/index/weizhuangche.png) no-repeat;background-size: 100% 100%;">
+				<view class="penfive" style="background:url(https://tpms.5i84.cn/img/index/weizhuangche.png) no-repeat;background-size: 100% 100%;">
 					<text>未装车轮胎</text>
 					<text>{{rightone.unInstallCount}}条</text>
 				</view>
@@ -160,9 +154,9 @@
 			},
 			// 轮胎列表
 			gotiretable(){
-					uni.navigateTo({
-						url:'/pageA/carlive/tiretable/tiretable'
-					})
+				uni.navigateTo({
+					url:'/pageA/carlive/tiretable/tiretable'
+				})
 			},
 			goTirePressure(){
 				uni.navigateTo({
@@ -186,7 +180,6 @@
 				uni.navigateTo({
 					url:'/pageA/carlive/tirechange/tirechange'
 				})
-				
 			}
 		}
 	}

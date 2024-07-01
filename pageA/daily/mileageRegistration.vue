@@ -41,20 +41,17 @@
               <view class="car-num">车牌号：{{ item.vehicleNo }}</view>
             </view>
             <view class="title-info">
-              <view class="date">登记时间：{{ item.installTime }}</view>
+              <view class="date">安装时间：{{ item.installTime }}</view>
             </view>
           </view>
-          <view
-            v-if="item.operatingMileage == null"
-            class="repair"
-            @click.stop="open(item)"
+          <view v-if="item.status == 20" class="repair" @click.stop="open(item)"
             >补录</view
           >
           <view v-else class="repaired">已补录</view>
         </view>
         <view class="bottom">
           <view class="bottom-item">
-            <view class="bottom-label">所属车队</view>
+            <view class="bottom-label">所属组织</view>
             <view class="bottom-value">{{ item.fleetName }}</view>
           </view>
           <view class="bottom-item">
@@ -93,7 +90,7 @@
         </view>
         <view class="bottom">
           <view class="bottom-item">
-            <view class="bottom-label">所属车队</view>
+            <view class="bottom-label">所属组织</view>
             <view class="bottom-value">{{ item.fleetName }}</view>
           </view>
           <view class="bottom-item">
@@ -202,7 +199,7 @@
           >车辆选择只能选择：里程统计方式是【以手工录入为准】的车辆</view
         >
         <view>
-          <view class="label">车牌号</view>
+          <view class="label"><text class="symbol">*</text>车牌号</view>
           <superwei-combox
             :candidates="vehicleData"
             :isJSON="true"
@@ -212,10 +209,11 @@
             isAllowCreate="false"
             v-model="form.vehicleNo"
             :onlySelect="true"
+            filterName="vehicleNo"
           ></superwei-combox>
         </view>
         <view class="item">
-          <view class="label">里程表读数</view>
+          <view class="label"><text class="symbol">*</text>里程表读数</view>
           <u--input
             customStyle="height:100rpx;background: #FFFFFF;width: 562rpx;border-radius: 20rpx;padding-left:22rpx;box-sizing: border-box;"
             v-model="form.mileage"
@@ -225,9 +223,7 @@
         </view>
         <view class="item">
           <view class="label">状态</view>
-          <view class="status-box">{{
-            form.status == 10 ? "上挂" : "下挂"
-          }}</view>
+          <view class="status-box">{{ form.status | status }}</view>
         </view>
         <view class="btn" @click="submitRecord">确定</view>
       </view>
@@ -298,6 +294,8 @@ export default {
         return "未补录";
       } else if (e == 21) {
         return "已补录";
+      } else if (e == 11) {
+        return "下挂";
       }
     },
   },
@@ -349,17 +347,27 @@ export default {
       this.getList();
     },
     submit() {
-      tireRegister(this.additionalRecord).then((res) => {
-        if (res.code == 200) {
-          this.popupShow = false;
-          this.getList(1, this.list.length);
-          uni.showToast({
-            title: "补录成功",
-            icon: "none",
-            duration: 1000,
-          });
-        }
-      });
+      let flage = /^[0-9]+(.[0-9]{1,3})?$/;
+      if (!flage.test(this.additionalRecord.operatingMileage)) {
+        uni.showToast({
+          title: "补录里程不正确",
+          icon: "none",
+          duration: 1000,
+        });
+      } else {
+        this.additionalRecord.status = 21;
+        tireRegister(this.additionalRecord).then((res) => {
+          if (res.code == 200) {
+            this.popupShow = false;
+            this.getList(1, this.list.length);
+            uni.showToast({
+              title: "补录成功",
+              icon: "none",
+              duration: 1000,
+            });
+          }
+        });
+      }
     },
     getVehicleNo() {
       allVehicle({ mileageStatType: 2003 }).then((res) => {
@@ -369,6 +377,7 @@ export default {
       });
     },
     selectVerhicleNo(e) {
+      this.form.vehicleNo = e.vehicleNo;
       let time = new Date();
       let format = this.formatDate(time);
       getVehiclesDetail(e.vehicleId).then((res) => {
@@ -378,14 +387,30 @@ export default {
           this.form.operatingMileage = res.data.totalMileage;
           this.form.registerTime = format;
           this.form.registerType = 2;
-          this.form.vehicleNo = res.data.vehicleNo;
         }
       });
       registrationStatus(e.vehicleNo).then((res) => {
         this.form.status = res.data;
+        this.$forceUpdate();
       });
     },
     submitRecord() {
+      if(!this.form.vehicleNo){
+        uni.showToast({
+          title: "车牌号不能为空",
+          icon: "none",
+          duration: 1500,
+        });
+        return;
+      }
+      if(!this.form.mileage){
+        uni.showToast({
+          title: "里程表读数不能为空",
+          icon: "none",
+          duration: 1500,
+        });
+        return;
+      }
       tireRecord(this.form).then((res) => {
         if (res.code == 200) {
           this.recordShow = false;
@@ -714,5 +739,8 @@ export default {
   & ::v-deep .uni-input-wrapper {
     text-align: left;
   }
+}
+.symbol{
+  color: red;
 }
 </style>

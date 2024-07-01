@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "库存查询",
+  "onReachBottomDistance": 20,
+  "usingComponents": {
+    "u-icon": "/uni_modules/uview-ui/components/u-icon/u-icon",
+    "u-picker": "/uni_modules/uview-ui/components/u-picker/u-picker"
+  }
+}

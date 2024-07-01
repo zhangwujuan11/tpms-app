@@ -16,13 +16,23 @@
 							<view style="display: flex;justify-content: space-between;margin: 30upx 0;align-items: center;width: 710upx;">
 								<!-- <uni-combox class="dwoclass" @input="getList" :border="false"   v-model="queryform.tireNo" :candidates="chetai"  placeholder="轮胎号"></uni-combox> -->
 								 <view class="dwoclass">
-								 	<u--input
-								 	   placeholder="轮胎号"
-								 	   border="false"
-								 	   v-model="queryform.tireNo"
-								 		shape="circle"
-								 	   @change="getList"
-								 	 ></u--input>
+									 <u--input
+									    placeholder="车牌号"
+									    border="false"
+									    v-model="queryform.vehicleNo"
+									 	shape="circle"
+									    @change="getList"
+									  ></u--input>
+									  <view style="border-left: 1px solid #DADCE6;width: 49%;display: flex;">
+									  	<u--input
+									  	   placeholder="轮胎号"
+									  	   border="false"
+									  	   v-model="queryform.tireNo"
+									  		shape="circle"
+									  	   @change="getList"
+									  	 ></u--input>
+									  </view>
+								 	
 								 </view>
 								<view style="background-color: white;border-radius: 180upx;padding:14upx 38upx;box-sizing: border-box;" @click="can">
 									<image src="https://tpms.5i84.cn/img/images/carlive/saoma.png" mode="" style="width: 42upx;height: 40upx;"></image>
@@ -155,7 +165,7 @@
 						<view class="downcon">
 							<view class="dowcontitle">品牌</view>
 							<view class="dowconcon">
-								{{item.tireBrandName}}
+								{{item.tireBrandName || '&nbsp;'}}
 							</view>
 						</view>	
 						<view class="downcon">
@@ -209,7 +219,8 @@
 						tireNo:'',
 						pageNum:1,
 						pageSize:10,
-						isUse:'0'
+						isUse:'0',
+						vehicleNo:''
 					},
 					total:0,
 					tabledate:[],
@@ -263,6 +274,13 @@
 				});
 				return true;
 			},
+			onUnload() {
+			    //#ifdef MP-WEIXIN
+			    wx.reLaunch({
+			      url: '/pages/hub/hub'
+			    })
+			    //#endif
+			  },
 		// onLoad(option){
 		// 	if(option.isUseVehicle && option.isUseVehicle == 0){
 		// 		this.queryform.isUseVehicle=0
@@ -315,6 +333,9 @@
 				this.queryform.stockStatus=''
 				this.queryform.pageNum=1
 				this.queryform.pageSize=10
+				this.moredata[0].name=''
+				this.moredata[1].name=''
+				this.moredata[2].name=''
 				this.getList()
 			},
 			// 轮胎分类选择确定
@@ -550,6 +571,12 @@ u-tabs{
 	width: 574upx;
 	background-color: white;
 	border-radius: 180upx;
+	display: flex;
+	padding: 5px 0;
+	height: 45rpx;
+}
+.dwoclass .u-input{
+	width: 50%;
 }
 /deep/.uni-select__input-placeholder{
 	color: #010914;

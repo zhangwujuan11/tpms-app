@@ -261,6 +261,10 @@
           <!-- <u-form-item label="轮位" borderBottom ref="item1" class="item1">
             <view class="text"></view>
           </u-form-item> -->
+          <view class="item2">
+            <view class="item1">轮位</view>
+            <view class="text">{{ form.installPositionDesc || '' }}</view>
+          </view>
           <u-form-item
             label="品牌"
             prop="maintainer"
@@ -276,6 +280,7 @@
               v-model="form.tireBrandName"
               @select="selectBrand"
               class="tire-box"
+              :onlySelect="true"
             ></superwei-combox>
           </u-form-item>
           <u-form-item
@@ -293,6 +298,7 @@
               v-model="form.specificationsName"
               @select="selectSpecification"
               class="tire-box"
+              :onlySelect="true"
             ></superwei-combox>
           </u-form-item>
           <!-- <u-form-item
@@ -338,20 +344,20 @@
           </u-form-item>
           <view class="item2">
             <view class="item1">传感器ID</view>
-            <view class="text">{{ form.senderId }}</view>
+            <view class="text">{{ form.senderId || "--"}}</view>
           </view>
           <view class="item2">
             <view class="item1">累计里程</view>
-            <view class="text">{{ form.totalMileage }}</view>
+            <view class="text">{{ form.totalMileage || "--" }}</view>
           </view>
           <view class="item2">
             <view class="item1">轮胎状态</view>
             <view class="text">{{ form.statusName }}</view>
           </view>
-          <!-- <view class="item2">
+          <view class="item2">
             <view class="item1">安装时间</view>
-            <view class="text">{{ form.installTime }}</view>
-          </view> -->
+            <view class="text">{{ form.installTime  || '' }}</view>
+          </view>
           <!-- <view class="item2">
             <view class="item1">读取的编号</view>
             <view class="text">{{ form.serialNumber }}</view>
@@ -380,7 +386,7 @@
           </u-form-item>
           <view class="item2">
             <view class="item1">安装时里程表读数</view>
-            <view class="text">{{ form.lastInstallMileage }}Km</view>
+            <view class="text">{{ form.lastInstallMileage || '0'}}Km</view>
           </view>
           <u-form-item
             label="当前里程表读数"
@@ -389,23 +395,9 @@
             class="item1"
           >
             <u--input
-              v-model="form.totalMileage"
+              v-model="form.latestInstallationMileage"
               border="none"
               placeholder="请输入当前里程表读数"
-              inputAlign="right"
-            ></u--input>
-            <view style="margin-left: 8rpx" slot="right" class="text">Km</view>
-          </u-form-item>
-          <u-form-item
-            label="最新里程表数"
-            borderBottom
-            ref="item1"
-            class="item1"
-          >
-            <u--input
-              v-model="form.latestVehicleMileage"
-              border="none"
-              placeholder="请输入最新里程表数"
               inputAlign="right"
             ></u--input>
             <view style="margin-left: 8rpx" slot="right" class="text">Km</view>
@@ -451,21 +443,6 @@
               v-model="form.rightTreadDepth"
               border="none"
               placeholder="请输入右侧花纹"
-              inputAlign="right"
-            ></u--input>
-            <view style="margin-left: 8rpx" slot="right" class="text">mm</view>
-          </u-form-item>
-          <u-form-item
-            label="新胎花纹深度"
-            borderBottom
-            ref="item1"
-            class="item1"
-            prop="newTreadDepth"
-          >
-            <u--input
-              v-model="form.newTreadDepth"
-              border="none"
-              placeholder="请输入新胎花纹深度"
               inputAlign="right"
             ></u--input>
             <view style="margin-left: 8rpx" slot="right" class="text">mm</view>
@@ -584,13 +561,6 @@ export default {
         ],
         rightTreadDepth: [
           { required: true, message: "右侧花纹不能为空", trigger: "change" },
-        ],
-        newTreadDepth: [
-          {
-            required: true,
-            message: "新胎花纹深度不能为空",
-            trigger: "change",
-          },
         ],
       },
       dot_show: false,
@@ -721,7 +691,7 @@ export default {
       });
     },
     selectTireNo(e) {
-      this.form.tempTireNo = e.tireNo;
+      this.form.tireNo = e.tireNo;
       this.getInspectionList();
     },
     // 扫码
@@ -746,8 +716,8 @@ export default {
     },
     getInspectionList() {
       for (let i = 0; i < this.tireNoData.length; i++) {
-        if (this.tireNoData[i].tireNo == this.form.tempTireNo) {
-          this.form = this.tireNoData[i];
+        if (this.tireNoData[i].tireNo == this.form.tireNo) {
+          this.form = JSON.parse(JSON.stringify(this.tireNoData[i]));
           this.getTireStatus();
           break;
         }
@@ -793,9 +763,7 @@ export default {
           status: "0",
           pressure: this.form.pressure,
           temperature: this.form.temperature,
-          latestInstallationMileage: this.form.lastInstallMileage,
-          latestVehicleMileage: this.form.latestVehicleMileage,
-          mileageReading: this.form.totalMileage,
+          latestInstallationMileage: this.form.latestInstallationMileage,
           leftTreadDepth: this.form.leftTreadDepth,
           middleTreadDepth: this.form.middleTreadDepth,
           rightTreadDepth: this.form.rightTreadDepth,
@@ -805,7 +773,9 @@ export default {
           tenantId: this.form.tenantId,
           tireId: this.form.tireId,
           processingStatus: "0",
-          newTreadDepth: this.form.newTreadDepth,
+          mileageReading: "0",
+          newTreadDepth: this.form.depth,
+          vehicleNo: this.form.vehicleNo,
         };
         inspectionAdd(params)
           .then((res) => {
@@ -821,6 +791,7 @@ export default {
             }
           })
           .catch((err) => {
+            console.log(err);
             return uni.showToast({
               title: `${err}`,
               icon: "none",
@@ -978,7 +949,6 @@ export default {
       });
     },
     notire(e) {
-      console.log(this.carinfoshow);
       var carid = "";
       var carNo = "";
       if (e.positionDesc.includes("挂车")) {

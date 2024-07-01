@@ -229,12 +229,13 @@
 		},
 		// 取消
 		Cancel(){
-			uni.redirectTo({
-				url: '/pages/warehouse/hub'
-			})
+			uni.switchTab({
+				url: '/pages/hub/hub'
+			});
 		},
 		// 保存
 		Save(){
+			// uni.$u.toast(JSON.stringify(this.form) )
 			this.$refs.uForm.validate().then(res => {
 				hub(this.form).then(ress=>{
 					if(ress.code == 200){
@@ -242,11 +243,14 @@
 						setTimeout(() => {
 							uni.redirectTo({
 								url: '/pages/warehouse/hub'
-							})}, 1000);
+							})
+							}, 1000);
 						
 					}else{
 						uni.$u.toast(ress.message)
 					}
+				}).catch(error => {
+					uni.$u.toast(error)
 				})
 			}).catch(errors => {
 				uni.$u.toast('校验失败,请完整填写表单')
@@ -266,6 +270,8 @@
 					}else{
 						uni.$u.toast(ress.message)
 					}
+				}).catch(error => {
+					uni.$u.toast(error)
 				})
 			}).catch(errors => {
 				uni.$u.toast('校验失败,请完整填写表单')
@@ -281,6 +287,8 @@
 					}else{
 						uni.$u.toast(res.message)
 					}
+				}).catch(error => {
+					uni.$u.toast(error)
 				})
 			}).catch(errors => {
 				uni.$u.toast('校验失败,请完整填写表单')

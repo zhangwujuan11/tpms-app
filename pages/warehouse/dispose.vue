@@ -49,7 +49,7 @@
           <radio value="0" />可翻新
         </label>
         <label class="radio">
-          <radio value="1" />不可翻新
+          <radio value="1" checked />不可翻新
         </label>
       </radio-group>
     </view>
@@ -63,7 +63,7 @@
         {{params.tireMaintenanceDetailBos[0].questionTypeCN}}
       </view>
     </view>
-    <view class="test1" v-if="params.tireMaintenanceDetailBos[0].questionTypeCN == '质量问题' && params.tireMaintenanceDetailBos[0].stockStatusCn=='报废'">
+    <view class="test1" v-if="scrap =='提前报废' && params.tireMaintenanceDetailBos[0].questionTypeCN == '质量问题' && params.tireMaintenanceDetailBos[0].stockStatusCn=='报废'">
       <view class="text2">质量问题</view>
       <checkbox-group style="width: 500rpx;" @change="checkboxChange">
         <label>
@@ -83,7 +83,7 @@
         </label>
       </checkbox-group>
     </view>
-    <view class="test1" v-if="params.tireMaintenanceDetailBos[0].questionTypeCN == '使用问题' && params.tireMaintenanceDetailBos[0].stockStatusCn=='报废'">
+    <view class="test1" v-if="scrap =='提前报废' && params.tireMaintenanceDetailBos[0].questionTypeCN == '使用问题' && params.tireMaintenanceDetailBos[0].stockStatusCn=='报废'">
       <view class="text2">使用问题</view>
       <checkbox-group style="width: 500rpx;" @change="checkboxChange1">
         <label>
@@ -186,10 +186,19 @@
         this.show1 = false
       },
       async Save() {
-        console.log(this.params.tireMaintenanceDetailBos[0].stockStatusCn)
+        if(!this.params.tireMaintenanceDetailBos[0].isRenovate){
+        this.params.tireMaintenanceDetailBos[0].isRenovate = "1"
+        }
         if (this.params.tireMaintenanceDetailBos[0].stockStatusCn == null) {
           return uni.showToast({
             title: '请选择轮胎去向',
+            icon: "none",
+            duration: 1000,
+          })
+        }
+        if(this.params.tireMaintenanceDetailBos[0].stockStatus == 50 && !this.params.tireMaintenanceDetailBos[0].scrappingType){
+          return uni.showToast({
+            title: '请选择报废类型',
             icon: "none",
             duration: 1000,
           })

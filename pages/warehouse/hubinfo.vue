@@ -48,11 +48,11 @@
 			</view>
 			<view class="li">
 				<text>备注</text>
-				<text class="licon">{{datalist.remark}}</text>
+				<text class="licon">{{datalist.remark || ''}}</text>
 			</view>
 		</view>
 		<view class="bte">
-			<button @click="gotirelive" type="primary" style="width: 690upx;height: 88upx;margin-top: 32upx;">查看轮毂生命周期</button>
+			<button @click="gotirelive" type="primary" style="width: 690upx;height: 88upx;margin-top: 32upx;background: #3c9cff;">查看轮毂生命周期</button>
 		</view>
 		
 		<!-- 传感器 -->
@@ -67,18 +67,10 @@
 					<text>传感器</text>
 					<view style="background-color: white;">
 						<u--input border="none" placeholder="请输入传感器ID" v-model="sendform.senderId"></u--input>
-						<image @click="gocamner" src="https://tpms.5i84.cn/img/camreserch.png" style="width: 42upx;z-index:99;height: 40upx;position: absolute;right: 40upx;top:51%;"></image>
+						<image @click="gocamner" src="https://tpms.5i84.cn/img/camreserch.png" style="width: 42upx;z-index:99;height: 40upx;position: absolute;right: 40upx;top:54%;"></image>
 					</view>
 					
 				</view>
-				<!-- <view>
-					<text>绑定方式</text>
-					<uni-data-select
-					 placeholder="请选择"
-					  v-model="sendform.senderType"
-					  :localdata="tireclass"
-					 ></uni-data-select>
-				</view> -->
 				<u-button @click="checkbind" style="margin-top: 20upx;" type="primary" text="绑定"></u-button>
 			</view>
 		</u-popup>
@@ -367,5 +359,8 @@
 		position: fixed;
 		bottom:240rpx;
 		right: 0;
+	}
+	/deep/.bindbox .u-input__content__field-wrapper__field{
+		padding:8rpx
 	}
 </style>

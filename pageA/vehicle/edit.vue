@@ -45,9 +45,7 @@
           class="item1"
           @click="isOpenSelect(2)"
         >
-          <view v-if="form.categoryName" class="text">{{
-            form.categoryName
-          }}</view>
+          <view v-if="form.categoryName" class="text">{{ form.categoryName }}</view>
           <view class="placeholder" v-else>请选择车分类</view>
           <u-icon
             v-if="form.truckType == '10'"
@@ -117,9 +115,7 @@
             class="item1"
             @click="trail_carAxle = true"
           >
-            <view v-if="form.trailCarAxle" class="text"
-              >{{ form.trailCarAxle }}根轴</view
-            >
+            <view v-if="form.trailCarAxle" class="text">{{ form.trailCarAxle }}根轴</view>
             <view class="placeholder" v-else>请选择拖车轴数</view>
             <u-icon slot="right" name="arrow-right"></u-icon>
           </u-form-item>
@@ -132,17 +128,9 @@
             class="item1"
             @click="trail_carNoShow = true"
           >
-            <view
-              v-if="form.trailCarNoShow === 0 || form.trailCarNoShow === 1"
-              class="text"
-              >{{
-                form.trailCarNoShow === 1
-                  ? "显示"
-                  : form.trailCarNoShow === 0
-                  ? "隐藏"
-                  : ""
-              }}</view
-            >
+            <view v-if="form.trailCarNoShow === 0 || form.trailCarNoShow === 1" class="text">
+				{{ form.trailCarNoShow === 1 ? "显示" : form.trailCarNoShow === 0 ? "隐藏" : "" }}
+			</view>
             <view class="placeholder" v-else>请选择拖车显示车牌号</view>
             <u-icon slot="right" name="arrow-right"></u-icon>
           </u-form-item>
@@ -182,9 +170,7 @@
           class="item1"
           @click="engine_Type = true"
         >
-          <view v-if="form.engineTypeName" class="text">{{
-            form.engineTypeName
-          }}</view>
+          <view v-if="form.engineTypeName" class="text">{{ form.engineTypeName }}</view>
           <view class="placeholder" v-else>请选择动力类型</view>
           <u-icon slot="right" name="arrow-right"></u-icon>
         </u-form-item>
@@ -195,9 +181,7 @@
           class="item1"
           @click="isOpenSelect(1)"
         >
-          <view v-if="form.mileageStatTypeName" class="text">{{
-            form.mileageStatTypeName
-          }}</view>
+          <view v-if="form.mileageStatTypeName" class="text">{{ form.mileageStatTypeName }}</view>
           <view class="placeholder" v-else>请选择里程统计方式</view>
           <u-icon v-if="!this.id" slot="right" name="arrow-right"></u-icon>
         </u-form-item>
@@ -230,6 +214,7 @@
             v-model="form.brand"
             @select="selectBrand"
             class="tire-box"
+            :onlySelect="true"
           ></superwei-combox>
         </u-form-item>
         <view v-if="form.truckType == 20 || form.truckType == 30">
@@ -242,9 +227,7 @@
             class="item1"
             @click="trail_carType = true"
           >
-            <view v-if="form.trailCarType" class="text">{{
-              form.trailCarTypeName
-            }}</view>
+            <view v-if="form.trailCarType" class="text">{{ form.trailCarTypeName }}</view>
             <view class="placeholder" v-else>请选择拖车车型</view>
             <u-icon slot="right" name="arrow-right"></u-icon>
           </u-form-item>
@@ -343,11 +326,7 @@
           required
           class="item1"
         >
-          <u--input
-            v-model="form.highTemperature"
-            border="none"
-            placeholder="请输入高温阈值"
-          ></u--input>
+          <u--input v-model="form.highTemperature" border="none" placeholder="请输入高温阈值"></u--input>
           <view style="margin-left: 8rpx" slot="right" class="text">℃</view>
         </u-form-item>
       </view>
@@ -984,7 +963,13 @@ export default {
                 });
               }, 1000);
             }
-          });
+          }).catch((err) => {
+            uni.showToast({
+              title: err,
+              icon: "none",
+              duration: 2000,
+            });
+          });;
         })
         .catch((err) => {
           uni.showToast({
@@ -1012,9 +997,12 @@ export default {
                   if (prevPage && prevPage.getList) {
                     prevPage.getList(1, prevPage.list.length + 1);
                   }
-                  uni.navigateBack({
-                    delta: 2,
-                  });
+                  // uni.navigateBack({
+                  //   delta: 2,
+                  // });
+				  uni.switchTab({
+				    url: `/pages/car/car`,
+				  });
                 }, 500);
               } else if (type == 1) {
                 setTimeout(() => {
@@ -1029,6 +1017,12 @@ export default {
                 }, 500);
               }
             }
+          }).catch((err) => {
+            uni.showToast({
+              title: err,
+              icon: "none",
+              duration: 2000,
+            });
           });
         })
         .catch((err) => {

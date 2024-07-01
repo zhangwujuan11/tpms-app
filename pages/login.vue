@@ -45,11 +45,11 @@
             <u-checkbox name="1"> </u-checkbox>
           </u-checkbox-group>
 
-          <text class="text-grey1">我已阅读并同意</text>
-          <text @click="handleUserAgrement" class="text-blue"
+          <text class="text-grey1" style="white-space: nowrap;">我已阅读并同意</text>
+          <text @click="handleUserAgrement" class="text-blue"  style="white-space: nowrap;"
             >《用户协议》</text
           >
-          <text @click="handlePrivacy" class="text-blue">《隐私协议》</text>
+          <text @click="handlePrivacy" class="text-blue"  style="white-space: nowrap;">《隐私协议》</text>
         </view>
       </view>
     </view>

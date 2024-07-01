@@ -2,7 +2,7 @@
 	<view class="con">
 		<view class="ul">
 			<!-- <view class="li">
-				<text>所属车队</text>
+				<text>所属组织</text>
 				<text class="licon">{{datalist}}</text>
 			</view> -->
 			<view class="li">
@@ -20,13 +20,17 @@
 				<text>胎号</text>
 				<text class="licon">{{datalist.tireNo}}</text>
 			</view>
-			<!-- <view class="li">
+			<view class="li">
 				<text>自编号</text>
-				<text class="licon">{{datalist.vehicleNo}}</text>
-			</view> -->
+				<text class="licon">{{datalist.insideTireNo || ''}}</text>
+			</view>
 			<view class="li">
 				<text>品牌</text>
-				<text class="licon">{{datalist.tireBrandName}}</text>
+				<text class="licon">{{datalist.tireBrandName|| ''}}</text>
+			</view>
+			<view class="li">
+				<text>分类</text>
+				<text class="licon">{{ flttrefenl(datalist.category) }}</text>
 			</view>
 			<view class="li">
 				<text>传感器ID</text>
@@ -42,7 +46,7 @@
 			</view>
 			<view class="li">
 				<text>花纹型号</text>
-				<text class="licon">{{datalist.pattern}}</text>
+				<text class="licon" style="text-align: right;">{{datalist.pattern}}</text>
 			</view>
 			<view class="li">
 				<text>新胎花纹深度</text>
@@ -57,9 +61,39 @@
 				<text class="licon">{{datalist.measuredDepth||0}}mm</text>
 			</view>
 		</view>
-		<text class="ultitle">其他信息</text>
-		
+		<text class="ultitle">轮胎里程及状态</text>
 		<view class="ul">
+			<view class="li" >
+				<text>最新公里表读数</text>
+				<text class="licon">{{ datalist.lastInstallMileage || '0'}} km</text>
+			</view>
+			<view class="li" >
+				<text>累计里程</text>
+				<text class="licon">{{ datalist.totalMileage || '0'}}km</text>
+			</view>
+			<view class="li" >
+				<text>单价</text>
+				<text class="licon"> ￥{{ datalist.price || '0'}}</text>
+			</view>
+			<view class="li" >
+				<text>累计时长</text>
+				<text class="licon">{{ datalist.totalDuration || '0'}} h</text>
+			</view>
+			<view class="li" >
+				<text>状态</text>
+				<text class="licon">{{ flttre(datalist.stockStatus)}}</text>
+			</view>
+		</view>
+		<text class="ultitle">其他信息</text>
+		<view class="ul">
+			<view class="li">
+				<text>RFID标签号</text>
+				<view style="display: flex;">
+					{{datalist.rfidCode || ''}}
+					<view class="licon" style="display: flex;align-items: center;" v-if="datalist.rfidCode" @click="jiebangsrfid"><view style="color:#1862F5;margin-left: 12upx;">解绑</view></view>
+					<view class="licon" style="color:#1862F5" v-if="!datalist.rfidCode" @click="bangdingsrfid">绑定</view>
+				</view>
+			</view>
 			<view class="li">
 				<text>供应商</text>
 				<text class="licon">{{datalist.manufacturer||''}}</text>
@@ -68,13 +102,13 @@
 				<text>所属仓库</text>
 				<text class="licon">{{datalist.warehouseName||''}}</text>
 			</view>
-			<!-- <view class="li">
-				<text>入库时间</text>
-				<text class="licon">{{datalist.vehicleNo}}</text>
-			</view> -->
 			<view class="li">
 				<text>安装时间</text>
 				<text class="licon">{{datalist.installTime||''}}</text>
+			</view>
+			<view class="li">
+				<text>入库时间</text>
+				<text class="licon">{{datalist.createTime||''}}</text>
 			</view>
 			<view class="li">
 				<text>DOT</text>
@@ -94,12 +128,12 @@
 			</view>
 		</view>
 		<view class="bte">
-			<button @click="gotirelive" type="primary" style="width: 690upx;height: 88upx;margin-top: 32upx;">查看轮胎生命周期</button>
+			<button @click="gotirelive" type="primary" style="width: 690upx;height: 88upx;margin-top: 32upx;background: #3c9cff;">查看轮胎生命周期</button>
 		</view>
 		
 		<!-- 传感器 -->
 		<u-popup :show="show"  mode="center" :closeOnClickOverlay="false" @close="show=false" :closeable="true" round="10px">
-			<view class="bindbox">
+			<view class="bindbox" style="display: flex;flex-direction: column;">
 				<view class="bindboxtitle">绑定传感器</view>
 				<view>
 					<text>胎号</text>
@@ -109,7 +143,7 @@
 					<text>传感器</text>
 					<view style="background-color: white;">
 						<u--input border="none" placeholder="请输入传感器ID" v-model="sendform.senderId"></u--input>
-						<image @click="gocamner" src="https://tpms.5i84.cn/img/camreserch.png" style="width: 42upx;height: 40upx;position: absolute;right: 40upx;top:58%;z-index: 99;"></image>
+						<image @click="gocamner" src="https://tpms.5i84.cn/img/camreserch.png" style="width: 42upx;height: 40upx;position: absolute;right: 40upx;top:60%;z-index: 99;"></image>
 					</view>
 				</view>
 				<view>
@@ -120,22 +154,24 @@
 					  :localdata="tireclass"
 					 ></uni-data-select>
 				</view>
-				<u-button @click="checkbind" style="margin-top: 20upx;" type="primary" text="绑定"></u-button>
+				<view style="margin-top: 20rpx;">
+					<u-button @click="checkbind" type="primary" text="绑定"></u-button>
+				</view>
 			</view>
 		</u-popup>
 		<!-- 解绑传感器 -->
 		<u-popup :show="showjieabgn"  mode="center" :closeOnClickOverlay="false" @close="showjieabgn=false" :closeable="true" round="10px">
-			<view class="bindbox">
+			<view class="bindbox" style="display: flex;flex-direction: column;">
 				<view class="bindboxtitle">解绑传感器</view>
 				<view>
 					<text>胎号</text>
 					<u--input border="none" v-model="sendform.tireNo" disabled></u--input>
 				</view>
-				<view style="position: relative;">
+				<view>
 					<text>传感器</text>
 					<u--input border="none" v-model="sendform.senderId" disabled></u--input>
 				</view>
-				<view>
+				<view >
 					<text>绑定方式</text>
 					<uni-data-select
 					disabled
@@ -144,15 +180,38 @@
 					  :localdata="tireclass"
 					 ></uni-data-select>
 				</view>
-				<u-button @click="checkjie" style="margin-top: 20upx;" type="primary" text="解绑"></u-button>
+				<view style="margin-top: 20rpx;">
+					<u-button @click="checkjie" type="primary" text="解绑"></u-button>
+				</view>
 			</view>
 		</u-popup>
 		<image @click="gochange" class="gochange" src="@/static/images/gochange.png" mode=""></image>
+		
+		<!-- rfid -->
+		<u-popup :show="showjieabgnrfid"  mode="center" :closeOnClickOverlay="false" @close="showjieabgnrfid=false" :closeable="true" round="10px">
+			<view class="bindbox" style="display: flex;flex-direction: column;">
+				<view class="bindboxtitle">{{rfidtitle}}</view>
+				<view>
+					<text>胎号</text>
+					<u--input border="none" v-model="sendrfidform.tireNo" disabled></u--input>
+				</view>
+				<view >
+					<text>RFID编码</text>
+					<view style="background-color: white;">
+						<u--input border="none" v-model="sendrfidform.rfidCode" :disabled='datalist.rfidCode'></u--input>
+					</view>
+				</view>
+				<view style="margin-top: 20rpx;">
+					<u-button v-if="datalist.rfidCode" @click="checkjierfid" type="primary" text="解绑"></u-button>
+					<u-button v-if="!datalist.rfidCode" @click="cherfid" type="primary" text="绑定"></u-button>
+				</view>
+			</view>
+		</u-popup>
 	</view>
 </template>
 
 <script>
-	import { tirelistinfo, bangding, jiebang } from '@/api/carlive'
+	import { tirelistinfo, bangding, jiebang,jiebangrfid,bangdingrfid } from '@/api/carlive'
 	import { getDicts } from "@/api/system/dict/data";
 	export default {
 		data(){
@@ -162,10 +221,16 @@
 				showjieabgn:false,
 				tireclass:[],//绑定方式
 				sendform:{},
+				ztcalss:[],
+				fenlei:[],
+				sendrfidform:{},
+				showjieabgnrfid:false,
+				rfidtitle:''
 			}
 		},
 	    onLoad: function (option) {
 			this.sendform.tireId=option.id
+			this.sendrfidform.tireId=option.id
 			this.getlist()
 	    },
 		mounted() {
@@ -174,6 +239,12 @@
 					response.data.map(item=>{
 					this.tireclass.push({text:item.dictLabel,value:item.dictValue})
 			 	})
+			})
+			getDicts("lifecycle_tire_status").then(response => {
+				this.ztcalss=response.data
+			})
+			getDicts("lifecycle_tire_category").then(response => {
+				this.fenlei=response.data
 			})
 		},
 		methods:{
@@ -187,6 +258,11 @@
 				this.sendform.tireNo=this.datalist.tireNo
 				this.show=true
 			},
+			bangdingsrfid(){
+				this.rfidtitle='绑定RFID标签'
+				this.sendrfidform.tireNo=this.datalist.tireNo
+				this.showjieabgnrfid=true
+			},
 			// 传感器扫码
 			gocamner(){
 				uni.scanCode({
@@ -195,11 +271,7 @@
 						 this.$forceUpdate()
 					},
 					fail: (err) => {
-						this.$refs.uToast.show({
-							type: 'error',
-							message: err,
-							iconUrl: 'https://cdn.uviewui.com/uview/demo/toast/error.png'
-						})
+						console.log(err)
 					},
 					complete: () => {
 						console.log('扫码结束')
@@ -221,6 +293,27 @@
 							this.sendform.senderType=''
 							this.getlist()
 						}
+					}).catch(error => {
+						uni.$u.toast(error)
+					})
+				}
+			},
+			cherfid(){
+				if(this.sendrfidform.rfidCode == null ||this.sendrfidform.rfidCode == ""){
+					uni.$u.toast("请输入RFID")
+				}else{
+					bangdingrfid({
+						code:this.sendrfidform.rfidCode,
+						tireid:this.sendrfidform.tireId
+					}).then(res=>{
+						if(res.code == 200){
+							uni.$u.toast("绑定成功")
+							this.showjieabgnrfid=false
+							this.sendrfidform.rfidCode=''
+							this.getlist()
+						}
+					}).catch(error => {
+						uni.$u.toast(error)
 					})
 				}
 			},
@@ -230,6 +323,12 @@
 				this.sendform.senderId=this.datalist.senderId
 				this.sendform.senderType=this.datalist.senderType
 				this.showjieabgn=true
+			},
+			jiebangsrfid(){
+				this.rfidtitle='解绑RFID标签'
+				this.sendrfidform.tireNo=this.datalist.tireNo
+				this.sendrfidform.rfidCode=this.datalist.rfidCode
+				this.showjieabgnrfid=true
 			},
 			// 确定解绑
 			checkjie(){
@@ -243,7 +342,23 @@
 					}else{
 						uni.$u.toast(res.message)
 					}
-				})
+				}).catch(error => {
+						uni.$u.toast(error)
+					})
+			},
+			checkjierfid(){
+				jiebangrfid(this.sendrfidform.tireId).then(res=>{
+					if(res.code == 200){
+							uni.$u.toast("解绑成功")
+							this.showjieabgnrfid=false
+							this.sendrfidform.rfidCode=''
+							this.getlist()
+					}else{
+						uni.$u.toast(res.message)
+					}
+				}).catch(error => {
+						uni.$u.toast(error)
+					})
 			},
 			// 生命周期
 			gotirelive(){
@@ -256,6 +371,20 @@
 				uni.navigateTo({
 					url:'/pageA/carlive/tirelist/tirelist?id=' + this.sendform.tireId
 				})
+			},
+			flttre(e){
+				for(let i=0;i<this.ztcalss.length;i++){
+					if(this.ztcalss[i].dictValue == e){
+						return this.ztcalss[i].dictLabel
+					}
+				}
+			},
+			flttrefenl(e){
+				for(let i=0;i<this.fenlei.length;i++){
+					if(this.fenlei[i].dictValue == e){
+						return this.fenlei[i].dictLabel
+					}
+				}
 			}
 		}
 	}
@@ -285,7 +414,7 @@
 	}
 	.ul .li text:nth-child(1){
 		display: block;
-		width:210upx;
+		width:230upx;
 	}
 	.ul .li .licon{
 		color: #5C5F66;
@@ -326,8 +455,8 @@
 		border: none !important;
 		border-bottom:0px;
 		background-color: white;
-		line-height: 100upx;
-		height: 100upx;
+		/* line-height: 50upx;
+		height: 50upx; */
 	}
 	.u-input{
 		background-color: white;
@@ -342,5 +471,7 @@
 			bottom:240rpx;
 			right: 0;
 		}
+		/deep/.bindbox .u-input__content__field-wrapper__field{
+			padding:8rpx
+		}
 	</style>
-</style>

@@ -67,7 +67,7 @@
         <view class="list-cell">
           <view class="menu-item-box">
             <image
-              src="https://tpms.5i84.cn/img/jinbao.png"
+              src="https://tpms.5i84.cn/img/images/carlive/liimg.png"
               style="
                 width: 100rpx;
                 height: 102rpx;
@@ -166,7 +166,7 @@ export default {
       tireNoData: [],
     };
   },
-  onLoad() {
+  onShow() {
     this.getList();
     this.getTireList();
   },

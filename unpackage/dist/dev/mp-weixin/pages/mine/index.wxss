@@ -1,0 +1,86 @@
+page.data-v-4bd6864f {
+  background-color: #f5f6f7;
+}
+.mine-container.data-v-4bd6864f {
+  width: 100%;
+  height: 1300rpx;
+}
+.mine-container .header-section.data-v-4bd6864f {
+  display: flex;
+  align-items: center;
+  width: 710rpx;
+  height: 140rpx;
+  margin: 20rpx;
+  border-radius: 20rpx;
+  font-size: 24rpx;
+  margin-bottom: 40rpx;
+}
+.mine-container .header-section .txt.data-v-4bd6864f {
+  color: #010914;
+  font-size: 36rpx;
+}
+.mine-container .header-section .txt1.data-v-4bd6864f {
+  margin-top: 14rpx;
+  color: #5C5F66;
+  font-size: 28rpx;
+}
+.mine-container .header-section .login-tip.data-v-4bd6864f {
+  font-size: 18px;
+  margin-left: 10px;
+}
+.mine-container .header-section .cu-avatar.data-v-4bd6864f {
+  border: 2px solid #eaeaea;
+}
+.mine-container .header-section .cu-avatar .icon.data-v-4bd6864f {
+  font-size: 40px;
+}
+.mine-container .header-section .user-info.data-v-4bd6864f {
+  margin-left: 15px;
+}
+.mine-container .header-section .user-info .u_title.data-v-4bd6864f {
+  font-size: 18px;
+  line-height: 30px;
+}
+.mine-container .content-section.data-v-4bd6864f {
+  position: relative;
+  top: -50px;
+}
+.mine-container .content-section .mine-actions.data-v-4bd6864f {
+  margin: 15px 15px;
+  padding: 20px 0px;
+  border-radius: 8px;
+  background-color: white;
+}
+.mine-container .content-section .mine-actions .action-item .icon.data-v-4bd6864f {
+  font-size: 28px;
+}
+.mine-container .content-section .mine-actions .action-item .text.data-v-4bd6864f {
+  display: block;
+  font-size: 13px;
+  margin: 8px 0px;
+}
+.menu-list.data-v-4bd6864f {
+  width: 710rpx;
+  margin-left: 20rpx;
+  background-color: #fff;
+  border-radius: 20rpx;
+}
+.menu-item-box.data-v-4bd6864f {
+  width: 710rpx;
+  height: 150rpx;
+  display: flex;
+  align-items: center;
+}
+.text.data-v-4bd6864f {
+  font-size: 28rpx;
+  color: #010914;
+}
+.bottom.data-v-4bd6864f {
+  margin-top: 20rpx;
+  width: 710rpx;
+  height: 300rpx;
+  margin-left: 20rpx;
+  background-color: #fff;
+  border-radius: 20rpx;
+}
+

@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-// 车队列表
+// 组织列表
 export function getfleetList() {
     return request({
         url: '/system/dept/list',

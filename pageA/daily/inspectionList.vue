@@ -13,29 +13,49 @@
             @select="selectTireNo"
             @input="clearSearch"
             isAllowCreate="false"
+            v-model="tireNo"
           ></superwei-combox>
         </view>
       </view>
       <view class="top">
-        <view class="top-item">
-          <u-button
-            class="custom-style"
-            shape="circle"
-            @click="is_opendate = true"
-          >
-            {{ realOpenDate ? realOpenDate : "开始时间" }}
-            <u-icon size="10" name="arrow-down"></u-icon>
-          </u-button>
+        <view class="top-box">
+          <view class="top-item">
+            <u-button
+              class="custom-style"
+              shape="circle"
+              @click="is_opendate = true"
+            >
+              {{ realOpenDate ? realOpenDate : "开始时间" }}
+              <u-icon size="10" name="arrow-down"></u-icon>
+            </u-button>
+          </view>
+          <u-icon
+            name="close-circle"
+            color="rgb(153, 153, 153)"
+            size="20"
+            v-if="realOpenDate"
+            @click="clearOpenDate"
+          ></u-icon>
         </view>
-        <view class="top-item"
-          ><u-button
-            class="custom-style"
-            shape="circle"
-            @click="is_enddate = true"
-            >{{ realEndDate ? realEndDate : "结束时间" }}
+        <view class="top-box">
+          <view class="top-item"
+            ><u-button
+              class="custom-style"
+              shape="circle"
+              @click="is_enddate = true"
+              >{{ realEndDate ? realEndDate : "结束时间" }}
 
-            <u-icon size="10" name="arrow-down"></u-icon> </u-button
-        ></view>
+              <u-icon size="10" name="arrow-down"></u-icon>
+            </u-button>
+          </view>
+          <u-icon
+            name="close-circle"
+            color="rgb(153, 153, 153)"
+            size="20"
+            v-if="realEndDate"
+            @click="clearEndDate"
+          ></u-icon>
+        </view>
       </view>
     </u-sticky>
     <view class="content" v-if="list && list.length > 0">
@@ -141,6 +161,7 @@ export default {
       is_show: false,
       realOpenDate: "",
       realEndDate: "",
+      tireNo: "",
     };
   },
   onReachBottom() {
@@ -167,6 +188,8 @@ export default {
         pageNum: this.pageNum,
         pageSize: this.pageSize,
         tireNo: this.tireNo,
+        startTime: this.realOpenDate,
+        endTime: this.realEndDate,
       };
       inspectionList(params).then((res) => {
         this.list = [...this.list, ...(res.data.items || [])];
@@ -214,10 +237,32 @@ export default {
     beginSelect(e) {
       this.is_opendate = false;
       this.realOpenDate = this.timestampToDate(e.value);
+      this.pageNum = 1;
+      this.pageSize = 10;
+      this.list = [];
+      this.getList();
     },
     endSelect(e) {
       this.is_enddate = false;
       this.realEndDate = this.timestampToDate(e.value);
+      this.pageNum = 1;
+      this.pageSize = 10;
+      this.list = [];
+      this.getList();
+    },
+    clearOpenDate() {
+      this.realOpenDate = "";
+      this.pageNum = 1;
+      this.pageSize = 10;
+      this.list = [];
+      this.getList();
+    },
+    clearEndDate() {
+      this.realEndDate = "";
+      this.pageNum = 1;
+      this.pageSize = 10;
+      this.list = [];
+      this.getList();
     },
   },
 };
@@ -231,6 +276,9 @@ export default {
   justify-content: space-between;
   align-items: center;
   margin: 0rpx auto;
+  .top-box {
+    display: flex;
+  }
   .top-item {
     width: 300rpx;
     height: 68rpx;

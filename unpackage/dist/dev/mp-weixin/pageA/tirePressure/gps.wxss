@@ -1,0 +1,36 @@
+
+.content.data-v-5025bad3 {
+		height: 100%;
+		position: relative;
+}
+.time.data-v-5025bad3 {
+	width: 100%;
+	position: fixed;
+	top: 100rpx;
+	left: 0;
+	z-index: 999;
+	right: 20rpx;
+}
+.time image.data-v-5025bad3{
+	width: 24rpx;
+	height: 24rpx;
+}
+.time .time-range.data-v-5025bad3{
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
+}
+.time .time-range .item.data-v-5025bad3{
+	padding: 10rpx 28rpx;
+	background-color: white;
+	border-radius: 40rpx;
+}
+.callout.data-v-5025bad3{
+	color: red
+}
+.data-v-5025bad3 .amap-overlay-text-container{
+	text-align: left !important;
+	line-height: 60rpx !important;
+}
+
+

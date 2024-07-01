@@ -12,7 +12,7 @@
 							{{form.tireNo}}
 						</view>
 					</u-form-item>
-					<u-form-item label="自编号" prop="insideTireNo" borderBottom  v-if="!sendform.tireId">
+					<u-form-item label="自编号" prop="insideTireNo" borderBottom  >
 						 <u--input placeholder="请输入自编号" border="false"  inputAlign="right" v-model="form.insideTireNo" ></u--input>
 					</u-form-item>
 					<u-form-item label="轮胎分类" prop="category" required borderBottom  v-if="!sendform.tireId">
@@ -38,10 +38,10 @@
 						  :localdata="houselist"
 						 ></uni-data-select>
 					</u-form-item>
-					<u-form-item label="绑定传感器" prop="senderId" borderBottom>
+					<u-form-item label="绑定传感器" prop="senderId" borderBottom v-if="!haid">
 						 <u--input 	placeholder="请输入传感器" border="false"  inputAlign="right" v-model="form.senderId" ></u--input>
 					</u-form-item>
-					<u-form-item label="绑定RFID" prop="rfidCode" borderBottom>
+					<u-form-item label="绑定RFID" prop="rfidCode" borderBottom v-if="!haid">
 						 <u--input placeholder="请输入绑定RFID" border="false" inputAlign="right" v-model="form.rfidCode" ></u--input>
 					</u-form-item>
 					<u-form-item label="DOT" prop="dot" borderBottom>
@@ -104,9 +104,14 @@
 							<u--input border="false"  inputAlign="right" placeholder="请输入初测花纹深度" v-model="form.firstDepth" ></u--input>mm
 						</view>
 					</u-form-item>	
+					<u-form-item label="实测花纹深度" prop="measuredDepth"  borderBottom>
+						<view class="cettyu">
+							<u--input border="false"  inputAlign="right" placeholder="请输入实测花纹深度" v-model="form.measuredDepth" ></u--input>mm
+						</view>
+					</u-form-item>	
 					<u-form-item label="累计里程" prop="totalMileage" borderBottom>
 						<view class="cettyu">
-							<u--input border="false"  inputAlign="right" placeholder="请输入累计里程" v-model="form.totalMileage" ></u--input>km
+							<u--input border="false" :disabled="form.category == 0 && !sendform.tireId" inputAlign="right" placeholder="请输入累计里程" v-model="form.totalMileage" ></u--input>km
 						</view>
 					</u-form-item>
 					<u-form-item label="供应商" prop="manufacturer" borderBottom>
@@ -133,6 +138,8 @@
 				<u-button v-if="!sendform.tireId" class="custom-style" type="primary" @click="nextadd()">保存并下一条</u-button>
 			</view>
 		</view>
+		
+		<u-toast ref="uToast"></u-toast>
 	</view>
 </template>
 
@@ -175,7 +182,8 @@
 				guige:[],//规格
 				datashow:false,
 				xinhao:[],
-				gongyings:[]
+				gongyings:[],
+				haid:false
 			};
 		},
 		onLoad: function (option) {
@@ -184,13 +192,26 @@
 					this.form=res.data
 					this.form.warehouseId = this.form.warehouseId.toString() 
 					this.form.patternId = this.form.patternId.toString() 
+					uni.setNavigationBarTitle({ title: '轮胎编辑' })
+					this.haid=true
 				})
+			}else{
+				uni.setNavigationBarTitle({ title: '轮胎入库' })
+				this.haid=false
 			}
 			this.sendform.tireId=option.id
 		},
 		methods: {
 			submit() {
 				this.$refs.uForm.validate().then(res => {
+					if(this.form.firstDepth >　this.form.depth){
+						this.$refs.uToast.show({
+							type: 'default',
+							title: '默认主题',
+							message: "初测花纹深度不能大于新胎花纹深度",
+						})
+						return false
+					}
 					addtire(this.form).then(res=>{
 						if(res.code == 200){
 							uni.$u.toast('轮胎入库成功')
@@ -198,15 +219,30 @@
 								url:'/pageA/carlive/tiretable/tiretable'
 							})
 						}else{
-							uni.$u.toast(res.message)
+							this.$refs.uToast.show({
+								type: 'default',
+								title: '默认主题',
+								message: res.message,
+							})
 						}
-					})
+					}).catch(error => {
+						uni.$u.toast(error)
+				})
 				}).catch(errors => {
 					uni.$u.toast('校验失败,请完整填写表单')
 				})
 			},
 			Savechange(){
 				this.$refs.uForm.validate().then(res => {
+					if(this.form.firstDepth >　this.form.depth){
+						this.$refs.uToast.show({
+							type: 'default',
+							title: '默认主题',
+							message: "初测花纹深度不能大于新胎花纹深度",
+						})
+						return false
+					}
+					delete this.form.installTime
 					updateTire(this.form).then(res=>{
 						if(res.code == 200){
 							uni.$u.toast('轮胎修改成功')
@@ -216,6 +252,8 @@
 						}else{
 							uni.$u.toast(res.message)
 						}
+					}).catch(error=>{
+						uni.$u.toast(error)
 					})
 				}).catch(errors => {
 					uni.$u.toast('校验失败,请完整填写表单')
@@ -238,13 +276,27 @@
 			// 保存并下一条
 			nextadd(){
 				this.$refs.uForm.validate().then(res => {
+					if(this.form.firstDepth >　this.form.depth){
+						this.$refs.uToast.show({
+							type: 'default',
+							title: '默认主题',
+							message: "初测花纹深度不能大于新胎花纹深度",
+						})
+						return false
+					}
 					addtire(this.form).then(res=>{
 						if(res.code == 200){
 							uni.$u.toast('轮胎入库成功')
 							this.reset()
 						}else{
-							uni.$u.toast(res.message)
+							this.$refs.uToast.show({
+								type: 'default',
+								title: '默认主题',
+								message:res.message,
+							})
 						}
+					}).catch(error => {
+						uni.$u.toast(error)
 					})
 				}).catch(errors => {
 					uni.$u.toast('校验失败,请完整填写表单')
@@ -252,9 +304,13 @@
 			},
 			// 重置表单
 			reset(){
+				this.form.totalDuration=''
+				this.form.manufacturer=''
+				this.form.patternId=''
 				//this.$refs.uForm.resetFields()
 				this.form.tireNo=''
 				this.form.insideTireNo=''
+				this.form.dot=''
 				this.form.category=''
 				this.form.stockStatus=''
 				this.form.warehouseId=''
@@ -273,6 +329,7 @@
 				this.$refs.uForm.clearValidate()
 			},
 			gogogo(e){
+				console.log(this.form.category)
 				this.form.stockStatus=''
 				if(e == 0){
 						this.tirestatu=[{text:"库存全新胎",value:'10'}]
@@ -281,7 +338,7 @@
 					}else{
 						this.tirestatu=[
 							{text:"待用胎",value:'15'},
-							{text:"待修补",value:'30'}
+							{text:"待维修胎",value:'30'}
 						]
 					}
 					this.$forceUpdate()
@@ -325,11 +382,7 @@
 						 this.$forceUpdate()
 					},
 					fail: (err) => {
-						this.$refs.uToast.show({
-							type: 'error',
-							message: err,
-							iconUrl: 'https://cdn.uviewui.com/uview/demo/toast/error.png'
-						})
+						console.log(err)
 					},
 					complete: () => {
 						console.log('扫码结束')
@@ -344,9 +397,9 @@
 			},
 			resetno(){
 				this.reset()
-				uni.navigateTo({
-					url:'/pageA/carlive/tiretable/tiretable'
-				})
+				uni.switchTab({
+					url: '/pages/hub/hub'
+				});
 			}
 		},
 		// 必须要在onReady生命周期，因为onLoad生命周期组件可能尚未创建完毕

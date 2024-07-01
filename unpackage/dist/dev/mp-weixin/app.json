@@ -1,0 +1,127 @@
+{
+  "pages": [
+    "pages/index",
+    "pages/mine/index",
+    "pages/mine/avatar/index",
+    "pages/hub/hub",
+    "pages/car/car",
+    "pages/login",
+    "pages/register",
+    "pages/warehouse/warehouse",
+    "pages/warehouse/Allocate",
+    "pages/mine/setting/index",
+    "pages/mine/alarm",
+    "pages/mine/inventory",
+    "pages/warehouse/Pending",
+    "pages/warehouse/dispose",
+    "pages/mine/change",
+    "pages/warehouse/storage",
+    "pages/warehouse/hub",
+    "pages/warehouse/hubinfo",
+    "pages/warehouse/hublive",
+    "pages/warehouse/hubpicture",
+    "pages/warehouse/hubinstall",
+    "pages/warehouse/hubunistall",
+    "pages/mine/about",
+    "pages/mine/addDriver",
+    "pages/mine/Driver",
+    "pages/mine/remind",
+    "pages/mine/settings",
+    "pages/mine/mine/mine",
+    "pages/common/webview/index"
+  ],
+  "subPackages": [
+    {
+      "root": "pageA/carlive/",
+      "pages": [
+        "tiretable/tiretable",
+        "tirelistinfo/tirelistinfo",
+        "tirelist/tirelist",
+        "tirelive/tirelive",
+        "bindsendid/bindsendid",
+        "tireinstall/tireinstall",
+        "installtire/installtire",
+        "disassemble/disassemble",
+        "tirechange/tirechange"
+      ]
+    },
+    {
+      "root": "pageA/tirePressure/",
+      "pages": [
+        "index",
+        "detail",
+        "allTire",
+        "record",
+        "charts",
+        "gps",
+        "lowPressure",
+        "highPressure",
+        "highTemperature",
+        "noSignal"
+      ]
+    },
+    {
+      "root": "pageA/vehicle/",
+      "pages": [
+        "detail",
+        "edit"
+      ]
+    },
+    {
+      "root": "pageA/daily/",
+      "pages": [
+        "inspect",
+        "maintenance",
+        "repairRegistration",
+        "maintenanceDetail",
+        "renovate",
+        "refurbishmentRegistration",
+        "renovateDetail",
+        "mileageRegistration",
+        "installationInspection",
+        "tireInspection",
+        "inspectionList",
+        "inspectionDetail"
+      ]
+    }
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "RuoYi",
+    "navigationBarBackgroundColor": "#FFFFFF"
+  },
+  "tabBar": {
+    "color": "#B4B5BF",
+    "selectedColor": "#3974F6",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index",
+        "iconPath": "static/index/home.png",
+        "selectedIconPath": "static/index/home-select.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/hub/hub",
+        "iconPath": "static/index/hub.png",
+        "selectedIconPath": "static/index/hub-select.png",
+        "text": "易毂管理"
+      },
+      {
+        "pagePath": "pages/car/car",
+        "iconPath": "static/index/car.png",
+        "selectedIconPath": "static/index/car-select.png",
+        "text": "车辆管理"
+      },
+      {
+        "pagePath": "pages/mine/index",
+        "iconPath": "static/index/my.png",
+        "selectedIconPath": "static/index/my-select.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "lazyCodeLoading": "requiredComponents",
+  "permission": {},
+  "usingComponents": {}
+}

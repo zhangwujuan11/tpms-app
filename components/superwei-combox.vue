@@ -4,7 +4,7 @@
 			<text>{{label}}</text>
 		</view>
 		<view class="superwei-combox__input-box">
-			<input class="superwei-combox__input" type="text" :placeholder="placeholder"
+			<input :focus="input_focus" class="superwei-combox__input" type="text" :placeholder="placeholder"
 			 style="text-align: center;"
 				placeholder-class="superwei-combox__input-plac" v-model="inputVal" @input="onInput" @focus="onFocus"
 				@blur="onBlur" />
@@ -13,7 +13,7 @@
 		</view>
 		<view class="superwei-combox__selector" v-if="showSelector">
 			<view class="uni-popper__arrow"></view>
-			<scroll-view scroll-y="true" class="superwei-combox__selector-scroll">
+			<scroll-view scroll-y="true" class="superwei-combox__selector-scroll" @scroll="roll">
 				<view class="superwei-combox__selector-empty" v-if="filterCandidatesLength === 0">
 					<text>{{emptyTips}}</text>
 				</view>
@@ -89,13 +89,21 @@
 			onlySelect:{
 				type:Boolean,
 				default: false
+			},
+			filterName:{
+				type:String,
+				default: 'paramName'
 			}
 		},
 		data() {
 			return {
 				isInput: false,
 				showSelector: false,
-				inputVal: ''
+				inputVal: '',
+				input_focus: false,
+				timer: null,
+				is_close: true,
+				close_timer: null
 			}
 		},
 		computed: {
@@ -152,15 +160,31 @@
 			onFocus() {
 				this.showSelector = true
 				this.isInput = false
+				this.input_focus = true
 			},
 			onBlur() {
+				clearTimeout(this.timer)
+				if(this.input_focus){
+				this.input_focus = false
+				}
+
 				setTimeout(() => {
-					this.showSelector = false
 					this.isInput = false
 				}, 153)
-				if(this.onlySelect){
-					this.inputVal = ""
+
+				this.timer = setTimeout(() => {
+					if(this.is_close){
+					this.showSelector = false
+					if(this.onlySelect){
+					let temp = this.filterCandidates.every((item)=>{
+						return item[`${this.filterName}`] != this.inputVal
+					})
+					if(temp){
+						this.inputVal = ""
+					}
 				}
+					}
+				}, 200);
 			},
 			onSelectorClick(index) {
 				let item = this.filterCandidates[index]
@@ -179,7 +203,20 @@
 					this.$emit('input', this.inputVal)
 					this.$emit('update:modelValue', this.inputVal)
 				})
-			}
+			},
+			roll() {
+				this.is_close = false
+				clearTimeout(this.close_timer)
+				if(!this.input_focus){
+					this.input_focus = true
+				}else{
+					this.input_focus = false
+				}
+				clearTimeout(this.timer)
+				this.close_timer =	setTimeout(() => {
+					this.is_close = true
+				}, 250);
+			},
 		}
 	}
 </script>

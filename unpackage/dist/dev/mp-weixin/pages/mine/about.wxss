@@ -1,0 +1,25 @@
+.content.data-v-2c1eab8a {
+  padding-top: 26rpx;
+}
+.text.data-v-2c1eab8a {
+  width: 100vw;
+  height: 1094rpx;
+  background-color: #fff;
+}
+.test.data-v-2c1eab8a {
+  display: block;
+  width: 676rpx;
+  font-size: 32rpx;
+  margin-left: 36rpx;
+  padding-top: 30rpx;
+  text-indent: 2em;
+  line-height: 56rpx;
+}
+.card.data-v-2c1eab8a {
+  width: 277.92rpx;
+  height: 278.02rpx;
+  margin-top: 72rpx;
+  margin-left: 238rpx;
+  background-color: #cccccc;
+}
+

@@ -11,6 +11,7 @@
           placeholder="搜索车牌号"
           @select="selectCar"
           @input="emptySearch"
+          v-model="carNumber"
         ></superwei-combox>
       </view>
     </view>
@@ -32,8 +33,8 @@
               <!-- <view class="car-version">{{ item.carClassName }}</view> -->
             </view>
             <view class="title-info">
-              <view>{{ item.fleetName }}</view>
-              <view class="id">ID：{{ item.vehicle }}</view>
+              <view>报警时间：{{ item.alarmTime }}</view>
+              <!-- <view class="id">ID：{{ item.vehicle }}</view> -->
             </view>
           </view>
         </view>
@@ -43,8 +44,12 @@
             <view class="value">{{ item.carClassName }}</view>
           </view>
           <view class="box">
+            <view class="label">车分类</view>
+            <view class="value">{{ item.categoryName }}</view>
+          </view>
+          <view class="box">
             <view class="label">报警类型</view>
-            <view class="value">高温报警车辆</view>
+            <view class="value">高温报警</view>
           </view>
         </view>
       </view>
@@ -154,14 +159,14 @@ export default {
       this.carNumber = e.name;
       this.list = [];
       this.pageNum = 1;
-      this.pageSize = 1;
+      this.pageSize = 10;
       this.getList();
     },
     emptySearch(e) {
       if (e == "") {
         this.list = [];
         this.pageNum = 1;
-        this.pageSize = 1;
+        this.pageSize = 10;
         this.carNumber = "";
         this.getList();
       }
@@ -254,6 +259,7 @@ export default {
     margin-top: 18rpx;
     display: flex;
     align-items: center;
+    justify-content: space-around;
     .box {
       width: 168rpx;
       height: 80rpx;

@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "GPS定位",
+  "navigationBarBackgroundColor": "#fff",
+  "usingComponents": {
+    "u-toast": "/uni_modules/uview-ui/components/u-toast/u-toast",
+    "u-datetime-picker": "/uni_modules/uview-ui/components/u-datetime-picker/u-datetime-picker"
+  }
+}

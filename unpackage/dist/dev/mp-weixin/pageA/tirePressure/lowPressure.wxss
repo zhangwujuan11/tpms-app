@@ -1,0 +1,115 @@
+.top-box.data-v-0a657362 {
+  width: 750rpx;
+  height: 116rpx;
+  position: fixed;
+  margin: 0 auto;
+  background-color: #f5f7fb;
+  z-index: 99;
+}
+.top-box .serchbox.data-v-0a657362 {
+  width: 710rpx;
+  height: 80rpx;
+  margin: 0 auto;
+  margin-top: 20rpx;
+  background: #ffffff;
+  border-radius: 180rpx;
+  display: flex;
+  justify-content: space-around;
+}
+.top-box .serchbox.data-v-0a657362  input {
+  text-align: left !important;
+}
+.top-box .serchbox .search.data-v-0a657362 {
+  width: 480rpx;
+}
+.contain-item.data-v-0a657362 {
+  width: 710rpx;
+  min-height: 280rpx;
+  background: #ffffff;
+  border-radius: 20rpx;
+  margin: 0rpx auto;
+  margin-bottom: 20rpx;
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+.contain-item .bus-icon.data-v-0a657362 {
+  width: 100rpx;
+  height: 100rpx;
+}
+.contain-item .top.data-v-0a657362 {
+  display: flex;
+  justify-content: space-between;
+}
+.contain-item .title.data-v-0a657362 {
+  width: 546rpx;
+  line-height: 50rpx;
+}
+.contain-item .title-text.data-v-0a657362 {
+  display: flex;
+  align-items: center;
+}
+.contain-item .car-num.data-v-0a657362 {
+  font-size: 32rpx;
+  font-family: AppleSystemUIFont;
+  color: #010914;
+}
+.contain-item .car-version.data-v-0a657362 {
+  width: 120rpx;
+  height: 38rpx;
+  background: rgba(43, 201, 152, 0.1);
+  border-radius: 8rpx;
+  font-size: 20rpx;
+  font-family: AppleSystemUIFont;
+  color: #2bc998;
+  text-align: center;
+  line-height: 38rpx;
+}
+.contain-item .title-info.data-v-0a657362 {
+  font-size: 24rpx;
+  font-family: AppleSystemUIFont;
+  color: #5c5f66;
+  display: flex;
+}
+.contain-item .title-info .id.data-v-0a657362 {
+  margin-left: 40rpx;
+}
+.contain-item .bottom.data-v-0a657362 {
+  width: 670rpx;
+  height: 120rpx;
+  background: #f5f7fb;
+  border-radius: 20rpx;
+  margin-top: 18rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.contain-item .bottom .box.data-v-0a657362 {
+  width: 168rpx;
+  height: 80rpx;
+  text-align: center;
+}
+.contain-item .bottom .label.data-v-0a657362 {
+  font-size: 24rpx;
+  font-family: AppleSystemUIFont;
+  color: #8a8ea6;
+  margin-bottom: 8rpx;
+}
+.contain-item .bottom .value.data-v-0a657362 {
+  font-size: 24rpx;
+  font-family: AppleSystemUIFont;
+  color: #010914;
+}
+.contain-item .bottom .valuetwo.data-v-0a657362 {
+  font-size: 24rpx;
+  font-family: AppleSystemUIFont;
+  color: #ff5733;
+}
+.add-icon.data-v-0a657362 {
+  width: 112rpx;
+  height: 112rpx;
+  position: fixed;
+  right: 38rpx;
+  top: 980rpx;
+  z-index: 999;
+}
+

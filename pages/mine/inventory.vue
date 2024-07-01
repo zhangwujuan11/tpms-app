@@ -5,7 +5,7 @@
         style="position: fixed;top: 20rpx;background-color: #fff;width: 710rpx;height: 76rpx;border-radius: 180rpx;margin-left: 20rpx;display: flex;align-items: center;padding-left: 20rpx;margin-right: 20rpx;">
         <u-icon name="search" color="rgba(138, 142, 166, 1)" size="28" @click="search"
           style="margin-right: 10rpx;"></u-icon>
-        <input placeholder="请输入品牌/规格/车队进行搜索" v-model="vehicleNo" style="width: 100%;"/>
+        <input placeholder="请输入品牌/规格/组织进行搜索" v-model="vehicleNo" style="width: 100%;"/>
       </view>
       <view class="condition">
         <view class="text" style="margin-right: 30rpx;">

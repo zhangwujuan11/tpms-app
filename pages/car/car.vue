@@ -51,7 +51,7 @@
 				<view class="value">{{ item.totalMileage||"0" }}</view>
 			</view>
 			<view class="box" @click.stop="openReceiver(item)">
-				<view class="label">传感器ID</view>
+				<view class="label">接收器ID</view>
 				<view :class="item.receiverId?'value':'valuetwo'">{{ item.receiverId? item.receiverId:"未绑定" }}</view>
 			</view>
 		</view>
@@ -100,8 +100,7 @@
       :defaultIndex="carNoDefault"
       :immediateChange="true"
     ></u-picker>
-
-           <u-popup
+      <u-popup
       :show="receiverShow"
       :round="10"
       mode="center"
@@ -116,7 +115,7 @@
           backgroundRepeat: 'no-repeat',
         }"
       >
-        <view class="title">绑定接收器ID</view>
+        <view class="title">{{ chioceData.receiverId?'解绑接收器ID':'绑定接收器ID' }}</view>
         <view>
           <view class="label">车牌号</view>
           <u--input
@@ -137,7 +136,7 @@
             placeholder="请输入接收器ID"
             :disabled="chioceData.receiverId?true:false"
           ></u--input>
-          <image @click="gocamner" :src="($util.ossImg('/img/camreserch.png'))" style="width: 42rpx;height: 40upx;position: absolute;right: 40rpx;top:50%;"></image>
+          <image v-if="!chioceData.receiverId" @click="gocamner" :src="($util.ossImg('/img/camreserch.png'))" style="width: 42rpx;height: 40upx;position: absolute;right: 40rpx;top:50%;z-index: 99;"></image>
         </view>
         <view class="btn" @click="confirmReceiver">{{ chioceData.receiverId?'解绑':'确定' }}</view>
       </view>
@@ -192,18 +191,55 @@ export default {
     };
   },
   onReachBottom() {
-    if (this.list.length == this.total) {
-      this.is_show = true;
+	  console.log(66666)
+    if (this.pageNum * this.pageSize >= this.total) {
+    	this.is_show = true;
     } else {
-      this.is_show = false;
-      this.pageNum++;
-      this.getList();
+    	this.is_show = false;
+    	if (this.pageNum <= this.pageNum - 1) {
+    		setTimeout(() => {
+    			uni.hideLoading()
+    		}, 500)
+    	} else {
+    		this.pageNum++
+			let params = {
+			  pageNum:this.pageNum,
+			  pageSize:this.pageSize,
+			  mainNumber: this.carNoValue,
+			  fleetId: this.fleetId,
+			  versionType: this.versionType,
+			};
+				
+			uni.showLoading({
+			  title: "加载中",
+			});
+			getVehicleList(params)
+			  .then((res) => {
+			    uni.hideLoading();
+			    if (res.code == 200) {
+			      this.list = [...this.list,...res.data.items] 
+			      this.total = res.data.total;
+			    }
+			  })
+			  .catch((err) => {
+			    uni.showToast({
+			      title: `${err.message}`,
+			      icon: "none",
+			      duration: 1500,
+			    });
+			  });
+    	}
+    	setTimeout(() => {
+    		uni.hideLoading()
+    	}, 500)
     }
   },
-  onLoad() {
-    this.getcarList();
-    this.getPlateNumberList();
-    this.getList();
+  onShow() {
+	  this.pageNum=1
+	  this.pageSize=10
+  	this.getList();
+	this.getcarList();
+	this.getPlateNumberList();
   },
   methods: {
     // change(index) {
@@ -268,36 +304,64 @@ export default {
         }
       });
     },
-    getList(num, size) {
-      let params = {
-        pageNum: num ? num : this.pageNum,
-        pageSize: size ? size : this.pageSize,
-        mainNumber: this.carNoValue,
-        fleetId: this.fleetId,
-        versionType: this.versionType,
-      };
+	getList(num, size) {
+	  let params = {
+	    pageNum:1,
+	    pageSize:10,
+	    mainNumber: this.carNoValue,
+	    fleetId: this.fleetId,
+	    versionType: this.versionType,
+	  };
+	
+	  uni.showLoading({
+	    title: "加载中",
+	  });
+	  getVehicleList(params)
+	    .then((res) => {
+	      uni.hideLoading();
+	      if (res.code == 200) {
+	        this.list = res.data.items
+	        this.total = res.data.total;
+	      }
+	    })
+	    .catch((err) => {
+	      uni.showToast({
+	        title: `${err.message}`,
+	        icon: "none",
+	        duration: 1500,
+	      });
+	    });
+	},
+    // getList(num, size) {
+    //   let params = {
+    //     pageNum: num ? num : this.pageNum,
+    //     pageSize: size ? size : this.pageSize,
+    //     mainNumber: this.carNoValue,
+    //     fleetId: this.fleetId,
+    //     versionType: this.versionType,
+    //   };
 
-      uni.showLoading({
-        title: "加载中",
-      });
-      getVehicleList(params)
-        .then((res) => {
-          uni.hideLoading();
-          if (res.code == 200) {
-            this.list = size
-              ? res.data.items
-              : [...this.list, ...(res.data.items || [])];
-            this.total = res.data.total;
-          }
-        })
-        .catch((err) => {
-          uni.showToast({
-            title: `${err.message}`,
-            icon: "none",
-            duration: 1500,
-          });
-        });
-    },
+    //   uni.showLoading({
+    //     title: "加载中",
+    //   });
+    //   getVehicleList(params)
+    //     .then((res) => {
+    //       uni.hideLoading();
+    //       if (res.code == 200) {
+    //         this.list = size
+    //           ? res.data.items
+    //           : [...this.list, ...(res.data.items || [])];
+    //         this.total = res.data.total;
+    //       }
+    //     })
+    //     .catch((err) => {
+    //       uni.showToast({
+    //         title: `${err.message}`,
+    //         icon: "none",
+    //         duration: 1500,
+    //       });
+    //     });
+    // },
     searchData() {
       this.pageNum = 1;
       this.pageSize = 10;
@@ -354,6 +418,12 @@ export default {
           this.receiverId = "";
           this.chioceData = {};
         }
+      }).catch(err=>{
+        uni.showToast({
+            title: err,
+            icon: "none",
+            duration: 1000,
+          });
       });
     },
     clearSearch() {
@@ -439,7 +509,7 @@ export default {
     text-align: center;
     line-height: 38rpx;
     position: absolute;
-    right: 200rpx;
+    right: 70rpx;
   }
   .title-info {
     font-size: 24rpx;
@@ -507,6 +577,7 @@ overflow: hidden;
     font-family: AppleSystemUIFont;
     color: #000000;
     margin: 12rpx auto;
+    text-align: center;
   }
   .btn {
     width: 562rpx;

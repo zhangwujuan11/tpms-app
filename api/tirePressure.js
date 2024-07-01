@@ -264,3 +264,11 @@ export function uplodatav(data){
 		data:data
 	})
 }
+
+// 轮胎详情
+export function tireinfo(data){
+	return request({
+		url:'/v1/tire/lifecycle/' +data,
+		method:'get'
+	})
+}

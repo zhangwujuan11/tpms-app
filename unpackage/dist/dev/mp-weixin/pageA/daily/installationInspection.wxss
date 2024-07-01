@@ -1,0 +1,174 @@
+.searbox.data-v-483502ef {
+  width: 100%;
+  height: 106rpx;
+  margin-top: 20rpx;
+}
+.searbox.data-v-483502ef  .u-input {
+  width: 670rpx !important;
+  margin: 0 auto;
+  border: none;
+}
+.top-box.data-v-483502ef {
+  display: flex;
+  padding: 28rpx 28rpx 30rpx 28rpx;
+  box-sizing: border-box;
+  justify-content: space-between;
+}
+.top-box .icon.data-v-483502ef {
+  width: 218rpx;
+  height: 192rpx;
+}
+.content.data-v-483502ef {
+  background: #ffffff;
+  padding: 0rpx 30rpx;
+  margin-top: 20rpx;
+}
+.content .item.data-v-483502ef {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 120rpx;
+  line-height: 120rpx;
+  border-bottom: 1px solid #f3f4f6;
+}
+.content.data-v-483502ef  .u-form-item__body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 120rpx;
+  line-height: 120rpx;
+  padding: 0rpx;
+}
+.content.data-v-483502ef  .u-form-item__body__left__content__required {
+  top: 46rpx !important;
+}
+.content .item1.data-v-483502ef  .u-form-item__body__right__content__slot {
+  flex-direction: row-reverse;
+}
+.content .item1.data-v-483502ef  .uni-input-input {
+  text-align: right;
+}
+.content .item1.data-v-483502ef  .u-form-item__body {
+  padding: 0rpx;
+}
+.content .item1.data-v-483502ef  .uni-input-placeholder {
+  text-align: right;
+}
+.content.data-v-483502ef .u-form-item__body__right__message {
+  text-align: right;
+}
+.content .search-icon.data-v-483502ef {
+  width: 48rpx;
+  height: 48rpx;
+}
+.content .label.data-v-483502ef {
+  font-size: 32rpx;
+  font-family: AppleSystemUIFont;
+  color: #010914;
+}
+.content .text.data-v-483502ef {
+  font-size: 32rpx;
+  font-family: AppleSystemUIFont;
+  color: #010914;
+  text-align: right;
+}
+.content .placeholder.data-v-483502ef {
+  font-size: 30rpx;
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 400;
+  color: #c4c5cd;
+}
+.content .date-box.data-v-483502ef  .uni-icons {
+  display: none;
+}
+.content .date-box.data-v-483502ef  .uni-date-x {
+  text-align: right;
+  font-size: 30rpx;
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 400;
+}
+.content .item2.data-v-483502ef {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 120rpx;
+  line-height: 120rpx;
+  border-bottom: #eaebec 1px solid;
+}
+.content.data-v-483502ef  .u-form-item__body__right {
+  line-height: 58rpx;
+}
+.content.data-v-483502ef  .uni-input-placeholder {
+  font-size: 30rpx;
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 400;
+  color: #b4b5bf;
+}
+.title.data-v-483502ef {
+  margin-top: 10rpx;
+  font-size: 28rpx;
+  font-family: AppleSystemUIFont;
+  color: #8a8ea6;
+  line-height: 40rpx;
+  margin-left: 30rpx;
+}
+.data-v-483502ef .u-textarea {
+  padding: 0rpx;
+}
+.bottom.data-v-483502ef {
+  width: 750rpx;
+  height: 148rpx;
+  background: #ffffff;
+  box-shadow: 0rpx -4rpx 8rpx 0rpx rgba(0, 0, 0, 0.05), 0rpx -4rpx 8rpx 0rpx rgba(0, 0, 0, 0.05);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.bottom .btn1.data-v-483502ef {
+  width: 334rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
+  background: #f5f7fb;
+  box-shadow: 0rpx -4rpx 8rpx 0rpx rgba(0, 0, 0, 0.05);
+  border-radius: 12rpx;
+  font-size: 30rpx;
+  font-family: AppleSystemUIFont;
+  color: #010914;
+}
+.bottom .btn2.data-v-483502ef {
+  width: 332rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
+  background: #1862f5;
+  box-shadow: 0rpx -4rpx 8rpx 0rpx rgba(0, 0, 0, 0.05);
+  border-radius: 12rpx;
+  font-size: 30rpx;
+  font-family: AppleSystemUIFont;
+  color: #f5f7fb;
+}
+.record-icon.data-v-483502ef {
+  width: 144rpx;
+  height: 144rpx;
+  position: fixed;
+  right: 0rpx;
+  top: 800rpx;
+}
+.search.data-v-483502ef {
+  width: 90%;
+  margin: 0 auto;
+  border-radius: 180rpx;
+}
+.data-v-483502ef .uni-select {
+  border: none;
+  text-align: right;
+}
+.data-v-483502ef .uni-select__input-text {
+  font-size: 30rpx;
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 400;
+}
+

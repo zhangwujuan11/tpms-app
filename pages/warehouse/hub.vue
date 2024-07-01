@@ -6,7 +6,7 @@
 					<view style="display: flex;justify-content: space-between;margin: 30upx 0;align-items: center;width: 710upx;">
 						 <view class="dwoclass">
 							<u--input
-							   placeholder="轮毂编号"
+							   placeholder="轮毂号"
 							   border="false"
 							   v-model="queryform.hubNo"
 								shape="circle"
@@ -254,11 +254,7 @@
 							 this.$forceUpdate()
 						},
 						fail: (err) => {
-							this.$refs.uToast.show({
-								type: 'error',
-								message: err,
-								iconUrl: 'https://cdn.uviewui.com/uview/demo/toast/error.png'
-							})
+							console.log(err)
 						},
 						complete: () => {
 							console.log('扫码结束')
@@ -313,6 +309,13 @@
 					});
 					return true;
 				},
+			onUnload() {
+			    //#ifdef MP-WEIXIN
+			    wx.reLaunch({
+			      url: '/pages/hub/hub'
+			    })
+			    //#endif
+			  },
 			onReachBottom() { //触底事件
 				if (this.queryform.pageNum * this.queryform.pageSize >= this.total) {
 					this.is_show = true;
@@ -381,7 +384,17 @@ u-tabs{
 	width: 574upx;
 	background-color: white;
 	border-radius: 180upx;
+	/* display: flex; */
+	/* padding: 5px 0;
+	height: 45rpx; */
 }
+/* .dwoclass .u-input{
+	width: 50%;
+}
+.dwoclass .u-input:nth-child(2){
+	border-radius: 0;
+	border-left: 1px solid #DADCE6;
+} */
 /deep/.uni-select__input-placeholder{
 	color: #010914;
 	text-align: center;

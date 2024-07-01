@@ -1,0 +1,178 @@
+@charset "UTF-8";
+.serchbox.data-v-51e9b630 {
+  width: 710rpx;
+  height: 106rpx;
+  margin: 0 auto;
+  padding-top: 20rpx;
+}
+.buttonbox.data-v-51e9b630 {
+  width: 672rpx;
+  display: flex;
+  justify-content: space-between;
+  height: 84rpx;
+  margin: 0 auto;
+}
+.buttonbox .top-btn.data-v-51e9b630 {
+  width: 200rpx;
+  height: 68rpx;
+  background: #ffffff;
+  border-radius: 180rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24rpx;
+  font-family: AppleSystemUIFont;
+  color: #010914;
+}
+.buttonbox .down.data-v-51e9b630 {
+  width: 24rpx;
+  height: 24rpx;
+  margin-left: 12rpx;
+}
+.buttonbox .name.data-v-51e9b630 {
+  max-width: 166rpx;
+}
+.contain-item.data-v-51e9b630 {
+  width: 710rpx;
+  min-height: 280rpx;
+  background: #ffffff;
+  border-radius: 20rpx;
+  margin: 0rpx auto;
+  margin-bottom: 20rpx;
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+.contain-item .bus-icon.data-v-51e9b630 {
+  width: 100rpx;
+  height: 100rpx;
+}
+.contain-item .top.data-v-51e9b630 {
+  display: flex;
+  justify-content: space-between;
+}
+.contain-item .title.data-v-51e9b630 {
+  width: 546rpx;
+  line-height: 50rpx;
+}
+.contain-item .title-text.data-v-51e9b630 {
+  display: flex;
+  align-items: center;
+}
+.contain-item .car-num.data-v-51e9b630 {
+  font-size: 32rpx;
+  font-family: AppleSystemUIFont;
+  color: #010914;
+}
+.contain-item .car-version.data-v-51e9b630 {
+  width: 120rpx;
+  height: 38rpx;
+  border-radius: 8rpx;
+  font-size: 20rpx;
+  font-family: AppleSystemUIFont;
+  text-align: center;
+  line-height: 38rpx;
+  position: absolute;
+  right: 70rpx;
+}
+.contain-item .title-info.data-v-51e9b630 {
+  font-size: 24rpx;
+  font-family: AppleSystemUIFont;
+  color: #5c5f66;
+  display: flex;
+}
+.contain-item .title-info .id.data-v-51e9b630 {
+  margin-left: 40rpx;
+}
+.contain-item .bottom.data-v-51e9b630 {
+  width: 670rpx;
+  height: 120rpx;
+  background: #f5f7fb;
+  border-radius: 20rpx;
+  margin-top: 18rpx;
+  display: flex;
+  align-items: center;
+}
+.contain-item .bottom .box.data-v-51e9b630 {
+  width: 168rpx;
+  height: 80rpx;
+  text-align: center;
+}
+.contain-item .bottom .label.data-v-51e9b630 {
+  font-size: 24rpx;
+  font-family: AppleSystemUIFont;
+  color: #8a8ea6;
+  margin-bottom: 8rpx;
+}
+.contain-item .bottom .value.data-v-51e9b630 {
+  font-size: 24rpx;
+  font-family: AppleSystemUIFont;
+  color: #010914;
+  white-space: nowrap;
+  /* 将文本在同一行显示 */
+  text-overflow: ellipsis;
+  /* 当文本超出容器长度时显示省略号 */
+  overflow: hidden;
+}
+.contain-item .bottom .valuetwo.data-v-51e9b630 {
+  font-size: 24rpx;
+  font-family: AppleSystemUIFont;
+  color: #ff5733;
+}
+.add-icon.data-v-51e9b630 {
+  width: 112rpx;
+  height: 112rpx;
+  position: fixed;
+  right: 38rpx;
+  top: 980rpx;
+  z-index: 999;
+}
+.receiver-box.data-v-51e9b630 {
+  width: 640rpx;
+  height: 610rpx;
+  background: #f5f7fb;
+  border-radius: 20rpx;
+  padding: 36rpx;
+  box-sizing: border-box;
+}
+.receiver-box .title.data-v-51e9b630 {
+  width: 220rpx;
+  height: 54rpx;
+  font-size: 36rpx;
+  font-family: AppleSystemUIFont;
+  color: #000000;
+  margin: 12rpx auto;
+  text-align: center;
+}
+.receiver-box .btn.data-v-51e9b630 {
+  width: 562rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  background: #1862f5;
+  border-radius: 12rpx;
+  font-size: 30rpx;
+  font-family: AppleSystemUIFont;
+  color: #ffffff;
+  text-align: center;
+  margin: 40rpx auto;
+}
+.receiver-box .label.data-v-51e9b630 {
+  font-size: 28rpx;
+  font-family: AppleSystemUIFont;
+  color: #5c5f66;
+  margin-bottom: 12rpx;
+}
+.receiver-box .item.data-v-51e9b630 {
+  margin-top: 28rpx;
+  margin-bottom: 12rpx;
+}
+.receiver-box.data-v-51e9b630  .uni-select {
+  border: none !important;
+  background: #ffffff;
+  height: 100rpx;
+}
+.receiver-box.data-v-51e9b630  .uni-select__input-placeholder {
+  font-size: 28rpx;
+  font-family: AppleSystemUIFont;
+  color: #b4b5bf !important;
+}
+

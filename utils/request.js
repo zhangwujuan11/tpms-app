@@ -58,8 +58,8 @@ const request = config => {
           toast(msg)
           reject(msg)
         } else if (code !== 200) {
-          toast(msg)
-          reject(code)
+          // toast(msg)
+          reject(msg)
         }
         resolve(res.data)
       })

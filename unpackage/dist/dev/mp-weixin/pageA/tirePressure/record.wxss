@@ -1,0 +1,142 @@
+
+.content.data-v-4131c790 {
+		height: 100%;
+}
+.search.data-v-4131c790{
+	padding: 20rpx 0;
+	background: #fff;
+	display:flex;
+	justify-content: space-around;
+}
+.search .text.data-v-4131c790{
+	width: 180rpx;
+	line-height: 60rpx;
+	font-size: 28rpx;
+	color: #000000;
+	padding-left: 20rpx;
+}
+.search .input.data-v-4131c790{
+	flex: 1;
+	margin-right: 20rpx;
+	height: 60rpx;
+	border-radius: 180rpx;
+	border: 1rpx solid #D8DBE2;
+	padding: 0 20rpx  0 60rpx;
+	background: url(https://tpms.5i84.cn/img/tirePressure/date-bg.png) no-repeat 15rpx 15rpx;
+	background-size: 28rpx 28rpx;
+	line-height: 56rpx;
+	font-size: 24rpx;
+}
+.record-date.data-v-4131c790{
+	height: 60rpx;
+	border-radius: 180rpx;
+	border: 1rpx solid #D8DBE2;
+	padding: 0 20rpx  0 60rpx;
+	background: url(https://tpms.5i84.cn/img/tirePressure/date-bg.png) no-repeat 15rpx 15rpx;
+	background-size: 28rpx 28rpx
+}
+.tp-car-list.data-v-4131c790{
+	margin-top: 18rpx;
+			padding: 0 20rpx;
+}
+.tp-car.data-v-4131c790{
+	background: #FFFFFF;
+	border-radius: 20rpx;
+	padding: 20rpx;
+	margin-top: 20rpx;
+}
+.tp-car .title.data-v-4131c790{
+	position: relative;
+	padding-left: 124rpx;
+}
+.tp-car .title .img.data-v-4131c790{
+	position: absolute;
+	left: 0rpx;
+	top: 0px;
+	width: 100rpx;
+	height: 100rpx;
+	background: url(https://tpms.5i84.cn/img/tirePressure/record.png);
+	background-size: 100% 100%;
+}
+.tp-car .title .img ._img.data-v-4131c790{
+	height: 100%;
+	width: 100%;
+}
+.tp-car .title .l1.data-v-4131c790{
+	height: 48rpx;
+	font-size: 32rpx;
+	color: #010914;
+	line-height: 46rpx;
+}
+.tp-car .title .l2.data-v-4131c790{
+	height: 36rpx;
+	font-size: 24rpx;
+	font-family: AppleSystemUIFont;
+	color: #5C5F66;
+	line-height: 34rpx;
+	margin-top: 8rpx;
+}
+.tp-car .title .text.data-v-4131c790{
+	margin-left: 30rpx;
+}
+.tp-car .title .info.data-v-4131c790{
+	position: absolute;
+	padding: 0 10rpx;
+	height: 52rpx;
+	line-height: 52rpx;
+	border-radius: 8rpx;
+	top: 0rpx;
+	right:0rpx;
+	font-size: 24rpx;
+	text-align: center;
+}
+.status1.data-v-4131c790{
+	background: rgba(255,87,51,0.1);
+	color: #FF5733
+}
+.status2.data-v-4131c790{
+	background: rgba(255,141,26,0.1);
+	color: #FF8D1A
+}
+.status3.data-v-4131c790{
+	background: rgba(43,201,152,0.1);
+	color: #2BC998
+}
+.status4.data-v-4131c790{
+	background: rgba(94,106,165,0.1);
+	color: #5E6AA5
+}
+.tp-car .title .text.data-v-4131c790{
+	margin-left: 30rpx;
+}
+.tp-car .data.data-v-4131c790{
+	padding: 20rpx;
+	background: #F5F7FB;
+	border-radius: 20rpx;
+	margin-top: 24rpx;
+}
+.tp-car .data .item.data-v-4131c790{
+	
+	display: flex;
+}
+.tp-car .data .item .t1.data-v-4131c790{
+	text-align: left;
+	flex: 3;
+	font-size: 24rpx;
+	font-family: AppleSystemUIFont;
+	color: #5C5F66;
+	line-height: 34rpx;
+}
+.tp-car .data .item .t2.data-v-4131c790{
+	text-align: right;
+	flex: 2;
+	font-size: 24rpx;
+	font-family: AppleSystemUIFont;
+	color: #010914;
+	line-height: 34rpx;
+}
+.time-range.data-v-4131c790{
+	display: flex;
+	flex-direction: column;
+}
+

@@ -10,7 +10,7 @@
 					<text>{{item.type}}</text>
 					<blockquote>胎号：{{item.tireNo}}</blockquote>
 					<blockquote>车牌号：{{item.vehicleNo || ''}}</blockquote>
-					<blockquote>传感器：{{item.rfidCode || ''}}</blockquote>
+					<blockquote>传感器ID/RFID：{{item.rfidCode || ''}}</blockquote>
 					<blockquote>操作人：{{item.updateBy}}</blockquote>
 				</view>
 			</view>

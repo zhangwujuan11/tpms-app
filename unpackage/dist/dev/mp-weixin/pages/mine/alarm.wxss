@@ -1,0 +1,98 @@
+.searchbox.data-v-50d2004e {
+  width: 710rpx;
+  height: 106rpx;
+  margin: 0 auto;
+  margin-top: 20rpx;
+}
+.searchbox.data-v-50d2004e  .u-input {
+  width: 670rpx !important;
+  margin: 0 auto;
+  border: none;
+}
+.searchbox .search-box.data-v-50d2004e {
+  width: 710rpx;
+  height: 76rpx;
+  background: #ffffff;
+  border-radius: 180rpx;
+  display: flex;
+  margin: 0 auto;
+}
+.searchbox .search-box.data-v-50d2004e  .u-icon {
+  padding-left: 32rpx;
+}
+.searchbox .search-box .search.data-v-50d2004e {
+  width: 490rpx;
+  margin: 0 auto;
+}
+.searchbox .search-box .search.data-v-50d2004e  .uni-input-input {
+  text-align: left;
+}
+.searchbox .search-box .search.data-v-50d2004e  .uni-input-placeholder {
+  text-align: left;
+}
+.searchbox .search-box .search.data-v-50d2004e  input {
+  text-align: left !important;
+}
+.top.data-v-50d2004e .u-input {
+  border: 0;
+}
+.menu-list.data-v-50d2004e {
+  width: 710rpx;
+  padding-top: 18rpx;
+  min-height: 280rpx;
+  margin-left: 20rpx;
+  background-color: #fff;
+  border-radius: 20rpx;
+  margin-bottom: 20rpx;
+  padding-bottom: 18rpx;
+  padding-right: 18rpx;
+  box-sizing: border-box;
+}
+.menu-item-box.data-v-50d2004e {
+  width: 710rpx;
+  height: -webkit-max-content;
+  height: max-content;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.text.data-v-50d2004e {
+  font-size: 32rpx;
+  color: #010914;
+}
+.alarm.data-v-50d2004e {
+  width: 160rpx;
+  height: 52rpx;
+  border-radius: 8rpx;
+  font-size: 24rpx;
+  text-align: center;
+  line-height: 52rpx;
+}
+.bottom.data-v-50d2004e {
+  width: 670rpx;
+  height: 120rpx;
+  background-color: #f5f7fb;
+  margin-left: 20rpx;
+  margin-top: 20rpx;
+  border-radius: 20rpx;
+  display: flex;
+  align-items: center;
+}
+.test2.data-v-50d2004e {
+  width: 335rpx;
+  height: 80rpx;
+  text-align: center;
+  font-size: 24rpx;
+  padding-top: 20rpx;
+}
+.Number.data-v-50d2004e {
+  color: #010914;
+}
+input.data-v-50d2004e {
+  height: 76rpx;
+}
+.data-v-50d2004e .u-icon {
+  margin-left: 34rpx;
+  margin-right: 16rpx;
+}
+

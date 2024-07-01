@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "参数设置",
+  "usingComponents": {
+    "u-picker": "/uni_modules/uview-ui/components/u-picker/u-picker"
+  }
+}

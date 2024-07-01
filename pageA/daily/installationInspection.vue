@@ -28,6 +28,7 @@
               border="none"
               placeholder="请输入胎号"
               inputAlign="right"
+              style="padding: 12rpx 18rpx"
             ></u--input>
             <image
               @click="scan"
@@ -108,6 +109,12 @@
               inputAlign="right"
               v-model="form.senderId"
             ></u--input>
+            <image
+              @click="senderIdScan"
+              slot="right"
+              :src="$util.ossImg('img/images/carlive/crams.png')"
+              class="search-icon"
+            />
           </u-form-item>
           <u-form-item label="单价" prop="price" required borderBottom>
             <u--input
@@ -400,10 +407,7 @@ export default {
           },
         ],
       },
-      brandList: [{ name: "123", value: "123" }],
       fileList1: [],
-      illustrate: "",
-      carList: [{ name: "123", value: "123" }],
       carNo: "",
       tireclass: [], //轮胎分类
       tirestatu: [], //轮胎状态
@@ -550,7 +554,7 @@ export default {
         this.pinpai = res.data.map((item) => {
           return {
             value: item.paramId,
-            text: item.paramName,
+            text: item.paramName
           };
         });
       });
@@ -617,7 +621,10 @@ export default {
     },
     addTire() {
       return new Promise((resolve, reject) => {
-        addtire(this.form)
+		 let obj =JSON.parse(JSON.stringify(this.form)) 
+		  delete obj.installPosition
+		  delete obj.installPositionDesc
+        addtire(obj)
           .then((res) => {
             if (res.code == 200) {
               resolve(res);
@@ -665,7 +672,9 @@ export default {
           if (res.code == 200) {
             const pages = getCurrentPages();
             let prevPage = pages[pages.length - 2];
-            prevPage = prevPage;
+            // #ifdef MP-WEIXIN
+            prevPage = prevPage.$vm;
+            // #endif
             prevPage.loadData();
             uni.navigateBack();
             setTimeout(() => {
@@ -689,6 +698,24 @@ export default {
       uni.scanCode({
         success: (res) => {
           this.form.tireNo = res.result;
+          this.$forceUpdate();
+        },
+        fail: (err) => {
+          uni.showToast({
+            title: "扫描失败,请稍后再试",
+            icon: "none",
+            duration: 1500,
+          });
+        },
+        complete: () => {
+          console.log("扫码结束");
+        },
+      });
+    },
+    senderIdScan() {
+      uni.scanCode({
+        success: (res) => {
+          this.form.senderId = res.result;
           this.$forceUpdate();
         },
         fail: (err) => {

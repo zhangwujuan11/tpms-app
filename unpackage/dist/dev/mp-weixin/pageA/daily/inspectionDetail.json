@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "轮胎检查详情",
+  "navigationBarBackgroundColor": "#fff",
+  "usingComponents": {
+    "u-album": "/uni_modules/uview-ui/components/u-album/u-album"
+  }
+}

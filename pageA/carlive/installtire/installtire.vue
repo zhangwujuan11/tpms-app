@@ -18,7 +18,7 @@
 					<u-form-item label="胎号" prop="tireNo" required borderBottom>
 						<view class="needinline">
 							<superwei-combox style="width: 80%;" :candidates="chetai" :isJSON="true" keyName="name"   v-model="form.tireNo"  @select="select3"></superwei-combox>
-							<image @click="can" style="width: 48upx;height: 48upx;"
+							<image @click="can" style="width: 48upx;height: 48upx;margin-left: 38rpx;"
 								src="https://tpms.5i84.cn/img/images/carlive/crams.png" mode=""></image>
 						</view>
 					</u-form-item>
@@ -34,6 +34,9 @@
 					</u-form-item>
 					<u-form-item label="品牌" prop="tireBrandName" borderBottom>
 						<text slot="right">{{form.tireBrandName}}</text>
+					</u-form-item>
+					<u-form-item label="规格" prop="tireBrandName" borderBottom>
+						<text slot="right">{{form.specificationsName}}</text>
 					</u-form-item>
 					<u-form-item label="花纹型号" prop="pattern" borderBottom>
 						<text slot="right">{{form.pattern}}</text>
@@ -60,8 +63,8 @@
 					<u-form-item label="实测花纹深度" prop="measuredDepth" borderBottom>
 						<text slot="right">{{form.measuredDepth  || '0'}}mm</text>
 					</u-form-item>
-					<u-form-item label="操作单位" borderBottom>
-						<text slot="right">{{userdata.nickName}}</text>
+					<u-form-item label="操作单位" borderBottom >
+						<text slot="right">{{depinfo.deptName}}</text>
 					</u-form-item>
 					<u-form-item label="操作人" borderBottom>
 						<text slot="right">{{userdata.userName}}</text>
@@ -101,7 +104,7 @@
 		</view>
 		<view class="bte">
 			<button style="margin-top: 32upx;width: 48%;" @click="quxiao">取消</button>
-			<button @click="gotirelive" type="primary" style="margin-top: 32upx;width: 48%;">确定安装</button>
+			<button @click="gotirelive" type="primary" style="margin-top: 32upx;width: 48%;background: #3c9cff;">确定安装</button>
 		</view>
 
 		<!-- 传感器 -->
@@ -197,6 +200,7 @@
 				paths: [], //存储所有绘制路径,
 				screenWidth: '', //屏幕宽度
 				screenHeight: '', //屏幕高度
+				depinfo:{}
 			}
 		},
 		onLoad(option) {
@@ -220,6 +224,10 @@
 					this.tireclass.push({text:item.dictLabel,value:item.dictValue})
 				})
 			})
+			user().then(res=>{
+				this.userdata = res.data
+				this.depinfo=res.data.dept
+			})
 		},
 		mounted() {
 			// 创建canvas
@@ -230,9 +238,6 @@
 					this.screenWidth = e.screenWidth * 0.65;
 					this.screenHeight = e.screenHeight * 0.97;
 				},
-			})
-			user().then(res=>{
-				this.userdata = res.data
 			})
 		},
 		methods: {
@@ -468,11 +473,7 @@
 						this.$forceUpdate()
 					},
 					fail: (err) => {
-						this.$refs.uToast.show({
-							type: 'error',
-							message: err,
-							iconUrl: 'https://cdn.uviewui.com/uview/demo/toast/error.png'
-						})
+						console.log(err)
 					},
 					complete: () => {
 						console.log('扫码结束')
@@ -503,6 +504,8 @@
 							this.sendform.senderType = ''
 							
 						}
+					}).catch(error => {
+						uni.$u.toast(error)
 					})
 				}
 			},
@@ -524,9 +527,15 @@
 						this.sendform.senderType = ''
 						this.form.senderId=null
 					} else {
-						uni.$u.toast(res.message)
+						this.$refs.uToast.show({
+							type: 'default',
+							title: '默认主题',
+							message: res.message,
+						})
 					}
-				})
+				}).catch(error => {
+						uni.$u.toast(error)
+					})
 			},
 			// 确定安装
 			gotirelive() {
@@ -544,6 +553,8 @@
 								url: '/pageA/carlive/tireinstall/tireinstall?id=' + this.returnid
 							})
 						}
+					}).catch(error => {
+						uni.$u.toast(error)
 					})
 				}
 				

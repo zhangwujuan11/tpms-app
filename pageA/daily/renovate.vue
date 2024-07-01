@@ -14,7 +14,7 @@
         @change="change"
       ></u-tabs>
       <view v-if="current == 1">
-        <view class="searbox">
+        <!-- <view class="searbox">
           <view>
             <u--input
               inputAlign="center"
@@ -32,7 +32,7 @@
               v-model="maintenanceDate"
             />
           </view>
-        </view>
+        </view> -->
         <view class="searboxtwo">
           <view>
             <u--input
@@ -110,8 +110,8 @@
             <view class="bottom-value">{{ item.pattern }}</view>
           </view>
           <view class="bottom-item">
-            <view class="bottom-label">入库时间</view>
-            <view class="bottom-value">{{ item.createTime }}</view>
+            <view class="bottom-label">规格</view>
+            <view class="bottom-value">{{ item.specificationsName }}</view>
           </view>
         </view>
       </view>
@@ -208,7 +208,7 @@ export default {
         },
       ],
       current: 0,
-      maintenanceDate: "",
+      // maintenanceDate: "",
       list: [],
       radioAll: { label: "all", name: "全选" },
       checkList: [],
@@ -219,7 +219,7 @@ export default {
       total: 0,
       tireNo: "",
       mid: "",
-      maintainer: "",
+      // maintainer: "",
       is_show: false,
     };
   },
@@ -366,8 +366,8 @@ export default {
         pageSize: size ? size : this.pageSize,
         type: 5,
         mid: this.mid,
-        maintainer: this.maintainer,
-        maintenanceDate: this.maintenanceDate,
+        // maintainer: this.maintainer,
+        // maintenanceDate: this.maintenanceDate,
       };
 
       uni.showLoading({
@@ -394,14 +394,16 @@ export default {
     getTireStatus() {
       tireStatus().then((res) => {
         if (res.code == 200) {
-          this.list.forEach((item) => {
-            for (let i = 0; i < res.data.length; i++) {
-              if (item.stockStatus == res.data[i].dictValue) {
-                this.$set(item, "statusName", res.data[i].dictLabel);
-                break;
+          if (this.list) {
+            this.list.forEach((item) => {
+              for (let i = 0; i < res.data.length; i++) {
+                if (item.stockStatus == res.data[i].dictValue) {
+                  this.$set(item, "statusName", res.data[i].dictLabel);
+                  break;
+                }
               }
-            }
-          });
+            });
+          }
         }
       });
     },
@@ -466,7 +468,9 @@ export default {
   justify-content: space-between;
   padding: 0rpx 20rpx;
   box-sizing: border-box;
+  margin-top: 20rpx;
   ::v-deep .u-input {
+    width: 490rpx;
     height: 76rpx !important;
     margin: 0 auto;
     border: none;
@@ -474,7 +478,7 @@ export default {
     background: white;
   }
   .searchbtn {
-    width: 346rpx;
+    width: 200rpx;
     background: white;
     height: 76rpx;
     border-radius: 100rpx;
@@ -547,6 +551,7 @@ export default {
   }
   .item-right-text {
     width: 360rpx;
+    word-break: break-all;
   }
   .item-right-text-no {
     font-size: 32rpx;
@@ -559,7 +564,7 @@ export default {
     color: #5c5f66;
   }
   .item-right-text-status {
-    width: 88rpx;
+    min-width: 78rpx;
     height: 52rpx;
     background: rgba(24, 98, 245, 0.1);
     border-radius: 8rpx;
@@ -568,6 +573,7 @@ export default {
     font-weight: 400;
     color: #1862f5;
     text-align: center;
+    padding: 0rpx 10rpx;
   }
   .bottom {
     width: 670rpx;
